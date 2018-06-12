@@ -26,8 +26,8 @@
 ![步骤5](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/4.png)
 
 ### 截止目前准备工作已经完成，接下来开始配置项目了
-* 首先在项目级别的**build.gradle**中配置以下内容
-在dependencies{}中增加：
+#### 首先在项目级别的**build.gradle**中配置以下内容：
+* 在dependencies{}中增加：
 ```java
   classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
   classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
@@ -40,8 +40,8 @@ tasks.withType(Javadoc) {
         options.addStringOption('encoding', 'UTF-8')
 }
 ```
-* 然后在**lib**级别的**build.gradle**配置以下内容
-在顶部增加：
+#### 然后在**lib**级别的**build.gradle**配置以下内容
+* 在顶部增加：
 ```java
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
@@ -115,7 +115,7 @@ bintray {
     }
 }
 ```
-* 最后在**local.properties**中配置以下内容（千万不要把这个也上传到github中，会造成信息泄露）
+#### 最后在**local.properties**中配置以下内容（千万不要把这个也上传到github中，会造成信息泄露）
 ```Java
 bintray.user=XXX//这里写入在bintray中注册时候的用户名
 bintray.apikey=XXX//这里写入刚才获取到的key值
