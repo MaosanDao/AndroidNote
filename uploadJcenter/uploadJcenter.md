@@ -139,6 +139,17 @@ grable bintrayUpload
 
 ![步骤8](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/8.png)
 
+## 升级库的版本
+* 在android{}标签的上方增加以下内容：
+
+```Java
+version = "0.0.1" //这里上传到jcenter是版本的控制
+```
+* 如何升级
+```
+只需要将上述的版本号进行修改再上传就行了
+```
+
 ## 温馨提示
 * 代码库提交到jCenter的时候，可能会有4-6个小时的审核时间
 * gradle的环境需要自己进行配置
