@@ -6,15 +6,25 @@
 * 点击这个[网址](https://bintray.com/signup/oss)
 * 按照提示的信息进行填写完毕（最好使用google、outlook等国外的邮箱进行注册）
 * 进入到主界面后会出现以下界面
+
 ![步骤1](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/2.png)
+
 * 然后点击**Add New Repository**,会进入到以下界面
+
 ![步骤2](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/5.png)
+
 * 新建完成后，点击个人右上方的用户名，进入API Key界面获取user和key
+
 ![步骤3](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/1.png)
+
 * 开始获取发布必须的username和key
+
 ![步骤4](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/3.png)
+
 * 获取key
+
 ![步骤5](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/4.png)
+
 ### 截止目前准备工作已经完成，接下来开始配置项目了
 * 首先在项目级别的**build.gradle**中配置以下内容
 在dependencies{}中增加：
@@ -23,7 +33,7 @@
   classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 ``` 
 
-在allproject{}中增加：
+* 在allproject{}中增加：
 ```Java
 tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
@@ -36,7 +46,7 @@ tasks.withType(Javadoc) {
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 ```
-在最底部增加以下内容：
+* 在最底部增加以下内容：
 ```Java
 def siteUrl = 'https://github.com/xxxxx/xxxx.git'      // 项目的主页(可以写自己的库的GitHub地址)
 def gitUrl = 'https://github.com/xxxxx/xxxx.git'      // Git仓库的url  这个是说明，可随便填
@@ -119,4 +129,17 @@ grable bintrayUpload
 ## 最后上传代码库到jCenter中央库中
 * 进入自己的jCenter的仓库中，找到自己才上传的库。你会看到以下界面：
 
+![步骤6](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/6.png)
+
+* 继续
+
+![步骤7](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/7.png)
+
+* 获取地址
+
+![步骤8](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/8.png)
+
+## 温馨提示
+* 代码库提交到jCenter的时候，可能会有4-6个小时的审核时间
+* gradle的环境需要自己进行配置
 
