@@ -4,6 +4,7 @@
 ## 其他
 * [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
 * [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
+* [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/regexp.md)
 ## 开发相关
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
