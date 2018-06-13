@@ -7,3 +7,7 @@
 ## 开发相关
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
+## Retrofit相关
+* [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
+* [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
+* [使用Retrofit上传Json数据](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadJson.md)
