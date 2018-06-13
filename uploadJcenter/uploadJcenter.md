@@ -46,6 +46,8 @@ tasks.withType(Javadoc) {
 ```java
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+
+version = "0.0.1" //这里上传到jcenter是版本的控制
 ```
 * 在最底部增加以下内容：
 ```Java
