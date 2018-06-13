@@ -38,6 +38,7 @@
 tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
         options.addStringOption('encoding', 'UTF-8')
+        options.encoding = "GBK"
 }
 ```
 #### 然后在**lib**级别的**build.gradle**配置以下内容
@@ -50,7 +51,7 @@ apply plugin: 'com.jfrog.bintray'
 ```Java
 def siteUrl = 'https://github.com/xxxxx/xxxx.git'      // 项目的主页(可以写自己的库的GitHub地址)
 def gitUrl = 'https://github.com/xxxxx/xxxx.git'      // Git仓库的url  这个是说明，可随便填
-group = "xx.xxxxxx"  // 这里是groupId ,必须填写  一般填你唯一的包名，对应com.squareup.okhttp3:okhttp:3.4.1中的com.squareup.okhttp3部分
+group = "xx.xxxxxx"  // （**慎重填写**）这里是groupId ,必须填写  一般填你唯一的包名，对应com.squareup.okhttp3:okhttp:3.4.1中的com.squareup.okhttp3部分
 
 install {
     repositories.mavenInstaller {
@@ -106,8 +107,8 @@ bintray {
     key = properties.getProperty("bintray.apikey")   //读取 local.properties 文件里面的 bintray.apikey
     configurations = ['archives']
     pkg {
-        repo = "maven"
-        name = "xxxxxx"    //（慎重填写）发布到JCenter上的项目名字，必须填写，对应com.squareup.okhttp3:okhttp:3.4.1中的okhttp
+        repo = "maven" //(**慎重填写**)这里填写在bintray中自己新建仓库的名字
+        name = "xxxxxx"    //（**慎重填写**）发布到JCenter上的项目名字，必须填写，对应com.squareup.okhttp3:okhttp:3.4.1中的okhttp
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
