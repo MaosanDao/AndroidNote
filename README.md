@@ -12,8 +12,6 @@
 * [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
 * [使用Retrofit上传Json数据](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadJson.md)
-## 更新日志
-* 新增Retrofit栏目 2018.06.13
 ## Licenses
 ```text
  Copyright 2016 vangelis(王裴)
