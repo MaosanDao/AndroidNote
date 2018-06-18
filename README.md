@@ -17,6 +17,7 @@
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Generic.md)
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md) 
+* [多渠道打包](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/MultiPackaging.md)
 ## Licenses
 ```text
  Copyright 2016 vangelis(王裴)
