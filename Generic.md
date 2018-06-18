@@ -8,18 +8,18 @@
 
 ## 泛型的使用
 ### 泛型类
-```
+```java
 public class Generic<T>{ 
-    			//key这个成员变量的类型为T,T的类型由外部指定  
-   			 private T key;
+//key这个成员变量的类型为T,T的类型由外部指定  
+ private T key;
 
-    			public Generic(T key) { //泛型构造方法形参key的类型也为T，T的类型由外部指定
-       				 this.key = key;
-   			 }
+public Generic(T key) { //泛型构造方法形参key的类型也为T，T的类型由外部指定
+	 this.key = key;
+ }
 
-    			public T getKey(){ //泛型方法getKey的返回值类型为T，T的类型由外部指定
-       				 return key;
-    			}
+public T getKey(){ //泛型方法getKey的返回值类型为T，T的类型由外部指定
+	 return key;
+}
 }
 
 //泛型的类型参数只能是类类型（包括自定义类），不能是简单类型
@@ -30,7 +30,7 @@ Generic<Integer> genericInteger = new Generic<Integer>(123456);
 Generic generic3 = new Generic(false);
 ```
 ### 泛型接口
-```
+```java
 //定义一个泛型接口
 public interface Generator<T> {
 			public T next();
@@ -57,7 +57,7 @@ class FruitGenerator<T> implements Generator<T>{
 */
 ```
 ### 泛型方法
-```
+```java
 public <T> T genericMethod(Class<T> tClass)throws InstantiationException ,
   			IllegalAccessException{
         				T instance = tClass.newInstance();
@@ -275,18 +275,18 @@ public <T super Number> T showKeyName(Generic<T> container){
 ## 注意：T 和 ？之间的区别
 ### T
 当我们定义泛型的时候用
-```
+```java
 SomeName<T>
 ```
 泛型也叫参数化类型，意味着我们在使用泛型的时候要给它参数
   
 ### ?
 当对已经存在的泛型，我们不想给她一个具体的类型做为类型参数，我们可以给她一个不确定的类型作为参数，（前提是这个泛型必须已经定义）
-```
+```java
 SomeName<?>
 ```
 ### 加以限制
-```
+```java
 SomeName<? super B>
 ```
 ### 一个用在定义的时候（不能用?必须给个名字，比如T等，否则定义的代码里怎么用呢？）
