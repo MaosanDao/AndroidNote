@@ -1,294 +1,120 @@
-# 泛型相关知识
+# 内存泄漏的含义以及大部分的处理方式
 
-## 泛型定义
-泛型，即参数化类型
-泛型的本质是为了参数化类型（在不创建新的类型的情况下，通过泛型指定的不同类型来控制形参具体限制的类型）。也就是说在泛型使用过程中，操作的数据类型被指定为一个参数，这种参数类型可以用在类、接口和方法中，分别被称为泛型类、泛型接口、泛型方法。
-## 特性
-泛型在逻辑上可以看成不同的类型，其实实际都是一种基本类型
-
-## 泛型的使用
-### 泛型类
+## 内存泄漏
+### 预备知识
+#### Java中的内存分配
+* 静态存储区：编译时就分配好，在整个程序运行期间都在，它主要存在静态数据和常量
+* 栈区：当方法执行时，会在栈去内存中创建方法体背部的局部变量，方法结束后自定释放内存
+* 堆区：通常存放new出来的对象，由GC负责回收
+#### Java中的四种引用类型
+* 强引用
 ```java
-public class Generic<T>{ 
-//key这个成员变量的类型为T,T的类型由外部指定  
- private T key;
-
-public Generic(T key) { //泛型构造方法形参key的类型也为T，T的类型由外部指定
-	 this.key = key;
- }
-
-public T getKey(){ //泛型方法getKey的返回值类型为T，T的类型由外部指定
-	 return key;
-}
-}
-
-//泛型的类型参数只能是类类型（包括自定义类），不能是简单类型
-//传入的实参类型需与泛型的类型参数类型相同，即为Integer.
-Generic<Integer> genericInteger = new Generic<Integer>(123456);
-
-//也可以这样使用
-Generic generic3 = new Generic(false);
+User user = new User();
 ```
-### 泛型接口
+对于强引用的回收，JVM是不会让GC去主动回收具有强引用的对象，而我们需要回收强引用，可以通过置空，object = null；那么GC就会去回收该强引用对象
+* 软引用
 ```java
-//定义一个泛型接口
-public interface Generator<T> {
-			public T next();
-}
-
-/**
-* 未传入泛型实参时，与泛型类的定义相同，在声明类的时候，需将泛型的声明也一起加到类中
-* 即：class FruitGenerator<T> implements Generator<T>
-* 如果不声明泛型，如：class FruitGenerator implements Generator<T>，编译器会报错："Unknown class"
-*/
-class FruitGenerator<T> implements Generator<T>{
-			@Override
-			public T next() {
-			    return null;
-		 }
-}
-
-/**
-* 传入泛型实参时：
-* 定义一个生产器实现这个接口,虽然我们只创建了一个泛型接口Generator<T>
-* 但是我们可以为T传入无数个实参，形成无数种类型的Generator接口。
-* 在实现类实现泛型接口时，如已将泛型类型传入实参类型，则所有使用泛型的地方都要替换成			传入的实参类型
-* 即：Generator<T>，public T next();中的的T都要替换成传入的String类型。
-*/
+SoftReference<String> softRef = new SoftReference<String>();
 ```
-### 泛型方法
+当一个对象只具有软引用的时候，内存空间足够的话，GC不会进行回收操作。如果内存不够的话，就会进行回收操作
+* 弱引用
 ```java
-public <T> T genericMethod(Class<T> tClass)throws InstantiationException ,
-  			IllegalAccessException{
-        				T instance = tClass.newInstance();
-        				return instance;
+WeakReference<String> softRef = new WeakReference<String>();
+```
+* 虚引用
+虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否存在该对象的虚引用，来了解这个对象是否将要被回收
+#### 内存泄漏的定义
+在android里面引起内存泄漏指的是对象的生命周期结束，而该对象依然被其他对象所持有，导致该对象所占内存无法释放
+#### 内存泄漏带来的影响
+在android里面，出现内存泄漏会导致系统为应用分配的内存会不断减少，从而造成app在运行时会出现卡断(内存占用高时JVM虚拟机会频繁触发GC)，影响用户体验。同时，可能会引起OOM(内存溢出)，从而导致应用程序崩溃
+## 常见的内存泄漏操作汇总
+### 集合类泄漏
+如果某个集合是全局性的变量（比如 static 修饰），集合内直接存放一些占用大量内存的对象（而不是通过弱引用存放），那么随着集合 size 的增大，会导致内存占用不断上升，而在 Activity 等销毁时，集合中的这些对象无法被回收，导致内存泄露。比如我们喜欢通过静态HashMap做一些缓存之类的事，这种情况要小心，集合内对象建议采用弱引用的方式存取，并考虑在不需要的时候手动释放。
+### 单例模式（静态Activity的引用）
+```java
+public class RequestImpl {
+
+    private Context context;
+    private static RequestImpl mInstance;
+
+    public static RequestImpl getInstance(Context context) {//假如这里传入的是Activity的this，那 么就会出现内存泄漏，因为，传入Activity如果销毁了，这里的Context就无法进行回收
+
+        if (mInstance == null) {
+            mInstance = new RequestImpl(context);
+        }
+        return mInstance;
+    }
+
+    private RequestImpl(Context context) {
+        this.context = context;
+    }
 }
 ```
-* public 与 返回值中间<T>非常重要，可以理解为声明此方法为泛型方法
-* 只有声明了<T>的方法才是泛型方法，泛型类中的使用了泛型的成员方法并不是泛型方法
-* <T>表明该方法将使用泛型类型T，此时才可以在方法中使用泛型类型T
-* 与泛型类的定义一样，此处T可以随便写为任意标识，常见的如T、E、K、V等形式的参数常用于表示泛型
-  
-## 具体示例
-```Java
-public class GenericTest {
-   //这个类是个泛型类，在上面已经介绍过
-   public class Generic<T>{     
-        private T key;
+#### 解决方法
+只要传入application的Context就可以了。即，使用RequestImpl的构造函数里面调用context.getApplicationContext()
+### 非静态内部类
+非静态内部类造成的内存溢出常常出现在Handler、Thread、Timer Task。这些耗时操作如果在Activity生命周期结束后还在运行的话，可能会造成内存溢出
+#### 线程
+```java
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        testInnner();
+    }
 
-        public Generic(T key) {
-            this.key = key;
+    private void testInnner() {
+        new Thread(new Runnable() {//模拟线程一直运行，假如activity结束的时候，还在运行的话，则会出现内存泄漏
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+}
+```
+#### Handler
+解决方法：
+```java
+MyHandler mHandler = new MyHandler(this);
+
+    static class MyHandler extends Handler {
+        WeakReference<MainActivity> activityReference;
+
+        MyHandler(MainActivity activity) {
+            activityReference = new WeakReference<>(activity);
         }
 
-        //我想说的其实是这个，虽然在方法中使用了泛型，但是这并不是一个泛型方法。
-        //这只是类中一个普通的成员方法，只不过他的返回值是在声明泛型类已经声明过的泛型。
-        //所以在这个方法中才可以继续使用 T 这个泛型。
-        public T getKey(){
-            return key;
-        }
-
-        /**
-         * 这个方法显然是有问题的，在编译器会给我们提示这样的错误信息"cannot reslove symbol E"
-         * 因为在类的声明中并未声明泛型E，所以在使用E做形参和返回值类型时，编译器会无法识别。
-        public E setKey(E key){
-             this.key = keu
-        }
-        */
-    }
-
-    /** 
-     * 这才是一个真正的泛型方法。
-     * 首先在public与返回值之间的<T>必不可少，这表明这是一个泛型方法，并且声明了一个泛型T
-     * 这个T可以出现在这个泛型方法的任意位置.
-     * 泛型的数量也可以为任意多个 
-     *    如：public <T,K> K showKeyName(Generic<T> container){
-     *        ...
-     *        }
-     */
-    public <T> T showKeyName(Generic<T> container){
-        System.out.println("container key :" + container.getKey());
-        //当然这个例子举的不太合适，只是为了说明泛型方法的特性。
-        T test = container.getKey();
-        return test;
-    }
-
-    //这也不是一个泛型方法，这就是一个普通的方法，只是使用了Generic<Number>这个泛型类做形参而已。
-    public void showKeyValue1(Generic<Number> obj){
-        Log.d("泛型测试","key value is " + obj.getKey());
-    }
-
-    //这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?
-    //同时这也印证了泛型通配符章节所描述的，?是一种类型实参，可以看做为Number等所有类的父类
-    public void showKeyValue2(Generic<?> obj){
-        Log.d("泛型测试","key value is " + obj.getKey());
-    }
-
-     /**
-     * 这个方法是有问题的，编译器会为我们提示错误信息："UnKnown class 'E' "
-     * 虽然我们声明了<T>,也表明了这是一个可以处理泛型的类型的泛型方法。
-     * 但是只声明了泛型类型T，并未声明泛型类型E，因此编译器并不知道该如何处理E这个类型。
-    public <T> T showKeyName(Generic<E> container){
-        ...
-    }  
-    */
-
-    /**
-     * 这个方法也是有问题的，编译器会为我们提示错误信息："UnKnown class 'T' "
-     * 对于编译器来说T这个类型并未项目中声明过，因此编译也不知道该如何编译这个类。
-     * 所以这也不是一个正确的泛型方法声明。
-    public void showkey(T genericObj){
-
-    }
-    */
-
-    public static void main(String[] args) {
-
-
-    }
-}
-```
-## 具体示例2
-```Java
-public class GenericFruit {
-    class Fruit{
         @Override
-        public String toString() {
-            return "fruit";
+        public void handleMessage(Message msg) {
+            MainActivity activity = activityReference.get();
+            //判断是因为GC是对弱引用进行回收的
+            if (activity != null) {
+                activity.getTextView().setText("测试");
+            }
         }
     }
-
-    class Apple extends Fruit{
-        @Override
-        public String toString() {
-            return "apple";
-        }
-    }
-
-    class Person{
-        @Override
-        public String toString() {
-            return "Person";
-        }
-    }
-
-    class GenerateTest<T>{
-        public void show_1(T t){
-            System.out.println(t.toString());
-        }
-
-        //在泛型类中声明了一个泛型方法，使用泛型E，这种泛型E可以为任意类型。可以类型与T相同，也可以不同。
-        //由于泛型方法在声明的时候会声明泛型<E>，因此即使在泛型类中并未声明泛型，编译器也能够正确识别泛型方法中识别的泛型。
-        public <E> void show_3(E t){
-            System.out.println(t.toString());
-        }
-
-        //在泛型类中声明了一个泛型方法，使用泛型T，注意这个T是一种全新的类型，可以与泛型类中声明的T不是同一种类型。
-        public <T> void show_2(T t){
-            System.out.println(t.toString());
-        }
-    }
-
-    public static void main(String[] args) {
-        Apple apple = new Apple();
-        Person person = new Person();
-
-        GenerateTest<Fruit> generateTest = new GenerateTest<Fruit>();
-        //apple是Fruit的子类，所以这里可以
-        generateTest.show_1(apple);
-        //编译器会报错，因为泛型类型实参指定的是Fruit，而传入的实参类是Person
-        //generateTest.show_1(person);
-
-        //使用这两个方法都可以成功
-        generateTest.show_2(apple);
-        generateTest.show_2(person);
-
-        //使用这两个方法也都可以成功
-        generateTest.show_3(apple);
-        generateTest.show_3(person);
-    }
-
 ```
-## 可变参数和泛型
-```Java
-public <T> void printMsg( T... args){
-    for(T t : args){
-        Log.d("泛型测试","t is " + t);
-    }
-}
-```
-## 静态方法和泛型
-如果一个静态方法需要使用泛型作为参数，则需要将这个静态方法设置为泛型方法，即，添加<T>
-  
-```Java
-public class StaticGenerator<T> {
-    ....
-    ....
-    /**
-     * 如果在类中定义使用泛型的静态方法，需要添加额外的泛型声明（将这个方法定义成泛型方法）
-     * 即使静态方法要使用泛型类中已经声明过的泛型也不可以。
-     * 如：public static void show(T t){..},此时编译器会提示错误信息：
-          "StaticGenerator cannot be refrenced from static context"
-     */
-    public static <T> void show(T t){
+#### 总结
+当书写内部类的时候要确保自己的耗时操作在activity结束后没有引用activity对象
 
-    }
-}
-```
-
-## 泛型的上下边界
-### 含义
-在使用泛型的时候，我们还可以为传入的泛型类型实参进行上下边界的限制，如：类型实参只准传入某种类型的父类或某种类型的子类
-### 上边界 — 传入的参数类型实参必须为指定类型的子类
-#### 泛型类的上边界
+### GetSystemService方法
 ```java
-public void showKeyValue1(Generic<? extends Number> obj){
-   		 Log.d("泛型测试","key value is " + obj.getKey());
-	}
+AudioManager mAudioManager= (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+SensorManager mSensorManager =(SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 ```
-#### 泛型方法的上边界
-```java
-//在泛型方法中添加上下边界限制的时候，必须在权限声明与返回值之间的<T>上添加上下边界，即在泛型	声明的时候添加
-//public <T> T showKeyName(Generic<T extends Number> container)，编译器会报错："Unexpected 	bound"
-public <T extends Number> T showKeyName(Generic<T> container){
-    		System.out.println("container key :" + container.getKey());
-   		 T test = container.getKey();
-   		 return test;
-}
-```
-### 下边界 — 传入的参数类型必须为指定类型的父类
-#### 泛型类的下边界
-```java
-public void showKeyValue1(Generic<? super Number> obj){
-   		 Log.d("泛型测试","key value is " + obj.getKey());
-}
-```
-#### 泛型方法的下边界
-```java
-//在泛型方法中添加上下边界限制的时候，必须在权限声明与返回值之间的<T>上添加上下边界，即在泛型	声明的时候添加
-//public <T> T showKeyName(Generic<T super Number> container)，编译器会报错："Unexpected 		bound"
-public <T super Number> T showKeyName(Generic<T> container){
-    		System.out.println("container key :" + container.getKey());
-   		 T test = container.getKey();
-   		 return test;
-}
-```
-## 注意：T 和 ？之间的区别
-### T
-当我们定义泛型的时候用
-```java
-SomeName<T>
-```
-泛型也叫参数化类型，意味着我们在使用泛型的时候要给它参数
-  
-### ?
-当对已经存在的泛型，我们不想给她一个具体的类型做为类型参数，我们可以给她一个不确定的类型作为参数，（前提是这个泛型必须已经定义）
-```java
-SomeName<?>
-```
-### 加以限制
-```java
-SomeName<? super B>
-```
-### 一个用在定义的时候（不能用?必须给个名字，比如T等，否则定义的代码里怎么用呢？）
-### 一个是在使用的时候。
+注意：在activity生命周期结束的时候，记得要释放，调用unregisterListener方法。
+### 资源未关闭造成的内存泄漏
+* BroadcastReceiver、ContentObserver没有解除注册
+* Cursor、Stream没有close
+* 无限循环的动画在Activity退出前没有停止
+* 一些其他的该释放或者回收没有被操作。比如自定义属性的TypeArray需要recycle
 
+## 内存泄漏检测工具
+* [LeakCanary](https://github.com/square/leakcanary)
