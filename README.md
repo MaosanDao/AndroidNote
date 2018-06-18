@@ -14,6 +14,7 @@
 * [使用Retrofit上传Json数据](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadJson.md)
 ## 知识温习
 * [简易步骤速查](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/EasyGuide.md)
+* [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Generic.md)
 ## Licenses
 ```text
  Copyright 2016 vangelis(王裴)
