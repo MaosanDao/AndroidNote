@@ -1,12 +1,12 @@
 # 简易步骤参考表
 这是一篇整理了日常工作中常见的问题的速查表。
 
-## View的绘制流程
+## 1.View的绘制流程
 * measure：判断是否需要重新计算view的大小，需要则重新计算
 * layout：判断是否需要重新计算view的位置，需要则重新计算
 * draw：判断是否需要重新绘制该view，需要则重新计算
 
-## 自定义属性的使用方法
+## 2.自定义属性的使用方法
 ### 首先在style或者attr文件中定义属性：
 ```java
 <declare-styleable name="TestView"> 
@@ -36,18 +36,18 @@ ta.recycle();
 </attr>
 ```
 其中，enum和flag的区别在于，enum只能选择其一，而flag则可以累加选择。比如：bold|italic表示既加粗也变成斜体
-## attr、style、theme的区别
+## 3.attr、style、theme的区别
 * attr是属性的最小单元
 * style是通过attr组合而得到的样式，比如height、width等
 * theme则是用作于一个actvity或者整个应用
 ### 注意
 大小优先顺序：View的Style > Activity的Theme > Application的Theme
-## Activity的四种启动模式
+## 4.Activity的四种启动模式
 * standard：标准的启动模式，无论是否在activity的栈中是否含有该实例，系统都会进行再次创建
 * singalTop：如果该实例已经在栈的顶端，则不会创建新的实例，否则会进行创建
 * singalTask：如果该实例已经在栈的顶端，则不会创建新的实例，如果含有该实例，否则会该实例上方的activity进行移除。
 * singalInstance：无论是否含有该实例，都对进行创建。且该栈中只有这样一个实例
-## bitmap的三级缓存
+## 5.bitmap的三级缓存
 优先顺序：内存缓存 > 本地缓存 > 网络缓存
 ## Andriod中存储数据的方式
 * SharedPreferences
@@ -55,7 +55,7 @@ ta.recycle();
 * ContentProvider
 * SQLite
 * 网络存储
-## 横竖屏相关知识
+## 6.横竖屏相关知识
 ### 横竖屏的切换
 ```Java
 //横屏
@@ -87,7 +87,7 @@ android:configChanges="orientation”
 ```
 android:screenOrientation="portrait"
 ```
-## 进程保活手段
+## 7.进程保活手段
 ### 开启一个1像素的Activity（不推荐）
 基本思想，系统一般是不会杀死前台进程的。所以要使得进程常驻，我们只需要在锁屏的时候在本进程开启一个Activity，为了欺骗用户，让这个Activity的大小是1像素，并且透明无切换动画，在开屏幕的时候，把这个Activity关闭掉，所以这个就需要监听系统锁屏广播。
 ### 使用前台服务（推荐）
@@ -107,14 +107,14 @@ android:screenOrientation="portrait"
 * START_REDELIVER_INTENT
 START_STICKY的兼容版本，不同的是其不保证服务被杀后一定能重启
 ### 双进程守护
-## 热启动和冷启动的含义和区别
+## 8.热启动和冷启动的含义和区别
 ### 热启动
 当启动应用时，后台已有该应用的进程（例：按back键/home键，应用虽然会退出，但是该应用的进程是依然会保留在后台，可进入任务列表查看），所以在已有进程的情况下，这种启动会从已有的进程中来启动应用，这个方式叫热启动
 ### 冷启动
 当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用，这个启动方式就是冷启动
 ### 无进程启动顺序
 Application的构造器方法 ——>attachBaseContext() ——>onCreate() ——>Activity的构造方法 ——>onCreate() ——>配置主题中背景等属性 ——>onStart() ——>onResume() ——>测量布局绘制显示在界面上
-## ANR和OOM
+## 9.ANR和OOM
 ### ANR
 在Android上,如果你的应用程序有一段时间内响应不够灵敏,系统会向用户显示一个对话框,这个对话框称作为应用程序无响应(ANR: Application Not Responding)对话框.用户可以选择”等待”而让程序继续运行,也可以选择”强制关闭”
 #### 导致ANR的原因
