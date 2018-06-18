@@ -19,6 +19,7 @@
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md) 
 * [多渠道打包](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/MultiPackaging.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Reflection.md)
+* [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
 ## Licenses
 ```text
  Copyright 2016 vangelis(王裴)
