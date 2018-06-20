@@ -51,7 +51,6 @@ public class MyAsyncTask extends AsyncTask<String,Integer,Bitmap> {
 }
 ```
 ## Handler and Message
-[参考文章](https://www.jianshu.com/p/02962454adf7)
 ### Handler的概念
 Handler是Android给我们提供来更新UI的一套机制，也是一套消息处理的机制，我们可以发消息，也可以处理消息
 ### Handler的相关概念
@@ -299,6 +298,7 @@ public class MyIntentService extends IntentService {
 * 先启动第一个任务，在未完成的时候，手动销毁。然后再次穹第二个任务。IntentService会先走onHandleIntent以及onDestroy。然后又会走onHandleIntent，最后任务都完成的时候，会自动销毁
 ### 总结
 IntentService是一个比较便捷的类，它会创建一个线程，多个任务按顺序执行，且不能停止任务。要根据实际情况进行使用。
-
+## 参考文章
+>* [Android 消息处理机制（Looper、Handler、MessageQueue,Message)](https://www.jianshu.com/p/02962454adf7)
 
 
