@@ -131,6 +131,36 @@ animationDrawable.stop();
 
 ### 相关重要方法和监听
 >[点击查看](http://www.android-doc.com/reference/android/animation/package-summary.html)
-#
-`
-```
+### 重要的几个类
+* ValueAnimator 属性的核心类
+* ObjectAnimator 继承 ValueAnimator 对ValueAnimator进行了一层封装 
+* AnimatorSet 可以同时运行一组动画
+* PropertyValuesHolder 他代表一个在动画运行中需要过度到的值
+* TypeEvaluator 实现此接口的实例，将决定AnimatorUpdateListener接收到的值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
