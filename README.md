@@ -20,6 +20,13 @@
 * [多渠道打包](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/MultiPackaging.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Reflection.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
+* [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
+## 说明
+* 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容
+* 请联系我，我会尽快进行修改和删除。谢谢！
+## 联系方式
+* QQ:460977141（昵称:V）
+* Email:onlywangpei@qq.com
 ## Licenses
 ```text
  Copyright 2016 vangelis(王裴)
