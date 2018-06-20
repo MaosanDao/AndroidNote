@@ -1,8 +1,4 @@
 # App启动流程
->参考文章：
->* [[译]Android Application启动流程分析](https://www.jianshu.com/p/a5532ecc8377)
->* [一个APP从启动到主页面显示经历了哪些过程?](https://www.jianshu.com/p/a72c5ccbd150)
-
 ## App基础理论
 * 每一个Android App都在一个独立的空间中，意味着运行在一个单独的进程中，拥有自己的VM，且被系统分配一个唯一的ID
 * 每一个Apk都运行在自己的Linux进程中，默认进程中只有一个主线程，这个主线程中有个Looper实例，通过调用Looper.loop()从Message队列里面取出并处理
@@ -39,7 +35,8 @@ ActivityManagerService这一步要做的工作：
 ## 相关图示
 ![图示1](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/start_process_1.jpg)
 ![图示2](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/start_process_2.png)
-
-
+## 参考文章
+>* [[译]Android Application启动流程分析](https://www.jianshu.com/p/a5532ecc8377)
+>* [一个APP从启动到主页面显示经历了哪些过程?](https://www.jianshu.com/p/a72c5ccbd150)
 
 
