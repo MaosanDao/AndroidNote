@@ -1,4 +1,5 @@
 # Gradle多渠道打包
+参考文章：[手把手教你AndroidStudio多渠道打包](https://blog.csdn.net/mynameishuangshuai/article/details/51783303)
 ## 多渠道打包
 1.在AndroidManifest.xml中使用placeholder
 ```java
