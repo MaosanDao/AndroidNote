@@ -127,7 +127,7 @@ bintray.apikey=XXX//这里写入刚才获取到的key值
 * 在Android Studio的Terminal中敲击以下命令即可发布：
 ```Java
 gradle install
-grable bintrayUpload
+gradle bintrayUpload
 ```
 ## 最后上传代码库到jCenter中央库中
 * 进入自己的jCenter的仓库中，找到自己才上传的库。你会看到以下界面：
