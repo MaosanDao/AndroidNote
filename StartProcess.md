@@ -1,4 +1,7 @@
 # App启动流程
+>参考文章：
+>* [[译]Android Application启动流程分析](https://www.jianshu.com/p/a5532ecc8377)
+>* [一个APP从启动到主页面显示经历了哪些过程?](https://www.jianshu.com/p/a72c5ccbd150)
 
 ## App基础理论
 * 每一个Android App都在一个独立的空间中，意味着运行在一个单独的进程中，拥有自己的VM，且被系统分配一个唯一的ID
