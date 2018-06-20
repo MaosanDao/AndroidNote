@@ -1,37 +1,40 @@
-# AndroidQuickCheckList
-这是一篇整理了日常工作中常见的问题的速查表。
-****
-## 其他
-* [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
-* [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
-* [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/regexp.md)
-## 开发相关
-* [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
-* [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
-## Retrofit相关
-* [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
-* [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
-* [使用Retrofit上传Json数据](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadJson.md)
-## 知识温习
-* [简易步骤速查](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/EasyGuide.md)
-* [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Generic.md)
-* [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
-* [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md) 
-* [多渠道打包](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/MultiPackaging.md)
-* [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Reflection.md)
-## Licenses
-```text
- Copyright 2016 vangelis(王裴)
+# App启动流程
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+## App基础理论
+* 每一个Android App都在一个独立的空间中，意味着运行在一个单独的进程中，拥有自己的VM，且被系统分配一个唯一的ID
+* 每一个Apk都运行在自己的Linux进程中，默认进程中只有一个主线程，这个主线程中有个Looper实例，通过调用Looper.loop()从Message队列里面取出并处理
 
-      http://www.apache.org/licenses/LICENSE-2.0
+## 启动流程分析
+### 启动系统时
+* bootloader --> 内核 --> init进程 --分裂--> daemons(守护进程)
+* init --> Zygote（进程）--> 初始化第一个VM（预加载Framework和App的一些通用资源）--> 开启一个Socket接口监听请求 --> 根据请求孵化新的VM来管理新的App进程
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
-```
+### 从Home上点击App的启动流程
+#### 点击Launcher图标 --> IPC机制 --> Actvity Manager Service
+ActivityManagerService这一步要做的工作：
+* 通过PackageManager的resolveIntent()方法来手机这个点击Intent的指向信息
+* 将指向信息存放在一个Intent中
+* 通过grantUriPermissionLocked()来验证是否有权限调用该Intent指向的Activity
+* 如果有权限则会在新的Task中启动该Activity
+* 最后使用ProcessRecord来检查是有该Activity的进程存在
+* 如果不存在，则会创建一个新的进程来启动activity
+#### ActivityManagerService启动新的进程
+* ActivityManagerService会使用startProcessLocked()方法来创建一个新的进程
+* 上面的方法会使用socket将参数传递为Zygote进程
+* Zygote会进程自我孵化并调用ZygoteInit.main()方法来实例化ActivityThread对象最终返回新进程的pid
+* ActivityThread会依次调用Looper.prepareLoop()和Looper.loop()来开启消息循环
+#### 将进程和Application进行绑定
+* 使用ActivityThread的bindApplication()方法进行绑定
+* bindApplicaiton发送一个BIND_APPLICATION给消息队列
+* 通过handleBindApplication()方法处理该消息
+* 最后通过makeApplication()方法将App的class到内存中
+#### 拥有了进程后，如何从进程中启动新的Activity
+* 使用realStartActivity()方法调起application线程对象中的sheduleLaunchActivity(）方法
+* 使用sheduleLaunchActivity(）发送一个LAUNCH_ACTIVITY消息到消息队列中
+* handleLaunchActivity()通过performLaunchActiivty()方法回调Activity的onCreate()方法和onStart()方法
+* 然后通过handleResumeActivity()方法，回调Activity的onResume()方法，最终显示Activity界面。
+## 相关图示
+
+
+
+
