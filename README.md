@@ -26,7 +26,7 @@
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
 ## 待加
-* 暂无
+* Activity和Fragment的状态保存和回复([参考文章](https://segmentfault.com/a/1190000006691830))
 ## 说明
 * 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容
 * 请联系我，我会尽快进行修改和删除。谢谢！
