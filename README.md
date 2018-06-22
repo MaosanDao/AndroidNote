@@ -27,7 +27,7 @@
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/SaveRestore.md)
 ## 待加
-* 窗口变换、元素共享转换等动画([参考文章](https://segmentfault.com/a/1190000004182537))
+* 窗口变换、元素共享转换等动画([参考文章](https://blog.csdn.net/w630886916/article/details/78319502))
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 ## 说明
 * 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容
