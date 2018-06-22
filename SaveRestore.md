@@ -5,7 +5,7 @@
 >Activity将会将这些搜集到的数据一对一的返还给View层次里在搜集的时候提供了同样的android:id属性的View。
 ### 注意
 >这也是为什么View 在没有被设置android:id属性的时候不能保存和恢复自己的状态的原因
-### Activity的成员变量是不会自动保存的，所以需要自己来做处理。主要通过OnSaveInstanceState和OnRestoreInstanceState方法来保存和恢复
+#### Activity的成员变量是不会自动保存的，所以需要自己来做处理。主要通过OnSaveInstanceState和OnRestoreInstanceState方法来保存和恢复
 ```java
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 }
 ```
-### Fragment在保存和恢复的时候，基本和Activity是保持一致的。唯一不同的是Fragment没有onRestoreInstanceState方法，取而代之的是onActivityCreated方法来恢复数据
+#### Fragment在保存和恢复的时候，基本和Activity是保持一致的。唯一不同的是Fragment没有onRestoreInstanceState方法，取而代之的是onActivityCreated方法来恢复数据
 ```java
 public class MainFragment extends Fragment {
 
