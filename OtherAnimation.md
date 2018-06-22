@@ -42,6 +42,41 @@ getWindow().setExitTransition(new Fade().setDuration(2000));
 ```
 ## 共享元素转换
 > 在第一个Activity和第二个Activity里边都有一个Button，只不过一个大一个小，从第一个Activity跳转到第二个Activity时，我并没有感觉到Activity的跳转，只是觉得好像第一个页面的Button放大了，同理，当我从第二个页面回到第一个页面时，也好像Button变小了。OK，这就是我们的Activity共享元素。
-1.首先在第一个Activity和目标Activity中的布局中，给需要共享的的两个元素同时增加以下
-## 共享元素转换
-## 共享元素转换
+
+1.首先在第一个Activity和目标Activity中的布局中，给需要共享的的两个元素同时增加以下属性：
+```java
+android:transitionName=”myButton1”//属性值需要一致，否则系统会找不到
+```
+2.启动端的跳转代码：
+单个：
+```java
+startActivity(new Intent(this, SharedElementsActivity.class),
+                        ActivityOptions.makeSceneTransitionAnimation
+                                (this, view, "myButton1")
+                                .toBundle());
+```
+多个：
+```java
+ startActivity(new Intent(this, SharedElementsActivity.class),
+                        ActivityOptions.makeSceneTransitionAnimation
+                                (this,  //通过Pair.create方法来设置多个共享元素
+                                        Pair.create(view, "myButton2"),//这里的myButton2只的是SharedElementsActivity中的共享元素
+                                        Pair.create(view, "myButton3"))
+                                .toBundle());
+```
+3.目标Activity代码：
+跳转到原来的Activity,用共享元素的方式跳转回去
+```java
+startActivity(new Intent(this, MainActivity.class),
+                ActivityOptions.makeSceneTransitionAnimation
+                        (this, button, "myButton1")//这里的myButton1只的是MainActivity中的共享元素
+                        .toBundle());
+```
+### 注意
+> 如果在共享元素进入和退出的时候，界面会发生一次闪烁，则可以通过在双方的Acitity中增加以下代码来解决：
+```java
+getWindow().setEnterTransition(null);
+getWindow().setExitTransition(null);
+```
+
+
