@@ -25,8 +25,8 @@
 ## 进阶
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
+* [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/SaveRestore.md)
 ## 待加
-* Activity和Fragment的状态保存和回复([参考文章](https://segmentfault.com/a/1190000006691830))
 * 窗口变换、元素共享转换等动画([参考文章](https://segmentfault.com/a/1190000004182537))
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 ## 说明
