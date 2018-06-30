@@ -21,6 +21,7 @@ webSettings.setJavaScriptEnabled(true);
 ```
 ### 如何进行调用
 >Android调用H5中的方法，其实很简单，直接调用就可以了，不需要额外的操作
+
 1.调用H5中无参无返回值的方法
 ```java
 mWebView.loadUrl("JavaScript:show()");
@@ -73,12 +74,13 @@ function s() {
 * 给H5调用的方法一定要加@JavascriptInterface，不然H5调不到我们的方法
 * 只有Android 4.4以上能webView.evaluateJavascript方法直接拿到返回值
 * 当版本低于Android 4.4时，常规的思路为：
+
 1.Java调用js代码
 ```java
 String call = "javascript:sumToJava(1,2)";
 webView.loadUrl(call);
 ```
-2. .js函数处理，并将结果通过调用java方法返回
+2..js函数处理，并将结果通过调用java方法返回
 ```java
 function sumToJava(number1, number2){
        window.control.onSumResult(number1 + number2)
