@@ -1,60 +1,138 @@
-# Android Apk瘦身方法小结
->众所周知，APP包体的大小，会影响推广的难度，用户不太喜欢下载太大的APP，同类型同等功能的APP中往往是包体小的更受用户的青睐，所以降低包体是一项非常必要的事情，也是最近公司的APP需要降低包体，所以总结下自己知道的降低包体的方法。
-## 压缩图片
->众所周知，APP包体的大小，会影响推广的难度，用户不太喜欢下载太大的APP，同类型同等功能的APP中往往是包体小的更受用户的青睐，所以降低包体是一项非常必要的事情，也是最近公司的APP需要降低包体，所以总结下自己知道的降低包体的方法。
+# 原生Java和H5之间的交互
+* WebView如果加载H5页面
+* Android如何调用H5中的方法
+* H5如何调用Android中的方法
 
-使用这个网站进行图片压缩：
-### [TinyPNG](https://tinypng.com/)
-## 使用webp图片格式
->具体可以看下webp探寻之路，里面有对webp的详细介绍，这里简单说下webp其实是谷歌开发的一种新的图片格式，它跟PNG有点相似，最大优点在于压缩率高，支持有损和无损压缩，但是Android4.0及以上才支持webp格式，4.0以下想使用webp就需要其他辅助支持库了
+## WebView如何加载H5页面
+### 加载本地的HTML
+```java
+mWebView.loadUrl("file:///android_asset/test.html");
+```
+### 加载网页
+```java
+mWebView.loadUrl("http://www.baidu.com");
+```
+## Android如何调用H5中的方法
+>想要调用js方法那么就必须让webView支持
+```java
+WebSettings webSettings = mWebView.getSettings();
+//设置为可调用js方法
+webSettings.setJavaScriptEnabled(true);
+```
+### 如何进行调用
+>Android调用H5中的方法，其实很简单，直接调用就可以了，不需要额外的操作
+1.调用H5中无参无返回值的方法
+```java
+mWebView.loadUrl("JavaScript:show()");
+```
+2.调用H5中带返回值的方法
+```java
+//可以调用mWebView.evaluateJavascript()方法，该方法只在安卓4.4以上版本适用
+mWebView.evaluateJavascript("sum(1,2)",new ValueCallback() {        
+       @Override
+       public void on ReceiveValue(String value) {           
+            Log.e(TAG,"onReceiveValue value=" + value);       
+       }   
+ });
+```
+3.调用H5中带参数的方法
+>当调用H5中带参数的方法时，势必要传入一个字符串。
+```java
+//当传入固定字符串时，用单引号括起来即可
+mWebView.loadUrl("javascript:alertMessage('哈哈')")
 
-使用这个网站便可以在线转换:
-### [智图](http://zhitu.isux.us/)
-## 使用Android Lint分析器去除无用的资源文件
-* Analyze --> Run Inspection by Name  -->  输入unused resource之后敲下回车Android Lint就会开始分析项目中哪里存在着无用资源
-* 根据Android Lint给出的分析结果，确认资源的使用情况，确认为无用资源后（一般来说全局搜索下资源名，除了在R.java中外其他地方都没引用就是无用资源）删除即可
-## 使用第三方工具 -- AndResGuard
-GitHub主页：
-https://github.com/shwenzhang/AndResGuard 
-## 清除代码，提取公共类
-## 合并重复的资源
-## 依赖库的优化
-* 使用更轻量级的库代替，或者优化library的大小，不然自己写更好
-* 使用H5编写界面，图片云端获取
-* 资源缓存库不放在assets下，云端获取更新
-* 删除armable-v7包下的so、删除x86包下的so，基本上armable的so也是兼容armable-v7的，armable-v7a的库会对图形渲染方面有很大的改进，不过最好的是根据上面我们说的提供多版本APK，对不同的平台精简，再或者动态的加载so
-## 开启minifyEnabled混淆代码
-```gradle
-android {
-    buildTypes {
-        release {
-            minifyEnabled true
-        }
-    }
+//传入变量名时，需要用到转义符
+String content="9880";
+mWebView.loadUrl("javascript:alertMessage(\" "     +content+     "\")")
+```
+## H5如何调用Android中的方法
+* 建立一个类，并规定别名为JsInteration
+```java
+public  class  JsInteration  {
+      @JavascriptInterface
+      public String back() {
+             return "hello world";   
+       }
 }
 ```
-## 开启shrinkResources去除无用资源
-```gradle
-android {
-    buildTypes {
-        release {
-            shrinkResources true
-        }
-    }
+* 定义完这个类后，只需要使用webview进行设置
+```java
+mWebView.addJavascriptInterface(newJsInteration(),"android");
+```
+* 如何进行调用
+```js
+function s() {
+      //这里使用了back方法
+      var result=window.android.back();
+      document.getElementById("p").innerHTML=result;
 }
 ```
-## 删除无用的语言资源
-```gradle
-android {
-    defaultConfig {
-        resConfigs "zh"
-    }
+## 注意事项
+* 当自己写html文件时，可能会出现显示乱码，我们需要指定格式
+* H5调用我们的方法时，我们需要把规定的别名传给H5（切记一定不能错），而且我们要在自己的方法里执行H5想要的操作
+* 给H5调用的方法一定要加@JavascriptInterface，不然H5调不到我们的方法
+* 只有Android 4.4以上能webView.evaluateJavascript方法直接拿到返回值
+* 当版本低于Android 4.4时，常规的思路为：
+1.Java调用js代码
+```java
+String call = "javascript:sumToJava(1,2)";
+webView.loadUrl(call);
+```
+2. .js函数处理，并将结果通过调用java方法返回
+```java
+function sumToJava(number1, number2){
+       window.control.onSumResult(number1 + number2)
 }
 ```
-## 使用shape背景
->特别是在扁平化盛行的当下，很多纯色的渐变的圆角的图片都可以用shape实现，代码灵活可控，省去了大量的背景图片。
-## 使用着色方案
->相信你的工程里也有很多selector文件，也有很多相似的图片只是颜色不同，通过着色方案我们能大大减轻这样的工作量，减少这样的文件。
+3.Java在回调方法中获取js函数返回值
+```java
+@JavascriptInterface
+public void onSumResult(int result) {
+  Log.i(LOGTAG, "onSumResult result=" + result);
+}
+```
+* 加载本地assets里的H5界面，要写成android_asset,而不是assets
+## 摘录自
+[安卓混合开发——原生Java和H5交互，保证你一看就懂！](https://www.jianshu.com/p/0b986d6e2e17)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
