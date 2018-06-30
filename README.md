@@ -27,6 +27,7 @@
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/tcp_udp.md)
 ## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/MultiPackaging.md)
+* [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/mini_apk.md)
 ## 进阶
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
