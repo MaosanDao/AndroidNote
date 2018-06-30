@@ -32,7 +32,8 @@
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/SaveRestore.md)
-* [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md) 
+* [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md)
+* [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/handler_principle.md) 
 ## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 ## 说明
