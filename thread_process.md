@@ -19,3 +19,5 @@
 * runOnUiThread
 * Message/Handler
 * AsyncTask
+## 摘自
+[Android 进程间、线程间通讯方式总结](https://blog.csdn.net/xunmeng_93/article/details/72821012)
