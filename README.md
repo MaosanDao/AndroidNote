@@ -1,11 +1,6 @@
 # AndroidNote
 这是一篇整理了日常工作中常见的问题的速查表。
 ****
-## 其他
-* [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
-* [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
-* [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/regexp.md)
-* [简易步骤速查](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/EasyGuide.md)
 ## 开发相关
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
@@ -20,6 +15,8 @@
 ## 多线程
 * [Android进程间、线程间的通讯方式汇总](https://github.com/MaosanDao/AndroidNote/blob/master/thread_process.md)
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md)
+## 界面相关
+* [RecyclerView和ListView的区别](https://github.com/MaosanDao/AndroidNote/blob/master/recyclerview_listview.md)
 ## 优化
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/oom.md)
@@ -35,6 +32,11 @@
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/SaveRestore.md)
 * [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md)
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/handler_principle.md) 
+## 其他
+* [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
+* [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
+* [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/regexp.md)
+* [简易步骤速查](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/EasyGuide.md)
 ## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 ## 说明
