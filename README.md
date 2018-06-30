@@ -23,6 +23,7 @@
 ## 优化
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/oom.md)
+* [界面卡顿的一些产生原因和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/caton.md)  
 ## 网络
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/tcp_udp.md)
 ## 发布
