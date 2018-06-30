@@ -20,6 +20,7 @@
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md)
 ## 优化
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
+* [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/oom.md)
 ## 网络
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/tcp_udp.md)
 ## 发布
