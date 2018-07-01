@@ -181,3 +181,78 @@ public class Test {
    }
 }
 ```
+## 单例模式
+### 单例模式的使用条件
+>使用单例模式有一个必要条件：在一个系统要求一个类只有一个实例时才应该使用单例模式。反过来，如果一个类可以有几个实例存在，那么就没有必要使用这个单例类。
+
+>作为对象的创建模式，单例模式确保某一个类只有一个实例。而且自行实例化并向整个系统系统这个实例。这个类称为单例类。
+### 单例模式的三个特点
+* 某个类只有一个实例
+* 必须自行创建这个实例
+* 必须自行向整个系统提供这个实例
+### 不同模式的创建方式
+#### 懒汉式单例（并发执行时线程不安全）
+```java
+//懒汉式单例类.在第一次调用的时候实例化自己   
+public class Singleton {  
+    private Singleton() {}  
+    private static Singleton single=null;  
+    //静态工厂方法   
+    public static Singleton getInstance() {  
+         if (single == null) {    
+             single = new Singleton();  
+         }    
+        return single;  
+    }  
+} 
+```
+##### 改进
+>在getInstance方法上加同步
+```java
+public class Singleton {  
+    private static Singleton instance = null;  
+    private Singleton() {}  
+    public static synchronized Singleton getInstance() {  
+        if (instance == null) {  
+            instance = new Singleton();  
+        }  
+        return instance;  
+    }  
+}
+```
+>静态内部类:利用了ClassHoader的机制来保证初始化instance时只有一个线程，所以也是线程安全的，同时没有性能损耗。在第一次加载Holder时初始化一次instance对象, 保证唯一性, 也延迟了单例的实例化。
+```java
+public class Singleton {  
+    private Singleton() {}  
+    public static class Holder {  
+        // 这里的私有没有什么意义  
+        /* private */static Singleton instance = new Singleton();  
+    }  
+    public static Singleton getInstance() {  
+        // 外围类能直接访问内部类（不管是否是静态的）的私有变量  
+        return Holder.instance;  
+    }  
+} 
+```
+#### 饿汉式单例（天生线程安全）
+>在类被加载的时候，静态变量single会被初始化，java语言中单例类的一个重要特点是类的构造函数是私有的，从而避免外界利用这个构造函数直接创建出任意多个实例。值得指出的是，由于构造函数是私有的，因此类不能被继承。 
+饿汉式在类创建的同时就已经创建好一个静态的对象供系统使用，以后不再改变，所以天生是线程安全的。
+```java
+public class Singleton {  
+    private Singleton() {}  
+    private static final Singleton single = new Singleton();  
+    //静态工厂方法   
+    public static Singleton getInstance() {  
+        return single;  
+    }  
+}
+```
+##### 枚举单例（线程安全）
+```java
+enum SingletonEnum {
+    INSTANCE;
+    public void doSomething() {
+        System.out.println("do sth.");
+    }
+}
+```
