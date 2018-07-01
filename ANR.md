@@ -6,6 +6,6 @@
 ## 怎么避免
 * 尽可能不要在主线程中处理复杂的逻辑
 * 避免在广播处理中做耗时的操作
-* 避免在Intent的Recive中启动一个activity
+* 避免在Intent的Recive中启动一个activity(如果需要启动，则需要加Flag:FLAG_ACTIVITY_NEW_TASK)
 ## 总结
 不要在activity中做耗时的任务，多用handler和message。在广播中不要做耗时任务，如果要做，则可以启动服务去做。（广播中可以启动服务，但是服务中无法启动广播）
