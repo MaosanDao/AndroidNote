@@ -2,6 +2,14 @@
 ## 主要内容
 * [建造者模式](#建造者模式)
 * [单例模式](#单例模式)
+* 原型模式
+* 工厂方法模式
+* 策略模式
+* 责任链模式
+* [观察者模式](#观察者模式)
+* 模板方法模式
+* 代理模式和装饰器模式
+* 外观模式
 ***
 ## 建造者模式
 ### 引出问题
@@ -260,4 +268,83 @@ enum SingletonEnum {
         System.out.println("do sth.");
     }
 }
+```
+***
+## 观察者模式
+>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。这种模式最常用在我们熟悉的事件驱动模型里面，像VC、Android界面里面的事件响应，就是基于观察者模式来实现。
+
+>观察者模式主要是针对一对多的数据更新。简单来说就是，系统里面某个元素更新了数据，然后有好几个元素是使用了这个元素的数据。此时更新了数据的对象，就要通知其他使用了它数据的对象，让他们都进行更新。
+### 简单示例代码
+>被观察接口
+```java
+public interface Subject {
+	public void addObserver(Observer observer);
+	public void removeObserver(Observer observer);
+	public void notifyObservers();
+}
+```
+>观察者
+```java
+public interface Observer {
+	public void update(String msg);
+}
+```
+>被观察者实现接口
+```java
+public class SubjectImp implements Subject{
+ 
+	private  List<Observer> list=new ArrayList<Observer>();
+	private String msg;
+	
+	@Override
+	public void addObserver(Observer observer) {
+		// TODO Auto-generated method stub
+		list.add(observer);
+	}
+ 
+	@Override
+	public void removeObserver(Observer observer) {
+		// TODO Auto-generated method stub
+		int index=list.indexOf(observer);
+		if(index>=0){
+			list.remove(index);
+		}
+	}
+ 
+	@Override
+	public void notifyObservers() {
+		// TODO Auto-generated method stub
+		for(Observer observer:list){
+			observer.update(msg);
+		}
+	}
+ 
+	public void setMsg(String msg){
+		this.msg=msg;
+		notifyObservers();
+	}
+}
+```
+>观察者实现接口
+```java
+public class ObserverImp implements Observer{
+ 
+	Subject subject;
+	public ObserverImp(Subject subject){
+		this.subject=subject;
+		subject.addObserver(this);
+	}
+	@Override
+	public void update(String msg) {
+		// TODO Auto-generated method stub
+		System.out.println("收到："+msg);
+	}
+}
+```
+>如何使用
+```java
+SubjectImp subjectImp=new SubjectImp();
+ObserverImp observerImp=new ObserverImp(subjectImp);
+ObserverImp1 observerImp1=new ObserverImp1(subjectImp);
+subjectImp.setMsg("ok");
 ```
