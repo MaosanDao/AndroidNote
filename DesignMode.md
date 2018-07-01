@@ -1,43 +1,183 @@
-# 点击事件分发机制总结
-## ViewGroup 
-* Android中touch事件的传递，绝对是先传递到ViewGroup，再传递到View的
-* 当你点击了某个控件，首先会去调用该控件所在布局的dispatchTouchEvent方法，然后在布局的dispatchTouchEvent方法中找到被点击的相应控件，再去调用该控件的dispatchTouchEvent方法。
+# Android中常用的设计模式简易使用指南
+## 建造者模式
+### 引出问题
+>假如一个对象由许多不同的属性构造，我们想要构造一个我们自己指定特定属性的对象，最简单的方法就是为每种情况提供一个构造函数，我们根据不要的构造函数来得到我们需要的包含了指定属性的对象。但是属性一多，就需要更多的构造函数了，这样显然是不明智的。
+### 定义
+>建造者模式：它就是单独的来对一个对象进行构造，将一个复杂的构建与其表示相分离，使得同样的构建过程可以创建不同的表示。也就是说它来完成对象的构造过程，并且这个过程可以构造出上面我们所说的所有我们希望得到的对象。
 
-如下图所示：
-![事件分发](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/touch_event_1.jpg)
-
-### 总结
-* Android事件分发是先传递到ViewGroup，再由ViewGroup传递到View的
-* 在ViewGroup中可以通过onInterceptTouchEvent方法对事件传递进行拦截，onInterceptTouchEvent方法返回true代表不允许事件继续向子View传递，返回false代表不对事件进行拦截，默认返回false
-* 子View中如果将传递的事件消费掉，ViewGroup中将无法再对事件不再监听
-
-## 例子1
-### 假设最高层View叫OuterLayout，中间层View叫InnerLayout，最底层View叫MyVIew。调用顺序是这样的：
+>建造模式是将复杂的内部创建封装在内部，对于外部调用的人来说，只需要传入建造者和建造工具，对于内部是如何建造成成品的，调用者无需关心。
+### 具体示例
+>定义一个Person类，他包含了所有属性的get,set方法
 ```java
-OuterLayout.onInterceptTouchEvent -> InnerLayout.onInterceptTouchEvent -> MyView.onTouchEvent -> InnerLayout.onTouchEvent
- -> OuterLayout.onTouchEvent
+public class Person {
+   private String name;
+   private boolean sex;
+   private int age;
+   private float height;
+   private float weight;
+   
+   public Person(String name, boolean sex, int age, float height, float weight) {
+       this.name = name;
+       this.sex = sex;
+       this.age = age;
+       this.height = height;
+       this.weight = weight;
+   }
+}
 ```
-## 例子2
-### 当父控件中有子控件的时候，并且父控件和子空间都有事件处理（比如单击事件）。这时，点击子控件，父控件的单击事件就无效了
-### 假如：比如一个LinearLayout里面有一个子控件TextView，但是TextView的大小没有LinearLayout大：
-#### 如果LinearLayout和TextView都设置了单击事件：
-* 点击TextView区域的时候，触发的是TextView的事件
-* 点击TextView以外的区域的时候，还是触发的LinearLayout的事件
-#### 如果LinearLayout设置了单击事件，而TextView没有设置单击事件的话：
-* 不管单击的是TextView区域，还是TextView以外的区域，都是触发的LinearLayout的单击事件
-### 假如：如果LinearLayout的大小和TextView一样的话
-#### 如果LinearLayout和TextView都设置了单击事件：
-* 只有TextView的单击事件有效
-#### 如果LinearLayout设置了单击事件，而TextView没有设置单击事件的话：
-* 触发的是LinearLayout的单击事件
-## 方法解析
-* dispatchTouchEvent:分发事件（发苹果）— 如果下一级不想要这个苹果，则给上一级自己吃
-* onInterceptTouchEvent:是否阻断事件（是否给下一级发苹果）— 如果阻断了，则给自己吃
-* onTouchEvent:是否消费事件（是否吃了该苹果）
- ## 图示
- ### 事件分发和传递
- ![示例2](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/touch_event_2.jpg)
- ![示例3](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/touch_event_3.jpg)
+>创建一个Builder类
+```java
+public class Builder {
+   private String name;
+   private boolean sex;
+   private int age;
+   private float height;
+   private float weight;
 
+   public Builder setName(String name) {
+       this.name = name;
+       return this;
+   }
 
- 
+   public Builder setSex(boolean sex) {
+       this.sex = sex;
+       return this;
+   }
+
+   public Builder setAge(int age) {
+       this.age = age;
+       return this;
+   }
+
+   public Builder setHeight(float height) {
+       this.height = height;
+       return this;
+   }
+
+   public Builder setWeight(float weight) {
+       this.weight = weight;
+       return this;
+   }
+
+   public Person create() {
+       return new Person(name, sex, age, height, weight);
+   }
+}
+```
+>如何使用?
+```java
+Builder builder = new Builder();
+builder.setName("Mirhunana");
+builder.setAge(23);
+Perons person = builder.create();
+```
+### 抽离
+#### 抽象建造者（Builder）角色
+>给出一个抽象接口，以规范产品对象的各个组成成分的建造。一般而言，此接口独立于应用程序的商业逻辑。模式中直接创建产品对象的是具体建造者 (ConcreteBuilder)角色。具体建造者类必须实现这个接口所要求的两种方法：一种是建造方法(buildPart1和 buildPart2)，另一种是返还结构方法(retrieveResult)。一般来说，产品所包含的零件数目与建造方法的数目相符。换言之，有多少零件，就有多少相应的建造方法
+```java
+public interface Builder {
+
+    public Builder setName(String name);
+
+    public Builder setSex(boolean sex);
+
+    public Builder setAge(int age);
+
+    public Builder setHeight(float height);
+
+    public Builder setWeight(float weight);
+
+    public Person create();
+}
+```
+#### 具体建造者（ConcreteBuilder）角色
+>担任这个角色的是与应用程序紧密相关的一些类，它们在应用程序调用下创建产品的实例。这个角色要完成的任务包括：
+* 实现抽象建造者Builder所声明的接口，给出一步一步地完成创建产品实例的操作
+* 在建造过程完成后，提供产品的实例。
+```java
+public class ConcreteBuilder implements Builder {
+    private String name;
+    private boolean sex;
+    private int age;
+    private float height;
+    private float weight;
+
+    public Builder setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Builder setSex(boolean sex) {
+        this.sex = sex;
+        return this;
+    }
+
+    public Builder setAge(int age) {
+        this.age = age;
+        return this;
+    }
+
+    public Builder setHeight(float height) {
+        this.height = height;
+        return this;
+    }
+
+    public Builder setWeight(float weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    public Person create() {
+        return new Person(name, sex, age, height, weight);
+    }
+}
+```
+#### 导演者（Director）角色
+>担任这个角色的类调用具体建造者角色以创建产品对象。应当指出的是，导演者角色并没有产品类的具体知识，真正拥有产品类的具体知识的是具体建造者角色。
+```java
+public class Director {
+    private Builder builder;
+
+    public Director(Builder builder){
+        this.builder = builder;
+    }
+
+    public void construct(String name, boolean sex, int age, float height, float weight) {
+        builder.setName(name);
+        builder.setSex(sex);
+        builder.setAge(age);
+        builder.setHeight(height);
+        builder.setWeight(weight);
+    }
+}
+```
+#### 产品（Product）角色
+>产品便是建造中的复杂对象。一般来说，一个系统中会有多于一个的产品类，而且这些产品类并不一定有共同的接口，而完全可以是不相关联的。
+```java
+public class Person {
+   private String name;
+   private boolean sex;
+   private int age;
+   private float height;
+   private float weight;
+   
+   public Person(String name, boolean sex, int age, float height, float weight) {
+       this.name = name;
+       this.sex = sex;
+       this.age = age;
+       this.height = height;
+       this.weight = weight;
+   }
+}
+```
+#### 使用
+```java
+public class Test {
+   public static void main(String[] args) {
+       Builder builder = new ConcreteBuilder();
+       Director pcDirector = new Director(builder);
+       pcDirector.construct("Mirhunana", true, 23, 180, 100);
+       Person person = builder.create();
+   }
+}
+```
