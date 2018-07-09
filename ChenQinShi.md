@@ -19,6 +19,8 @@ if(actionBar!=null) {
 }
 ```
 >注意：不会隐藏底部导航栏，以及在顶部下滑的时候会出现状态栏的显示
+### 图示
+![ChenQin1](https://github.com/MaosanDao/AndroidNote/blob/master/chenqin_1.png)
 ## 隐藏ActionBar和将状态栏透明化
 ### 效果
 * 状态栏透明化
@@ -40,6 +42,8 @@ if(actionBar!=null) {
     actionBar.hide();
 }
 ```
+### 图示
+![ChenQin2](https://github.com/MaosanDao/AndroidNote/blob/master/chenqin_2.png)
 ## 透明状态栏以及底部导航栏和ActionBar
 ### 效果
 * 状态栏透明化
@@ -61,6 +65,8 @@ if(actionBar!=null) {
     actionBar.hide();
 }
 ```
+### 图示
+![ChenQin1](https://github.com/MaosanDao/AndroidNote/blob/master/chenqin_3.png)
 ## 全部都隐藏，且在上下边缘滑动的时候出现导航栏和状态栏
 ```java
 @Override
@@ -78,6 +84,8 @@ public void onWindowFocusChanged(boolean hasFocus) {
     }
 }
 ```
+### 图示
+![ChenQin4](https://github.com/MaosanDao/AndroidNote/blob/master/chenqin_gif.gif)
 ## 修改整理至
 [Android状态栏微技巧，带你真正理解沉浸式模式](http://www.androidchina.net/8943.html)
 
