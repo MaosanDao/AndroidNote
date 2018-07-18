@@ -1,6 +1,8 @@
 # AndroidNote
 这是一篇整理了日常工作中常见的问题的速查表。
 ****
+## 开始
+* [快速搭建App参考步骤](https://github.com/MaosanDao/AndroidNote/blob/master/NewP.md) 
 ## 开发相关
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
