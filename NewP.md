@@ -22,3 +22,16 @@ implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 annotationProcessor 'com.google.dagger:dagger-android-processor:2.16'
 annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
 ```
+* [Logger](https://github.com/orhanobut/logger)
+```java
+private void initLogger() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(false)
+                .methodCount(1)
+                .methodOffset(0)
+                .tag("RoBotN1")
+                .build();
+
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+    }
+```
