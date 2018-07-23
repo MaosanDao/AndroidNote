@@ -35,5 +35,7 @@ private void initLogger() {
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
     }
 ```
+* [Toast](https://github.com/GrenderG/Toasty)
+
 ## 适配
 * [屏幕适配](https://github.com/MaosanDao/AndroidNote/blob/master/ScreenAdaptation.md)
