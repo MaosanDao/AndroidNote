@@ -1,7 +1,7 @@
 # 常用混淆配置
 ## 列表
 * [Glide](#glide) 
-* [GreenDao](#greenDao) 
+* [GreenDao](#greendao) 
 * [OkHttp](#okhttp) 
 * [Okio](#okio)
 * [Retrofit](#retrofit)
