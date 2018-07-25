@@ -6,6 +6,7 @@
 * [Okio](#okio)
 * [Retrofit](#retrofit)
 * [ButterKnife](#butterknife)
+* [Rxjava-RxAndroid](rxjava-rxandroid) 
 
 ## Glide
 ```xml
