@@ -1,12 +1,11 @@
 # 常用混淆配置
 ## 列表
-* [Glide](#Glide) 
-* [GreenDao](#GreenDao) 
-* [OkHttp](#okHttp) 
-* [Okio](#Okio)
-* [Retrofit](#Retrofit)
-* [ButterKnife](#ButterKnife)
-
+* [Glide](#glide) 
+* [GreenDao](#greenDao) 
+* [OkHttp](#okhttp) 
+* [Okio](#okio)
+* [Retrofit](#retrofit)
+* [ButterKnife](#butterknife)
 
 ## Glide
 ```xml
@@ -32,7 +31,7 @@ public static java.lang.String TABLENAME;
 -dontwarn net.sqlcipher.database.**
 -dontwarn org.greenrobot.greendao.**
 ```
-## okHttp
+## OkHttp
 ```xml
 -dontwarn okhttp3.**
 -keep class okhttp3.**{*;}
