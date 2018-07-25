@@ -35,6 +35,7 @@
 ## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/mini_apk.md)
+* [常用混淆代码](https://github.com/MaosanDao/AndroidNote/blob/master/CommonConfusion.md)
 ## 进阶
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
