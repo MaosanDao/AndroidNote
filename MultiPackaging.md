@@ -7,35 +7,35 @@
  android:value="${UMENG_CHANNEL_VALUE}" />
 ```
 2.在app的gradle.build中添加以下内容：
-```java
+```xml
 android {  
- 			productFlavors {
-    			 xiaomi {
-         				manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
-     			}
-     			_360 {
-         				manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
-     			}
-     			baidu {
-         				manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-     			}
- 			}  
+  productFlavors {
+      xiaomi {
+           manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+      }
+      _360 {
+           manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+      }
+      baidu {
+           manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+      }
+  }  
 }
 ```
 3.或者批量修改
-```java
+```xml
  android {  
-        productFlavors {
-            xiaomi {}
-            _360 {}
-            baidu {}
-            wandoujia {}
-        }  
+     productFlavors {
+         xiaomi {}
+         _360 {}
+         baidu {}
+         wandoujia {}
+     }  
 
-        productFlavors.all { 
-            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name] 
-        }
-    }
+     productFlavors.all { 
+         flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name] 
+     }
+}
 ```
 4.执行打包命令
 ```java
