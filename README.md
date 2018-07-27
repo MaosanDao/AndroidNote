@@ -25,7 +25,8 @@
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/ViewDiy.md)
 * [沉侵式的具体做法](https://github.com/MaosanDao/AndroidNote/blob/master/ChenQinShi.md)
 * [快速暴力的屏幕适配方案](https://github.com/MaosanDao/AndroidNote/blob/master/ScreenAdaptation.md) 
-* [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/StartLogoStyle.md) 
+* [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/StartLogoStyle.md)
+* [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/UiCommonProblem.md)
 ## 优化
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/oom.md)
