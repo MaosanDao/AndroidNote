@@ -11,3 +11,4 @@ android:text="@string/button_send"
 android:onClick="sendMessage"
 style="?android:attr/borderlessButtonStyle" />
 ```
+## [透明度的设置](https://blog.csdn.net/hewuzhao/article/details/78821954)
