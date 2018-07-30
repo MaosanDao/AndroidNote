@@ -79,5 +79,14 @@ getWindow().setEnterTransition(null);
 getWindow().setExitTransition(null);
 ```
 >如果在跳转的的时候，finish掉跳转的activity，则会出现闪出的现象，请注意。
+>如果出现页面之间跳转闪黑的情况，则可以使用以下方法进行屏蔽：
+```xml
+  <!-- Activity主题 -->
+    <style name="ActivityTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+//然后给每个Activity加上该主题就行了
+```
 
 
