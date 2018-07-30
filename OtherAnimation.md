@@ -73,13 +73,13 @@ startActivity(new Intent(this, MainActivity.class),
                         .toBundle());
 ```
 ### 注意
-> 如果在共享元素进入和退出的时候，界面会发生一次闪烁，则可以通过在双方的Acitity中增加以下代码来解决：
+#### 如果在共享元素进入和退出的时候，界面会发生一次闪烁，则可以通过在双方的Acitity中增加以下代码来解决：
 ```java
 getWindow().setEnterTransition(null);
 getWindow().setExitTransition(null);
 ```
->如果在跳转的的时候，finish掉跳转的activity，则会出现闪出的现象，请注意。
->如果出现页面之间跳转闪黑的情况，则可以使用以下方法进行屏蔽：
+#### 如果在跳转的的时候，finish掉跳转的activity，则会出现闪出的现象，请注意。
+#### 如果出现页面之间跳转闪黑的情况，则可以使用以下方法进行屏蔽：
 ```xml
   <!-- Activity主题 -->
     <style name="ActivityTheme" parent="AppTheme">
