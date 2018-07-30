@@ -78,5 +78,6 @@ startActivity(new Intent(this, MainActivity.class),
 getWindow().setEnterTransition(null);
 getWindow().setExitTransition(null);
 ```
+>如果在跳转的的时候，finish掉跳转的activity，则会出现闪出的现象，请注意。
 
 
