@@ -14,7 +14,6 @@
 ## 基础知识
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Generic.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Reflection.md)
-* [Animation知识汇总](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Animation.md)
 * [Activity的四种启动模式介绍](https://github.com/MaosanDao/AndroidNote/blob/master/launchMode.md)
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/DirectionScreen.md)
 ## 多线程
@@ -22,13 +21,16 @@
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md)
 ## 界面相关
 * [RecyclerView和ListView的区别](https://github.com/MaosanDao/AndroidNote/blob/master/recyclerview_listview.md)
-* [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/ViewDiy.md)
 * [沉侵式的具体做法](https://github.com/MaosanDao/AndroidNote/blob/master/ChenQinShi.md)
 * [快速暴力的屏幕适配方案](https://github.com/MaosanDao/AndroidNote/blob/master/ScreenAdaptation.md) 
 * [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/StartLogoStyle.md)
 * [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/UiCommonProblem.md)
 ## 自定义View
+* [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/CustomDialog.md)
+## 动画
+* [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md)
+* [Animation知识汇总](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Animation.md)
 ## 优化
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Leak.md)
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/oom.md)
@@ -44,14 +46,15 @@
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/SaveRestore.md)
-* [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md)
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/handler_principle.md) 
+## 常用工具类
+* [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/CountDown.md)
+## WebView
+* [Java与H5之间的混合开发](https://github.com/MaosanDao/AndroidNote/blob/master/android_h5.md)
 ## 其他
 * [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
 * [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
 * [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/regexp.md)
-* [Java与H5之间的混合开发](https://github.com/MaosanDao/AndroidNote/blob/master/android_h5.md)
-* [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/CountDown.md)
 ## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 * Android单元测试(https://www.jianshu.com/p/827a6179297d https://www.jianshu.com/p/bc99678b1d6e https://www.jianshu.com/p/dba1290f9dc8)
