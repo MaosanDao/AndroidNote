@@ -51,6 +51,7 @@
 ## 常用工具类
 * [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/CountDown.md)
 * [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/ZipUtil.md)
+* [RecylerView Item间隔工具类](https://github.com/MaosanDao/AndroidNote/blob/master/RecyclerVIewItem.md) 
 ## WebView
 * [Java与H5之间的混合开发](https://github.com/MaosanDao/AndroidNote/blob/master/android_h5.md)
 ## 其他
@@ -67,7 +68,7 @@
 * Email:Onlywangpei@qq.com
 ## Licenses
 ```text
- Copyright 2016 vangelis(王裴)
+ Copyright 2018 vangelis(王裴)
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
