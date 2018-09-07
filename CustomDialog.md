@@ -62,7 +62,7 @@ dialog.setTitleText(title)
         });
 ```
 ## *注意*
->>关于设置View的一些状态和调用的时候，需要先将dialog.show()调用后，才能进行设置。
+关于设置View的一些状态和调用的时候，需要先将dialog.show()调用后，才能进行设置。
 
 
 
