@@ -9,6 +9,7 @@
 * [扩大点击区域](#扩大点击区域)
 * [界面中点击其他区域隐藏键盘](#界面中点击其他区域隐藏键盘)
 * [导航栏状态栏透明(沉侵式)](#导航栏状态栏透明)
+* [动态隐藏和显示密码](#动态隐藏和显示密码)
 
 ## 从控件所在位置移动到控件的底部
 ### [👆](#内容列表)
@@ -389,5 +390,28 @@ public static void setStatusBarMode(Activity activity, boolean bDark) {
             decorView.setSystemUiVisibility(vis);
         }
     }
+}
+```
+## 动态隐藏和显示密码
+### [👆](#内容列表)
+```java
+/**
+ * 显示WiFi输入密码
+ */
+private void showWifiPassword(EditText editText) {
+    editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+    // 使光标始终在最后位置
+    Editable etable = mAddDevicePasswordEdit.getText();
+    Selection.setSelection(etable, etable.length());
+}
+
+/**
+ * 隐藏WiFi输入密码
+ */
+private void dismissWifiPassword(EditText editText) {
+    editText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+    // 使光标始终在最后位置
+    Editable etable = mAddDevicePasswordEdit.getText();
+    Selection.setSelection(etable, etable.length());
 }
 ```
