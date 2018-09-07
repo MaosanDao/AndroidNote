@@ -25,6 +25,7 @@
 * [快速暴力的屏幕适配方案](https://github.com/MaosanDao/AndroidNote/blob/master/ScreenAdaptation.md) 
 * [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/StartLogoStyle.md)
 * [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/UiCommonProblem.md)
+* [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/RecylerViewType.md)
 ## 自定义View
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/CustomDialog.md)
