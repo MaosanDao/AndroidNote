@@ -29,6 +29,7 @@
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/CustomDialog.md)
 ## 动画
+* [(速查表)常用动画集合类](https://github.com/MaosanDao/AndroidNote/blob/master/CommonAnimationMethod.md)
 * [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md)
 * [Animation知识汇总](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Animation.md)
 ## 优化
