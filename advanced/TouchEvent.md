@@ -36,7 +36,6 @@ OuterLayout.onInterceptTouchEvent -> InnerLayout.onInterceptTouchEvent -> MyView
 * onTouchEvent:是否消费事件（是否吃了该苹果）
  ## 图示
  ### 事件分发和传递
- ![示例2](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_2.jpg)
  ![示例3](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_3.jpg)
 
 
