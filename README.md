@@ -6,7 +6,7 @@
 ## 开发相关
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
-* [Android中常用的设计模式简易使用指南](https://github.com/MaosanDao/AndroidNote/blob/master/DesignMode.md)
+* [Android中常用的设计模式简易使用指南](https://github.com/MaosanDao/AndroidNote/blob/master/other/DesignMode.md)
 ## Retrofit相关
 * [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
@@ -61,6 +61,7 @@
 * [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
 * [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
 * [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/other/regexp.md)
+* [导入第三方包的几种方法介绍](https://github.com/MaosanDao/AndroidNote/blob/master/other/ImportLib.md)
 ## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 * Android单元测试(https://www.jianshu.com/p/827a6179297d https://www.jianshu.com/p/bc99678b1d6e https://www.jianshu.com/p/dba1290f9dc8)
