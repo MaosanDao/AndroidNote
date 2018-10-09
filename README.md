@@ -20,15 +20,15 @@
 * [Android进程间、线程间的通讯方式汇总](https://github.com/MaosanDao/AndroidNote/blob/master/thread_process.md)
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/Thread.md)
 ## 界面相关
-* [RecyclerView和ListView的区别](https://github.com/MaosanDao/AndroidNote/blob/master/recyclerview_listview.md)
-* [沉侵式的具体做法](https://github.com/MaosanDao/AndroidNote/blob/master/ChenQinShi.md)
-* [快速暴力的屏幕适配方案](https://github.com/MaosanDao/AndroidNote/blob/master/ScreenAdaptation.md) 
-* [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/StartLogoStyle.md)
-* [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/UiCommonProblem.md)
-* [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/RecylerViewType.md)
+* [RecyclerView和ListView的区别](https://github.com/MaosanDao/AndroidNote/blob/master/view/recyclerview_listview.md)
+* [沉侵式的具体做法](https://github.com/MaosanDao/AndroidNote/blob/master/view/ChenQinShi.md)
+* [快速暴力的屏幕适配方案](https://github.com/MaosanDao/AndroidNote/blob/master/view/ScreenAdaptation.md) 
+* [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/StartLogoStyle.md)
+* [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/view/UiCommonProblem.md)
+* [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/view/RecylerViewType.md)
 ## 自定义View
-* [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/ViewDiy.md)
-* [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/CustomDialog.md)
+* [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/view/ViewDiy.md)
+* [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/CustomDialog.md)
 ## 动画
 * [(速查表)常用动画集合类](https://github.com/MaosanDao/AndroidNote/blob/master/CommonAnimationMethod.md)
 * [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/OtherAnimation.md)
