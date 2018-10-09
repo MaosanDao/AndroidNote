@@ -26,6 +26,7 @@
 * [启动时显示默认的图片背景的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/StartLogoStyle.md)
 * [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/view/UiCommonProblem.md)
 * [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/view/RecylerViewType.md)
+* [点击界面其他部分，隐藏虚拟键盘](https://github.com/MaosanDao/AndroidNote/blob/master/view/hideKeyBoard.md)
 ## 自定义View
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/view/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/CustomDialog.md)
