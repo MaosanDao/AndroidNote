@@ -33,8 +33,8 @@ ActivityManagerService这一步要做的工作：
 * handleLaunchActivity()通过performLaunchActiivty()方法回调Activity的onCreate()方法和onStart()方法
 * 然后通过handleResumeActivity()方法，回调Activity的onResume()方法，最终显示Activity界面。
 ## 相关图示
-![图示1](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/start_process_1.jpg)
-![图示2](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/start_process_2.png)
+![图示1](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/start_process_1.jpg)
+![图示2](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/start_process_2.png)
 ## 参考文章
 >* [[译]Android Application启动流程分析](https://www.jianshu.com/p/a5532ecc8377)
 >* [一个APP从启动到主页面显示经历了哪些过程?](https://www.jianshu.com/p/a72c5ccbd150)
