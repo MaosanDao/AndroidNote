@@ -50,9 +50,9 @@
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/SaveRestore.md)
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/handler_principle.md) 
 ## 常用工具类
-* [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/CountDown.md)
-* [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/ZipUtil.md)
-* [RecylerView Item间隔工具类](https://github.com/MaosanDao/AndroidNote/blob/master/RecyclerVIewItem.md) 
+* [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/CountDown.md)
+* [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/ZipUtil.md)
+* [RecylerView Item间隔工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/RecyclerVIewItem.md) 
 ## WebView
 * [Java与H5之间的混合开发](https://github.com/MaosanDao/AndroidNote/blob/master/android_h5.md)
 ## 其他
