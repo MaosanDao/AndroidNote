@@ -1,4 +1,11 @@
 # 数据写入的一些常用方法
+
+# 列表
+* [将byte[]数据保存到文件并存储到SD卡根目录](#将byte[]数据保存到文件并存储到sd卡根目录)
+* [将图片保存的手机的图库](#将图片保存的手机的图库)
+* [保存录像到图库](#保存录像到图库)
+
+## 将byte[]数据保存到文件并存储到SD卡根目录
 ```java
 /*
  * 此方法为android程序写入sd文件文件，用到了android-annotation的支持库@
@@ -80,4 +87,68 @@ public synchronized static void writeFileToSDCard(@NonNull final byte[] buffer, 
     }).start();
 }
 
+```
+## 将图片保存的手机的图库
+```java
+fun saveImageToGallery(context: Context, bmp: ByteArray, listener: SaveStatusListener) {
+    // 首先保存图片
+    val appDir = File(Environment.getExternalStorageDirectory(),
+            "VENII")
+    if (!appDir.exists()) {
+        appDir.mkdir()
+    }
+    val fileName = System.currentTimeMillis().toString() + ".jpg"
+    val file = File(appDir, fileName)
+    try {
+        val fos = FileOutputStream(file)
+        bytes2Bimap(bmp).compress(Bitmap.CompressFormat.JPEG, 50, fos)
+        fos.flush()
+        fos.close()
+        runOnUiThread {
+            listener.saveSuccess()
+        }
+    } catch (e: FileNotFoundException) {
+        listener.saveFaild()
+        LogTrack.d("保存失败")
+        e.printStackTrace()
+    } catch (e: IOException) {
+        listener.saveFaild()
+        LogTrack.d("保存失败")
+        e.printStackTrace()
+    }
+
+    // 最后通知图库更新
+    context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+            Uri.fromFile(File(file.path))))
+}
+```
+## 保存录像到图库
+```java
+fun saveVideoToGallery(bmp: File, listener: SaveStatusListener) {
+  val appDir = File(Environment.getExternalStorageDirectory(),
+          "VENII")
+  if (!appDir.exists()) {
+      appDir.mkdir()
+  }
+  val fileName = System.currentTimeMillis().toString() + ".mp4"
+  val file = File(appDir, fileName)
+  try {
+      val oos = FileOutputStream(file)
+      //写入
+      oos.write(bmp.readBytes())
+      oos.flush()
+      oos.close()
+      runOnUiThread {
+          listener.saveSuccess()
+      }
+  } catch (e: FileNotFoundException) {
+      listener.saveFaild()
+      LogTrack.d("保存失败")
+      e.printStackTrace()
+  } catch (e: IOException) {
+      listener.saveFaild()
+      LogTrack.d("保存失败")
+      e.printStackTrace()
+  }
+  }
 ```
