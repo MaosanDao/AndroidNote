@@ -4,6 +4,7 @@
 * [连接WiFi](#连接wifi)
 * [删除已有的连接过的WiFi](#删除已有的连接过的wifi)
 * [创建wifi配置文件](#创建wifi配置文件)
+* [WiFi工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/WifiAutoConnectManager.java)
 
 ## 连接WiFi
 ```java
