@@ -30,10 +30,6 @@ OuterLayout.onInterceptTouchEvent -> InnerLayout.onInterceptTouchEvent -> MyView
 * 只有TextView的单击事件有效
 #### 如果LinearLayout设置了单击事件，而TextView没有设置单击事件的话：
 * 触发的是LinearLayout的单击事件
-## 方法解析
-* dispatchTouchEvent:分发事件（发苹果）— 如果下一级不想要这个苹果，则给上一级自己吃
-* onInterceptTouchEvent:是否阻断事件（是否给下一级发苹果）— 如果阻断了，则给自己吃
-* onTouchEvent:是否消费事件（是否吃了该苹果）
  ## 图示
  ### 事件分发和传递
  ![示例3](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_3.jpg)
