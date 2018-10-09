@@ -1,5 +1,10 @@
 # 常用的一些WiFi相关的方法
 
+# 列表
+* [连接WiFi](#连接wifi)
+* [删除已有的连接过的WiFi](#删除已有的连接过的wifi)
+* [创建wifi配置文件](#创建wifi配置文件)
+
 ## 连接WiFi
 ```java
 /**
@@ -31,7 +36,7 @@ public void connectPasswordWifi(String ssid, String password, WifiCipherType typ
     }
 }
 ```
-## 遗忘WiFi配置项(删除已有的连接过的WiFi)
+## 删除已有的连接过的WiFi
 ```java
 /**
  * 移除一个wifi的信息
