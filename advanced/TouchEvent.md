@@ -4,7 +4,7 @@
 * 当你点击了某个控件，首先会去调用该控件所在布局的dispatchTouchEvent方法，然后在布局的dispatchTouchEvent方法中找到被点击的相应控件，再去调用该控件的dispatchTouchEvent方法。
 
 如下图所示：
-![事件分发](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/touch_event_1.jpg)
+![事件分发](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_1.jpg)
 
 ### 总结
 * Android事件分发是先传递到ViewGroup，再由ViewGroup传递到View的
