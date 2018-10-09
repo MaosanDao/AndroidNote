@@ -1,4 +1,12 @@
 # 点击事件分发机制总结
+## Activity为最底部的根视图
+## 先看图(点击MyView为触发条件)：
+![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_11.png)
+![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_7.png)
+![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_8.png)
+![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_9.png)
+![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_10.png)
+![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_6.png)
 ## ViewGroup 
 * Android中touch事件的传递，绝对是先传递到ViewGroup，再传递到View的
 * 当你点击了某个控件，首先会去调用该控件所在布局的dispatchTouchEvent方法，然后在布局的dispatchTouchEvent方法中找到被点击的相应控件，再去调用该控件的dispatchTouchEvent方法。
