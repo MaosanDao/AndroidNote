@@ -126,4 +126,5 @@ public WifiConfiguration isExsits(String ssid) {
 }
 ```
 
-## 附：完成的工具类
+## 附：完整的工具类
+* [WiFi工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/WifiAutoConnectManager.java)
