@@ -53,6 +53,7 @@
 * [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/CountDown.md)
 * [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/ZipUtil.md)
 * [RecylerView Item间隔工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/RecyclerVIewItem.md) 
+* [WiFi相关方法以及工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/WifiFuncition.md)
 ## WebView
 * [Java与H5之间的混合开发](https://github.com/MaosanDao/AndroidNote/blob/master/webview/android_h5.md)
 ## 其他
