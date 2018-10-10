@@ -33,3 +33,6 @@ ta.recycle();
 </attr>
 ```
 其中，enum和flag的区别在于，enum只能选择其一，而flag则可以累加选择。比如：bold|italic表示既加粗也变成斜体
+
+## 相关参考文章：
+* [HenCoder自定义View讲解](https://hencoder.com/ui-1-1/)
