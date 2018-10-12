@@ -1,7 +1,14 @@
 # 点击事件分发机制总结
 ## Activity为最底部的根视图
-## 先看图(点击MyView为触发条件)：
+## 实例：
+下图是一个我们模拟的情况，其中显示的颜色为层级，GroupA为最底层（Activity才是最底层，我们这里说的是控件，所以说是A为最底层），依次是GroupB,myView。
+
+现在我们点击myView这个控件，来解析事件分发的过程：
+
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_11.png)
+
+首先是默认不处理的情况下，来点击myView控件，则整个分发流程为下图：
+
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_7.png)
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_8.png)
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_9.png)
