@@ -3,14 +3,19 @@
 ## 实例：
 下图是一个我们模拟的情况，其中显示的颜色为层级，GroupA为最底层（Activity才是最底层，我们这里说的是控件，所以说是A为最底层），依次是GroupB,myView。
 
-现在我们点击myView这个控件，来解析事件分发的过程：
+### 1.现在我们点击myView这个控件，来解析事件分发的过程：
 
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_11.png)
 
-首先是默认不处理的情况下，来点击myView控件，则整个分发流程为下图：
+### 2.首先是默认不处理的情况下，来点击myView控件，则整个分发流程为下图：
 
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_7.png)
+
+### 3.然后我们在**GroupB**中去拦截事件的分发，那么，在最上层的myView则不会收到这个事件的消息，即事件分发是*不会经过myView*这一层的。相反，谁拦截了这个事件，那么谁就会进行处理。在这里就是GroupB来进行处理了。如图所示，GroupB会触发*onTouchEvent*方法。最后，再向下层传递这个消费事件，直到Activity这一层就结束了整个事件。
+
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_8.png)
+
+### 4.123123
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_9.png)
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_10.png)
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_6.png)
