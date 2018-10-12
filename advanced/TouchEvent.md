@@ -25,11 +25,11 @@
 
 注意，还有一些特殊状况，我们要知道：
 
-1.如果myView不想让GroupA、GroupB去拦截它的事件，我们该怎么做呢？
-我们在myView中调用**requestDissallowIntercptTouchEvent**方法，这个方法的意思是：让父View不再拦截我的事件，让这次的点击事件给我自己处理。那么，父View就不会再管**这次**事件了。
-2.onTouchEvent的特殊性
-onTouchEvent的拦截只在**down**的过程中产生，一起的move，cancel,up返回true是没有作用的。
-3.Activity这层是作为最后一层出现的
+* 如果myView不想让GroupA、GroupB去拦截它的事件，我们该怎么做呢？
+>我们在myView中调用**requestDissallowIntercptTouchEvent**方法，这个方法的意思是：让父View不再拦截我的事件，让这次的点击事件给我自己处理。那么，父View就不会再管**这次**事件了。
+* onTouchEvent的特殊性
+>onTouchEvent的拦截只在**down**的过程中产生，一起的move，cancel,up返回true是没有作用的。
+* Activity这层是作为最后一层出现的
 
 总结：
 
