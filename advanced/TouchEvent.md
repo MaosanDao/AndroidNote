@@ -3,21 +3,36 @@
 ## 实例：
 下图是一个我们模拟的情况，其中显示的颜色为层级，GroupA为最底层（Activity才是最底层，我们这里说的是控件，所以说是A为最底层），依次是GroupB,myView。
 
-### 1.现在我们点击myView这个控件，来解析事件分发的过程：
+现在我们点击myView这个控件，来解析事件分发的过程：
 
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_11.png)
 
-### 2.首先是默认不处理的情况下，来点击myView控件，则整个分发流程为下图：
+首先是默认不处理的情况下，来点击myView控件，则整个分发流程为下图：
 
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_7.png)
 
-### 3.然后我们在**GroupB**中去拦截事件的分发，那么，在最上层的myView则不会收到这个事件的消息，即事件分发是*不会经过myView*这一层的。相反，谁拦截了这个事件，那么谁就会进行处理。在这里就是GroupB来进行处理了。如图所示，GroupB会触发*onTouchEvent*方法。最后，再向下层传递这个消费事件，直到Activity这一层就结束了整个事件。
+然后我们在**GroupB**中去拦截事件的分发，那么，在最上层的myView则不会收到这个事件的消息，即事件分发是*不会经过myView*这一层的。相反，谁拦截了这个事件，那么谁就会进行处理。在这里就是GroupB来进行处理了。如图所示，GroupB会触发*onTouchEvent*方法。最后，再向下层传递这个消费事件，直到Activity这一层就结束了整个事件。
 
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_8.png)
 
-### 4.123123
+现在我们在GroupB的消费级的时候，将事件给消费了。那么，消费级的时间就不会再向上传递了。这个很好理解，我消费了，就没了！
+
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_9.png)
+
+最后，我们来讲GroupB中实现**既拦截也消费**的情况，经过上面的两个情况的体现，那么既然在GroupB中将其拦截也消费，那么整个事件myView是不会感知到的，且在GroupB消费后，也不会再想下层进行传递事件了
+
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_10.png)
+
+注意，还有一些特殊状况，我们要知道：
+
+1.如果myView不想让GroupA、GroupB去拦截它的事件，我们该怎么做呢？
+我们在myView中调用**requestDissallowIntercptTouchEvent**方法，这个方法的意思是：让父View不再拦截我的事件，让这次的点击事件给我自己处理。那么，父View就不会再管**这次**事件了。
+2.onTouchEvent的特殊性
+onTouchEvent的拦截只在**down**的过程中产生，一起的move，cancel,up返回true是没有作用的。
+3.Activity这层是作为最后一层出现的
+
+总结：
+
 ![示例6](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_6.png)
 ## ViewGroup 
 * Android中touch事件的传递，绝对是先传递到ViewGroup，再传递到View的
