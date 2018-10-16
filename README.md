@@ -71,6 +71,16 @@
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 * Android单元测试(https://www.jianshu.com/p/827a6179297d https://www.jianshu.com/p/bc99678b1d6e https://www.jianshu.com/p/dba1290f9dc8)
 ***
+## 速记待整理框
+>1.关于不能正常生成GlideApp的解决方案汇总。kapt、注解、编译版本
+
+>2.ndk报错解决：
+```xml
+packagingOptions {
+    doNotStrip '*/mips/*.so'
+    doNotStrip '*/mips64/*.so'
+}
+```
 ## 说明
 * 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容，请联系我，我会尽快进行修改和删除。谢谢！
 ***
