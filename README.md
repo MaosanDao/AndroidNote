@@ -81,7 +81,7 @@ packagingOptions {
     doNotStrip '*/mips64/*.so'
 }
 ```
->3.局部刷新Recyclerview中item
+>3.[局部刷新Recyclerview中item](https://blog.csdn.net/OneDeveloper/article/details/79721284)
 ```java
 RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
 if (viewHolder != null && viewHolder instanceof ItemHolder) {
