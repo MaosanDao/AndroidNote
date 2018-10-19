@@ -81,6 +81,15 @@ packagingOptions {
     doNotStrip '*/mips64/*.so'
 }
 ```
+>3.局部刷新Recyclerview中item
+```java
+RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
+if (viewHolder != null && viewHolder instanceof ItemHolder) {
+    ItemHolder itemHolder = (ItemHolder) itemHolder 
+        itemHolder.mButton.togglestate();
+    }
+}
+```
 ## 说明
 * 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容，请联系我，我会尽快进行修改和删除。谢谢！
 ***
