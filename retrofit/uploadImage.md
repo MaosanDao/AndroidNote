@@ -64,3 +64,7 @@ private List<MultipartBody.Part> filesToMultipartBodyParts(List<File> files) {
     return parts;
 }
 ```
+## 注意事项：
+1.可能传入和文件一起传入的参数会在服务端收到双引号。采用下面的链接去解决
+
+[解决办法](https://blog.csdn.net/u012391876/article/details/52913805)
