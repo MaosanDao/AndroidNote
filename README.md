@@ -90,6 +90,16 @@ if (viewHolder != null && viewHolder instanceof ItemHolder) {
     }
 }
 ```
+>4,TextView缩进
+```java
+ //缩进
+ //text为要显示的文字
+ //span为最后缩进的文字
+val span = SpannableStringBuilder("缩进" + text)
+span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
+        Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+
+```
 ## 说明
 * 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容，请联系我，我会尽快进行修改和删除。谢谢！
 ***
