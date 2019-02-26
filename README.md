@@ -42,7 +42,7 @@
 ## 网络
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/net/tcp_udp.md)
 * [Http基础协议详解(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/Http1.md)
-* [Android Http以及Socket相关知识点汇总(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/http2.md)
+* [Android Http、Tcp、Https、Socket相关知识点汇总(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/http2.md)
 ## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
