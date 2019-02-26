@@ -55,6 +55,36 @@ DataInputStream dis = new DataInputStream(s.getInputStream());
 DataOutputStream dos = new DataOutputStream(s.getOutputStream());
 //记得关闭流
 ```
+### 基于HTTP协议的HttpUrlConnection
+一般是发送请求到某个应用服务器。
+```java
+//先取得HttpUrlConnection
+HttpURLConnection urlConn = new URL("http://www.google.com").openConnection();
+
+//设置一些标志
+urlConn.setDoOutput(true);  urlConn.setDoInput(true);//post的情况下需要设置DoOutput为true
+urlConn.setRequestMethod("POST");
+//设置是否用缓存
+urlConn.setUseCache(false);
+//设置content－type
+urlConn.setRequestProperty("Content-type","application/x-www-form-urlencoded");
+
+//获得输出流，便于向服务器发送信息
+DataOutputStream dos = new DataOutputStream(urlConn.getOutputStream());
+//向流里面写入请求参数
+dos.writeBytes("name="+URLEncoder.encode("chenmouren","gb2312");
+//写完关闭
+dos.flush();dos.close();
+
+//获得输入流，取数据
+BufferReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+//用 !=null来判断是否结束
+reader.readLine();
+reader.close();
+
+//最后记得关闭
+urlConn.disconnect();
+```
 ***
 ## 拓展说明
 ### 区别
