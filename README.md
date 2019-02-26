@@ -41,6 +41,7 @@
 * [界面卡顿的一些产生原因和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/caton.md)  
 ## 网络
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/net/tcp_udp.md)
+* [Http基础协议详解(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/Http1.md)
 ## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
