@@ -35,49 +35,25 @@
 ***
 ## 具体的Socket通信技术
 ### 基于TCP协议的Sokcet
-#### 服务器端
+#### 服务器端伪代码
 ```java
 //首先声明一个服务端对象：ServerSocket
-ServerSocket ss =  new ServerSocket(PORT);
+ServerSocket svr = new ServerSocket(PORT);
 //调用accept()方法去接收客户端的数据，这个方法在没有数据的时候，一直处于堵塞状态
-ss.accept();
+Socket s = svr.accept();
 //一旦接收到了数据，那么就可以从inputStream中去读取数据
+DataInputStream dis = new DataInputStream(s.getInputStream());
+DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+//Socket 的交互通过流来完成，即是说传送的字节流，因此任何文件都可以在上面传送。谁打开的记得要关上。
 ```
-具体的伪代码：
+#### 客户端伪代码
 ```java
-private ServerSocket server = null;
-private BufferedReader in = null;
-private Socket socket;
-
-//服务端
-//指定端口
-server = new ServerSocket(PORT);
-while (true) {
- client = server.accept();//一直堵塞读取客户端状态
-}
-
-//一旦连接到客户端，那么就可以读取消息
-in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-
-//发送消息
-out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(mSocket.getOutputStream())), true);
-out.println(msg);
-
-//客户端
-socket = new Socket(HOST, PORT);
-
-//接收消息
-in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-if ((temp = in.readLine()) != null) {
-  content += temp + "\n";
-  mHandler.sendMessage(mHandler.obtainMessage());
-}
-
-//发送消息
-out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-if (!socket.isOutputShutdown()) {
-  out.println(msg);
-}
+//新建Socket
+Socket s = new Socket(IP,PROT);
+//输入和输出
+DataInputStream dis = new DataInputStream(s.getInputStream());
+DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+//记得关闭流
 ```
 ***
 ## 拓展说明
