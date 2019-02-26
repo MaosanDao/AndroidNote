@@ -1,4 +1,4 @@
-# Android Http以及Socket相关知识点汇总[(摘)](https://www.cnblogs.com/nathan909/p/5355477.html)
+# Android Http、Tcp、Https、Socket相关知识点汇总[(摘)](https://www.cnblogs.com/nathan909/p/5355477.html)
 
 ## TCP/IP（主要解决数据在网络中的传输）
 >输入传输层/网络层协议。手机能够使用联网功能是因为手机底层实现了TCP/IP协议，可以使手机终端通过无线网络建立TCP连接。TCP协议可以对上层网络提供接口，使上层网络数据的传输建立在“无差别”的网络之上。
