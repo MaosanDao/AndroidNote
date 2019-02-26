@@ -25,24 +25,24 @@
 * [待加](#待加)
 * [速记待整理框](#速记待整理框)
 ****
-## ([☝️](#列表))开始
+## 开始
 * [快速搭建App参考步骤](https://github.com/MaosanDao/AndroidNote/blob/master/other/NewP.md) 
-## ([☝️](#列表))开发相关
+## 开发相关
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
 * [Android中常用的设计模式简易使用指南](https://github.com/MaosanDao/AndroidNote/blob/master/other/DesignMode.md)
-## ([☝️](#列表))Retrofit相关
+## Retrofit相关
 * [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
 * [使用Retrofit上传Json数据](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadJson.md)
-## ([☝️](#列表))基础知识
+## 基础知识
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Generic.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Reflection.md)
 * [Activity的四种启动模式介绍](https://github.com/MaosanDao/AndroidNote/blob/master/basis/launchMode.md)
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
-## ([☝️](#列表))多线程
+## 多线程
 * [Android进程间、线程间的通讯方式汇总](https://github.com/MaosanDao/AndroidNote/blob/master/thread/thread_process.md)
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/thread/Thread.md)
-## ([☝️](#列表))界面相关
+## 界面相关
 * [RecyclerView和ListView的区别](https://github.com/MaosanDao/AndroidNote/blob/master/view/recyclerview_listview.md)
 * [沉侵式的具体做法](https://github.com/MaosanDao/AndroidNote/blob/master/view/ChenQinShi.md)
 * [快速暴力的屏幕适配方案](https://github.com/MaosanDao/AndroidNote/blob/master/view/ScreenAdaptation.md) 
@@ -50,55 +50,55 @@
 * [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/view/UiCommonProblem.md)
 * [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/view/RecylerViewType.md)
 * [点击界面其他部分，隐藏虚拟键盘](https://github.com/MaosanDao/AndroidNote/blob/master/view/hideKeyBoard.md)
-## ([☝️](#列表))自定义View
+## 自定义View
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/view/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/CustomDialog.md)
-## ([☝️](#列表))动画
+## 动画
 * [(速查表)常用动画集合类](https://github.com/MaosanDao/AndroidNote/blob/master/animation/CommonAnimationMethod.md)
 * [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/animation/OtherAnimation.md)
 * [Animation知识汇总](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/animation/Animation.md)
-## ([☝️](#列表))优化
+## 优化
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/optimization/Leak.md)
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/oom.md)
 * [ANR相关知识](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/ANR.md)
 * [界面卡顿的一些产生原因和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/caton.md)  
-## ([☝️](#列表))网络
+## 网络
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/net/tcp_udp.md)
 * [Http基础协议详解(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/Http1.md)
 * [Android Http、Tcp、Https、Socket相关知识点汇总(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/http2.md)
-## ([☝️](#列表))蓝牙
+## 蓝牙
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
-## ([☝️](#列表))发布
+## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
 * [常用混淆代码](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/CommonConfusion.md)
-## ([☝️](#列表))进阶
+## 进阶
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/handler_principle.md) 
-## ([☝️](#列表))常用工具类
+## 常用工具类
 * [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/CountDown.md)
 * [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/ZipUtil.md)
 * [RecylerView Item间隔工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/RecyclerVIewItem.md) 
 * [WiFi相关方法以及工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/WifiFuncition.md)
-## ([☝️](#列表))WebView
+##WebView
 * [Java与H5之间的混合开发](https://github.com/MaosanDao/AndroidNote/blob/master/webview/android_h5.md)
-## ([☝️](#列表))IO
+## IO
 * [数据写入的一些常用方法](https://github.com/MaosanDao/AndroidNote/blob/master/io/IO.md)
-## ([☝️](#列表))其他
+## 其他
 * [本地代码库上传至jCenter的详细步骤](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/uploadJcenter/uploadJcenter.md) 
 * [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
 * [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/other/regexp.md)
 * [导入第三方包的几种方法介绍](https://github.com/MaosanDao/AndroidNote/blob/master/other/ImportLib.md)
-## ([☝️](#列表))草稿记录
+## 草稿记录
 * [扫地机地图相关的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/note/robot_map.md)
 ***
-## ([☝️](#列表))待加
+## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 * Android单元测试(https://www.jianshu.com/p/827a6179297d https://www.jianshu.com/p/bc99678b1d6e https://www.jianshu.com/p/dba1290f9dc8)
 ***
-## ([☝️](#列表))速记待整理框
+## 速记待整理框
 >1.关于不能正常生成GlideApp的解决方案汇总。kapt、注解、编译版本
 
 >2.ndk报错解决：
