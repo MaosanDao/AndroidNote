@@ -4,7 +4,6 @@
 ## 开始
 * [快速搭建App参考步骤](https://github.com/MaosanDao/AndroidNote/blob/master/other/NewP.md) 
 ## 开发相关
-* [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
 * [Android中常用的设计模式简易使用指南](https://github.com/MaosanDao/AndroidNote/blob/master/other/DesignMode.md)
 ## Retrofit相关
@@ -43,6 +42,8 @@
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/net/tcp_udp.md)
 * [Http基础协议详解(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/Http1.md)
 * [Android Http、Tcp、Https、Socket相关知识点汇总(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/http2.md)
+## 蓝牙
+* [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 ## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
