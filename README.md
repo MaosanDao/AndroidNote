@@ -68,6 +68,7 @@
 * [Android Http、Tcp、Https、Socket相关知识点汇总(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/http2.md)
 ## 蓝牙
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
+* [Android BLE相关知识点的学习(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/bluetooth/ble_note.md)
 ## 发布
 * [多渠道打包](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
