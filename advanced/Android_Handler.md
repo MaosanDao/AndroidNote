@@ -72,6 +72,13 @@ sThreadLoacal.set(new Looper(quitAllowed));
 //实际调用了 sThreadLocal.get() 方法来获得Looper线程
 myLooper()；
 ```
+#### 创建Looper整个过程
+> ActivityThread --> main() --> prepareMainLooper() --> prepare(false) --> sThreadLoacal.set(new Looper(quitAllowed)) --> myLooper()
+* 入口ActivityThread --> main()
+* prepareMainLooper开始准备创建Looper
+* 使用prepare(false)来创建Looper
+* 使用ThreadLoacal来存储Looper对象
+* 存储/使用，sThreadLoacal.set(new Looper(quitAllowed))/myLooper()
 
 
 
