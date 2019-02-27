@@ -79,7 +79,76 @@ myLooper()；
 * 使用prepare(false)来创建Looper
 * 使用ThreadLoacal来存储Looper对象
 * 存储/使用，sThreadLoacal.set(new Looper(quitAllowed))/myLooper()
+#### 问题解答
+* 为何在主线程能够使用Handler？
+>因为主线程创建了Looper对象并开启了消息循环
+* Looper如何绑定MessageQueue的？Looper创建MessageQueue的过程?
+>在上述代码中，会有一个Looper的成员变量mQueue，它是Looper默认保存的MessageQueue对象，而在Looper的构造方法中，会将直接创建的MessageQueue赋值为mQueue对象，那么它们就进行了绑定。
+#### 开始循环处理消息
+>开始循环则是通过上述的main方法中的Loop.loop()开始的
+```java
+public static void loop() {
+    // step1: 获取当前线程的 Looper 对象
+    final Looper me = myLooper();
+    if (me == null) {
+        throw new RuntimeException("No Looper; Looper.prepare() wasn't called on this thread.");
+    }
+    // step2: 获取 Looper 保存的 MessageQueue 对象，这就是上述问题2中的MessageQueue
+    final MessageQueue queue = me.mQueue;
 
+    ...
+    // step3: 循环读取消息，如果有则调用消息对象中储存的 handler 进行发送
+    for (;;) {
+        Message msg = queue.next(); // 提取下一个消息，想想消息从哪里来的？怎么插入的？
+        if (msg == null) {
+            // No message indicates that the message queue is quitting.
+            return;
+        }
+        ...
+        try {
+            // step4: 使用 Message 对象保存的 handler 对象处理消息
+            //dispatchMessage这个方法最终会调用Handler的handleMessage(msg)方法
+            msg.target.dispatchMessage(msg);//msg.target想想何时被赋值的，也就是Handler和Message是什么时候绑定的？
+            end = (slowDispatchThresholdMs == 0) ? 0 : SystemClock.uptimeMillis();
+        } finally {
+            if (traceTag != 0) {
+                Trace.traceEnd(traceTag);
+            }
+        }
+        ...
+        msg.recycleUnchecked();
+    }
+}
+```
+>如何分发的？(dispatchMessage方法)
+```java
+public void dispatchMessage(Message msg) {
+    if (msg.callback != null) {
+        handleCallback(msg);
+    } else {
+        if (mCallback != null) {
+            if (mCallback.handleMessage(msg)) {
+                return;
+            }
+        }
+        handleMessage(msg);
+    }
+}
+
+private static void handleCallback(Message message) {
+   message.callback.run();
+}
+
+//这就是我们需要实现的
+public void handleMessage(Message msg) {
+}
+```
+>由上述代码中可以看出分发优先级：
+* Message 的回调方法：message.callback.run(); 优先级最高
+* Handler 的回调方法：mCallback.handleMessage(msg)优先级次于上方
+* Handler 的回调方法：handleMessage() 优先级最低
+#### Handler的创建和作用
+##### Handler发送消息的过程
 
 
 
