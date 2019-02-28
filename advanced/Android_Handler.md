@@ -281,11 +281,16 @@ new Thread() {
     }
 }.start();
 ```
-* step1:调用 Looper.prepare(); 为当前线程创建 Looper 对象，同时也就创建了 MessageQueue，之后将该线程的 Looper 对象保存在 ThreadLocal 中。注意这里的一切操作都在子线程中，如果不调用 Looper.prepare() 就使用 Handler 会报错
-* 创建 Handler 对象，覆写 handleMessage 处理消息，等待该 Handler 发送的消息处理时会调用该方法
-* 使用 handler 发送消息，这里只是示例，毕竟自己给自己发送消息没啥必要。发送的过程中会将自己赋值给 msg.target，然后再将消息插入到 Looper 绑定的 MessageQueue 对象中
-* 调用 Looper.loop(); 首先获取当前线程的 Looper 对象，根据 Looper 对象就可以拿到 Looper 保存的 MessageQueue 对象 mQueue。有了 MessageQueue 对象就可以 for 循环获取它保存的消息 Message 对象，如果消息不存在就返回 null 阻塞，反之则使用 Message 中保存的 Handler：msg.target 来处理消息，最终调用 handleMessage 也就是之前覆写的方法来处理消息
-* 逻辑处理完毕以后，应在最后使用 quit 方法来终止消息循环，否则这个子线程就会一直处于等待的状态，而如果退出Looper以后，这个线程就会立刻终止，因此建议不需要的时候终止Looper
+* Step1
+>调用 Looper.prepare(); 为当前线程创建 Looper 对象，同时也就创建了 MessageQueue，之后将该线程的 Looper 对象保存在 ThreadLocal 中。注意这里的一切操作都在子线程中，如果不调用 Looper.prepare() 就使用 Handler 会报错
+* Step2
+>创建 Handler 对象，覆写 handleMessage 处理消息，等待该 Handler 发送的消息处理时会调用该方法
+* Step3
+>使用 handler 发送消息，这里只是示例，毕竟自己给自己发送消息没啥必要。发送的过程中会将自己赋值给 msg.target，然后再将消息插入到 Looper 绑定的 MessageQueue 对象中
+* Step4
+>调用 Looper.loop(); 首先获取当前线程的 Looper 对象，根据 Looper 对象就可以拿到 Looper 保存的 MessageQueue 对象 mQueue。有了 MessageQueue 对象就可以 for 循环获取它保存的消息 Message 对象，如果消息不存在就返回 null 阻塞，反之则使用 Message 中保存的 Handler：msg.target 来处理消息，最终调用 handleMessage 也就是之前覆写的方法来处理消息
+* Step5
+>逻辑处理完毕以后，应在最后使用 quit 方法来终止消息循环，否则这个子线程就会一直处于等待的状态，而如果退出Looper以后，这个线程就会立刻终止，因此建议不需要的时候终止Looper
 ## 总结
 #### Handler、Looper、MessageQueue、Message
 * Handler
