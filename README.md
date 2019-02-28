@@ -16,6 +16,7 @@
 * [蓝牙](#蓝牙)
 * [发布应用相关](#发布)
 * [进阶](#进阶)
+* [Handler相关](#handler相关)
 * [常用工具类](#常用工具类)
 * [WebView](#webview)
 * [IO](#io)
@@ -77,7 +78,9 @@
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
+## Handler相关
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/handler_principle.md) 
+* [通过问题学习Android Handler机制(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/Android_Handler.md)
 ## 常用工具类
 * [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/CountDown.md)
 * [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/ZipUtil.md)
