@@ -1,5 +1,13 @@
 # 通过问题学习Android Handler机制([摘](http://www.apkbus.com/blog-977631-79570.html))
 ***
+## 通过6个问题引入
+* 为何在主线程能够使用Handler？
+* Looper如何绑定MessageQueue的？Looper创建MessageQueue的过程?
+* MessageQueue的消息从哪里来？Handler如何往MessageQueue中插入消息？
+* msg.target是是什么时候被赋值的？message怎么和handler进行绑定的？
+* Handler是如何绑定MessageQueue的？
+* 关于Handler，在任何地方使用new Handler那么它是处于哪一个线程下？
+***
 ## 剖析主线程Looper的创建和循环
 >Android的程序入口是在main函数中，主线程Looper的创建也是在这里完成的
 #### ActivityThread -> Main()
