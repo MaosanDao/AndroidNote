@@ -149,6 +149,9 @@ public void handleMessage(Message msg) {
 * Handler 的回调方法：handleMessage() 优先级最低
 #### Handler的创建和作用
 ##### Handler发送消息的过程
+>引出问题？
+* MessageQueue的消息从哪里来？Handler如何往MessageQueue中插入消息？
+* msg.target是
 
 
 
