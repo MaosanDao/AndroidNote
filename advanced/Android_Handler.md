@@ -80,9 +80,9 @@ myLooper()；
 * 使用ThreadLoacal来存储Looper对象
 * 存储/使用，sThreadLoacal.set(new Looper(quitAllowed))/myLooper()
 #### 问题解答
-* 为何在主线程能够使用Handler？
+* （**问题1**）为何在主线程能够使用Handler？
 >因为主线程创建了Looper对象并开启了消息循环
-* Looper如何绑定MessageQueue的？Looper创建MessageQueue的过程?
+* （**问题2**）Looper如何绑定MessageQueue的？Looper创建MessageQueue的过程?
 >在上述代码中，会有一个Looper的成员变量mQueue，它是Looper默认保存的MessageQueue对象，而在Looper的构造方法中，会将直接创建的MessageQueue赋值为mQueue对象，那么它们就进行了绑定。
 #### 开始循环处理消息
 >开始循环则是通过上述的main方法中的Loop.loop()开始的
@@ -150,8 +150,8 @@ public void handleMessage(Message msg) {
 #### Handler的创建和作用
 ##### Handler发送消息的过程
 >引出问题？
-* MessageQueue的消息从哪里来？Handler如何往MessageQueue中插入消息？
-* msg.target是是什么时候被赋值的？message怎么和handler进行绑定的？
+* （**问题3**）MessageQueue的消息从哪里来？Handler如何往MessageQueue中插入消息？
+* （**问题4**）msg.target是是什么时候被赋值的？message怎么和handler进行绑定的？
 ##### Handler 发送消息
 >Handler --> sendMessage(Message msg)
 ```java
@@ -192,7 +192,7 @@ private boolean enqueueMessage(MessageQueue queue, Message msg, long uptimeMilli
 * queue.enqueueMessage(msg, uptimeMillis); 这里是将msg插入到了messagequeue中
 ##### Handler的创建
 >引出问题
-* Handler是如何绑定MessageQueue的？
+* （**问题5**）Handler是如何绑定MessageQueue的？
 ```java
 // 无参构造器
 public Handler() {
@@ -228,7 +228,7 @@ public Handler(Callback callback, boolean async) {
 * Looper可以方便的循环在mQueue中查询消息
 * 如果查询到消息，那么久使用Message对象绑定的Handler对象target处理消息。否则堵塞。
 ##### 新的问题
->关于Handler，在任何地方使用new Handler那么它是处于哪一个线程下？
+>（**问题6**）关于Handler，在任何地方使用new Handler那么它是处于哪一个线程下？
 ```java
 //关于这个问题，在上述代码中可以看出，如果这样创建：
 Handler handler = new Handler();
