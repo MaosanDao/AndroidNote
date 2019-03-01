@@ -30,7 +30,8 @@ WeakReference<String> softRef = new WeakReference<String>();
 ## 常见的内存泄漏操作汇总
 ### 集合类泄漏
 如果某个集合是全局性的变量（比如 static 修饰），集合内直接存放一些占用大量内存的对象（而不是通过弱引用存放），那么随着集合 size 的增大，会导致内存占用不断上升，而在 Activity 等销毁时，集合中的这些对象无法被回收，导致内存泄露。比如我们喜欢通过静态HashMap做一些缓存之类的事，这种情况要小心，集合内对象建议采用弱引用的方式存取，并考虑在不需要的时候手动释放。
-### 单例模式（静态Activity的引用）
+### 单例模式Context泄漏（静态Activity的引用）
+>根据场景确定使用Activity的Context还是Application的Context，因为二者的生命周期不同，对于不需要必须使用的Activity Context，一律用Application的Context。比如以下代码，就是传入了一个Activity被静态类引用，导致无法回收。
 ```java
 public class RequestImpl {
 
@@ -85,7 +86,6 @@ public class RequestImpl {
 解决办法：
 * 使用静态handler，外部类引用使用弱引用处理
 * 在退出页面时移除消息队列中的消息
-解决方法：
 ```java
 MyHandler mHandler = new MyHandler(this);
 
@@ -106,7 +106,7 @@ MyHandler mHandler = new MyHandler(this);
         }
     }
 ```
-#### 总结
+##### 总结
 当书写内部类的时候要确保自己的耗时操作在activity结束后没有引用activity对象
 
 ### GetSystemService方法
