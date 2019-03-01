@@ -54,6 +54,7 @@
 ## 自定义View
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/view/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/CustomDialog.md)
+* [SurfaceView和View的区别以及一些知识点](https://github.com/MaosanDao/AndroidNote/tree/master/view)
 ## 动画
 * [(速查表)常用动画集合类](https://github.com/MaosanDao/AndroidNote/blob/master/animation/CommonAnimationMethod.md)
 * [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/animation/OtherAnimation.md)
