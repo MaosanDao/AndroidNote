@@ -54,6 +54,7 @@ public class RequestImpl {
 只要传入application的Context就可以了。即，使用RequestImpl的构造函数里面调用context.getApplicationContext()
 ### 非静态内部类
 非静态内部类造成的内存溢出常常出现在Handler、Thread、Timer Task。这些耗时操作如果在Activity生命周期结束后还在运行的话，可能会造成内存溢出
+>非静态内部类会持有外部类的引用，那么如果非静态内部类的实例是静态的，就会长期的维持着外部类的引用，组织被系统回收。解决办法是使用静态内部类。
 #### 线程
 ```java
 @Override
@@ -80,6 +81,10 @@ public class RequestImpl {
 }
 ```
 #### Handler
+>Handler导致的内存泄漏也可以被归纳为非静态内部类导致的，Handler内部message是被存储在MessageQueue中的，有些message不能马上被处理，存在的时间会很长，导致handler无法被回收，如果handler是非静态的，就会导致它的外部类无法被回收
+解决办法：
+* 使用静态handler，外部类引用使用弱引用处理
+* 在退出页面时移除消息队列中的消息
 解决方法：
 ```java
 MyHandler mHandler = new MyHandler(this);
