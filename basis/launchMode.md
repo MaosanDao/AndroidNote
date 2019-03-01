@@ -2,4 +2,5 @@
 * standard：标准的启动模式，无论是否在activity的栈中是否含有该实例，系统都会进行再次创建
 * singalTop：如果该实例已经在栈的顶端，则不会创建新的实例，否则会进行创建
 * singalTask：如果该实例已经在栈的顶端，则不会创建新的实例，如果含有该实例，否则会该实例上方的activity进行移除。
-* singalInstance：无论是否含有该实例，都对进行创建。且该栈中只有这样一个实例
+* singalInstance：无论是否含有该实例，都对进行创建。且该栈中只有这样一个实例（每次系统都会创建一个新的任务栈，并且这个任务栈只有它一个Activity）
+>>singleInstance模式也是单例的，但和singleTask不同，singleTask只是任务栈内单例，系统里是可以有多个singleTask Activity实例的，而singleInstance Activity在整个系统里只有一个实例，启动一singleInstanceActivity时，系统会创建一个新的任务栈，并且这个任务栈只有他一个Activity。
