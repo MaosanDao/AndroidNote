@@ -24,11 +24,13 @@ Controller：activity中的一些逻辑代码。
 2.view层和model层是相互可知的，这就说明了它们之间有着一种耦合。这是程序非常致命的弱点。
 ```
 #### 大体请求流程
+```
 1. View接受用户的请求
 2. View传递请求给Controller
 3. Controller操作Model进行数据更新
 4. Model通知View变化
 5. View根据更新的数据做出显示
+```
 #### 具体代码示例（[摘录](https://blog.csdn.net/singwhatiwanna/article/details/80904132)）
 BaseModel，所有Model的基类。这里的onDestroy()方法用于跟activity或者fragment生命周期同步，在destroy做一些销毁操作。
 ```java
@@ -141,14 +143,18 @@ public class SampleActivity extends AppCompatActivity {
 
 }
 ```
+```
 上述代码的大体MVC流程：
 1. Button被点击：View -> Controller
 2. 获取用户信息事件的触发：Controller -> Model
 3. 绑定用户信息到View：Controller -> View
+```
 #### 总结
+```
 * 具有一定的分层，model彻底解耦，controller和view并没有解耦 
 * controller和view在android中无法做到彻底分离
 * 业务逻辑被放置在model层，能够更好的复用和修改增加业务
+```
 ****
 ## 进阶MVP
 #### 图示
@@ -167,21 +173,27 @@ fragment可以去实现实现定义好的接口，而在对应的presenter中通
 这就解决了MVC模式中测试，维护难的问题。
 ```
 #### 大体请求流程
+```
 1. View 接受用户请求
 2. View 传递请求给Presenter
 3. Presenter做逻辑处理，修改Model
 4. Model 通知Presenter数据变化
 5. Presenter 更新View（接口）
+```
 #### MVP的特点
+```
 * Presenter完全将Model和View解耦，主要逻辑处于Presenter中
 * Presenter和具体View没有直接关联，通过定义好的接口进行交互
 * View变更时，可以保持Presenter不变(符合面向对象编程的特点)
 * View只应该有简单的Set/Get方法、用户输入、界面展示的内容，此外没有更多内容
 * 低耦合：Model和View的解耦，决定了该特性
+```
 #### MVP的优点
+```
 * 可重用性：Model层可以用于多个View。比如请求影视数据，可能有多个页面都需要这个功能，但是Model层代码只要有一份就可以了
 * 方便测试：可以单独对Model层和View层进行测试
 * 低耦合：Model、View层的变换不会影响到对方
+```
 #### 具体代码示例
 ##### 契约类
 契约类用于定义同一个界面的view的接口和presenter的具体实现。好处是通过规范的方法命名和注释可以清晰的看到整个页面的逻辑。
@@ -287,8 +299,10 @@ public class LoginFragment extends SupportFragment implements LoginMVPContract.I
 }
 ```
 #### 优化MVP的文件量
+```
 * 采用泛型定义契约类，将model、view、presenter定义在一个契约类中
 * 结构清晰，一个契约类对应一个业务模块
+```
 ****
 ## 完全进阶MVVM
 图示：
