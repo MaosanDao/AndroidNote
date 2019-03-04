@@ -9,6 +9,7 @@
 * [基础知识](#基础知识)
 * [多线程](#多线程)
 * [界面相关](#界面相关)
+* [框架](#框架)
 * [自定义View](#自定义view)
 * [动画](#动画)
 * [优化](#优化)
@@ -52,6 +53,8 @@
 * [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/view/UiCommonProblem.md)
 * [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/view/RecylerViewType.md)
 * [点击界面其他部分，隐藏虚拟键盘](https://github.com/MaosanDao/AndroidNote/blob/master/view/hideKeyBoard.md)
+## 框架
+* [MVC、MVP、MVVM介绍以及相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/frame/mvc_mvp_mvvm.md)
 ## 自定义View
 * [自定义View](https://github.com/MaosanDao/AndroidNote/blob/master/view/ViewDiy.md)
 * [创建自定义Dialog的方法](https://github.com/MaosanDao/AndroidNote/blob/master/view/CustomDialog.md)
