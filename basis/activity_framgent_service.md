@@ -249,22 +249,22 @@ private ServiceConnection conn = new ServiceConnection() {
   待内存充足时可以重建Service。
   而Service被Android系统强制销毁并再次重建的行为依赖于Service的onStartCommand()方法的返回值。
 
-还有其他的启动方式：
-1.1.START_NOT_STICKY
-  如果返回START_NOT_STICKY，表示当Service运行的进程被Android系统强制杀掉之后，不会重新创建该Service。
+  还有其他的启动方式：
+    1.1.START_NOT_STICKY
+      如果返回START_NOT_STICKY，表示当Service运行的进程被Android系统强制杀掉之后，不会重新创建该Service。
   
-1.2.START_STICKY
-  表示Service运行的进程被Android系统强制杀掉之后，Android系统会将该Service依然设置为started状态（即运行状态），
-  但是不再保存onStartCommand方法传入的intent对象，然后Android系统会尝试再次重新创建该Service，
-  并执行onStartCommand回调方法，但是onStartCommand回调方法的Intent参数为null，
-  也就是onStartCommand方法虽然会执行但是获取不到intent信息。
+    1.2.START_STICKY
+      表示Service运行的进程被Android系统强制杀掉之后，Android系统会将该Service依然设置为started状态（即运行状态），
+      但是不再保存onStartCommand方法传入的intent对象，然后Android系统会尝试再次重新创建该Service，
+      并执行onStartCommand回调方法，但是onStartCommand回调方法的Intent参数为null，
+      也就是onStartCommand方法虽然会执行但是获取不到intent信息。
   
-1.3.START_REDELIVER_INTENT
-  如果返回START_REDELIVER_INTENT，表示Service运行的进程被Android系统强制杀掉之后，与返回START_STICKY的情况类似，
-  Android系统会将再次重新创建该Service，并执行onStartCommand回调方法，但是不同的是，
-  Android系统会再次将Service在被杀掉之前最后一次传入onStartCommand方法中的Intent再次保留下来并再次传入
-  到重新创建后的Service的onStartCommand方法中，这样我们就能读取到intent参数。只要返回START_REDELIVER_INTENT，
-  那么onStartCommand重的intent一定不是null。
+    1.3.START_REDELIVER_INTENT
+      如果返回START_REDELIVER_INTENT，表示Service运行的进程被Android系统强制杀掉之后，与返回START_STICKY的情况类似，
+      Android系统会将再次重新创建该Service，并执行onStartCommand回调方法，但是不同的是，
+      Android系统会再次将Service在被杀掉之前最后一次传入onStartCommand方法中的Intent再次保留下来并再次传入
+      到重新创建后的Service的onStartCommand方法中，这样我们就能读取到intent参数。只要返回START_REDELIVER_INTENT，
+      那么onStartCommand重的intent一定不是null。
   
   
 2.提高Service的优先级
