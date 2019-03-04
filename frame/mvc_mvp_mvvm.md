@@ -315,9 +315,136 @@ public class LoginFragment extends SupportFragment implements LoginMVPContract.I
   通过ViewModel进行交互，而且Model和ViewModel之间的交互是双向的，因此视图的数据的变化会同时修改数据源，
 而数据源数据的变化也会立即反应到View上。
 ```
-##### 代码实例
+#### 代码实例
+布局代码：
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data >
+        <variable
+            name="user"
+            type="com.androfarmer.mvvm.model.SampleModel.UserInfo">//绑定的数据类
+        </variable>
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@={user.name}"//通过@{}或@={}的方式进行引用，其中@={}的方式表示双向绑定
+        />
+    <TextView
+        android:id="@+id/tv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@={user.age+``}"//通过@{}或@={}的方式进行引用，其中@={}的方式表示双向绑定
+        />
 
+</LinearLayout>
+</layout>
+```
+绑定数据类：
+```java
+//继承BaseObservable
+public static class UserInfo  extends BaseObservable
+{
+    private int age;
+    private String name;
+
+    @Bindable
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+        notifyPropertyChanged(BR.age);
+    }
+
+    @Bindable
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+        notifyPropertyChanged(BR.name);
+    }
+}
+```
+##### ViewModel层以及Model层（Model层弱化了）
+```java
+public interface BaseViewModel {
+    void onDestroy();
+}
+
+public abstract class AbstractViewModel<T extends ViewDataBinding> implements BaseViewModel {
+    public T mViewDataBinding;
+    public AbstractViewModel(T viewDataBinding)
+    {
+        this.mViewDataBinding=viewDataBinding;
+    }
+
+    @Override
+    public void onDestroy() {
+        mViewDataBinding.unbind();
+    }
+}
+
+//Model层以及数据处理
+public class SampleViewModel extends AbstractViewModel<ActivitySampleMvvmBinding> {
+
+    public SampleViewModel(ActivitySampleMvvmBinding viewDataBinding) {
+        super(viewDataBinding);
+    }
+
+    public  void getUserInfo(String uid, Callback1<SampleModel.UserInfo> callback)
+    {
+        //从网络或缓存获取信息
+        SampleModel.UserInfo userInfo=new SampleModel.UserInfo();
+        userInfo.setName("tom");
+        userInfo.setAge(18);
+        callback.onCallBack(userInfo);
+    }
+}
+```
+##### View层
+```java
+private SampleViewModel mSampleViewModel;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //绑定ViewModel
+        ActivitySampleMvvmBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sample_mvvm);
+        //传递给Model层进行数据处理
+        mSampleViewModel=new SampleViewModel(binding);
+        setDataToView();
+    }
+    private void setDataToView()
+    {
+        mSampleViewModel.getUserInfo("uid", new Callback1<SampleModel.UserInfo>() {
+            @Override
+            public void onCallBack(SampleModel.UserInfo userInfo) {
+                //这里设置数据，同时更新View层
+                mSampleViewModel.mViewDataBinding.setUser(userInfo);
+            }
+        });
+    }
+```
+****
+## 关于MVC、MVP、MVVM的探讨
+```
+* 如果项目简单，没什么复杂性，未来改动也不大的话，那就不要用设计模式或者架构方法，
+  只需要将每个模块封装好，方便调用即可，不要为了使用设计模式或架构方法而使用。
+  
+* 对于偏向展示型的app，绝大多数业务逻辑都在后端，app主要功能就是展示数据，交互等，建议使用mvvm
+
+* 对于工具类或者需要写很多业务逻辑app，使用mvp或者mvvm都可
+```
 
 
 
