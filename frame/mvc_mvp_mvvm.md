@@ -316,7 +316,7 @@ public class LoginFragment extends SupportFragment implements LoginMVPContract.I
 而数据源数据的变化也会立即反应到View上。
 ```
 #### 代码实例
-布局代码：
+##### 布局代码
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
@@ -347,7 +347,7 @@ public class LoginFragment extends SupportFragment implements LoginMVPContract.I
 </LinearLayout>
 </layout>
 ```
-绑定数据类：
+##### 绑定数据类
 ```java
 //继承BaseObservable
 public static class UserInfo  extends BaseObservable
