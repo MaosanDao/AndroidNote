@@ -315,6 +315,9 @@ public class LoginFragment extends SupportFragment implements LoginMVPContract.I
   通过ViewModel进行交互，而且Model和ViewModel之间的交互是双向的，因此视图的数据的变化会同时修改数据源，
 而数据源数据的变化也会立即反应到View上。
 ```
+##### 代码实例
+
+
 
 
 
