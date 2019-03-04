@@ -145,6 +145,7 @@ public class SampleActivity extends AppCompatActivity {
 ```
 ```
 上述代码的大体MVC流程：
+
 1. Button被点击：View -> Controller
 2. 获取用户信息事件的触发：Controller -> Model
 3. 绑定用户信息到View：Controller -> View
@@ -305,9 +306,9 @@ public class LoginFragment extends SupportFragment implements LoginMVPContract.I
 ```
 ****
 ## 完全进阶MVVM
-图示：
+#### 图示
 ![MVVM](https://images2015.cnblogs.com/blog/826785/201609/826785-20160922195156715-801029603.jpg)
-解释：
+#### 解释
 ```
   MVVM，(Model View ViewModel)如果说MVP是对MVC的进一步改进，那么MVVM则是思想的完全变革。
 它是将“数据模型数据双向绑定”的思想作为核心，因此在View和Model之间没有联系。
