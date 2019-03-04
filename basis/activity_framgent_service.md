@@ -279,37 +279,11 @@ private ServiceConnection conn = new ServiceConnection() {
 5.系统广播中启动Service
 ```
 ****
-## View生命周期
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## （拓展）View生命周期
+#### 图示
+![View生命周期](https://images2018.cnblogs.com/blog/651317/201805/651317-20180501205230658-1287610640.png)
+****
+## 说明
+```
+以上均是在网络上摘录所得，侵权删。
+```
