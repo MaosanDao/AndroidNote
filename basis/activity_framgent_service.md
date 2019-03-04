@@ -1,9 +1,9 @@
 # Activity、Service、Fragment生命周期与相关知识点
 ****
 ## 列表
-* [Activity的生命周期](#activity的生命周期)
-* [Fragment的生命周期](#fragment的生命周期)
-* [Service生命周期](#service生命周期)
+* [Activity](#activity的生命周期)
+* [Fragment](#fragment的生命周期)
+* [Service](#service生命周期)
 ****
 ## Activity的生命周期
 #### 图示
