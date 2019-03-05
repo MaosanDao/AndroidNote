@@ -31,6 +31,7 @@ JVM基本结构：
 图示为执行时数据区域：
 ```
 ![RunTime Data Area](https://img-blog.csdn.net/20150315165615201?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdG9ueXRmamluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+![核心区](https://img-blog.csdn.net/20180617161343935?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2Fpaml1ZHU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 ```
 其中上图中的一些名词解释：
 
