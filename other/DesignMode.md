@@ -110,31 +110,31 @@ Perons person = builder.create();
 ```java
 //懒汉式单例类.在第一次调用的时候实例化自己   
 public class Singleton {  
-		//私有外部不能直接调用
-    private Singleton() {}  
-		//内部私有静态实例
-    private static Singleton single=null;  
-    //静态工厂方法 --- 提供给外部调用获取本类实例的
-    public static Singleton getInstance() {  
-         if (single == null) {    
-             single = new Singleton();  
-         }    
-        return single;  
-    }  
+	//私有外部不能直接调用
+	private Singleton() {}  
+	//内部私有静态实例
+	private static Singleton single=null;  
+	//静态工厂方法 --- 提供给外部调用获取本类实例的
+	public static Singleton getInstance() {  
+			 if (single == null) {    
+					 single = new Singleton();  
+			 }    
+			return single;  
+	}  
 } 
 ```
 ##### 改进
 >在getInstance方法上加同步
 ```java
 public class Singleton {  
-    private static Singleton instance = null;  
-    private Singleton() {}  
-    public static synchronized Singleton getInstance() {  
-        if (instance == null) {  
-            instance = new Singleton();  
-        }  
-        return instance;  
-    }  
+	private static Singleton instance = null;  
+	private Singleton() {}  
+	public static synchronized Singleton getInstance() {  
+			if (instance == null) {  
+					instance = new Singleton();  
+			}  
+			return instance;  
+	}  
 }
 ```
 #### 静态内部类
@@ -144,15 +144,15 @@ public class Singleton {
 ```
 ```java
 public class Singleton {  
-    private Singleton() {}  
-    private static class Holder {  
-        // 这里的私有没有什么意义  
-        /* private */static Singleton instance = new Singleton();  
-    }  
-    public static Singleton getInstance() {  
-        // 外围类能直接访问内部类（不管是否是静态的）的私有变量  
-        return Holder.instance;  
-    }  
+	private Singleton() {}  
+	private static class Holder {  
+			// 这里的私有没有什么意义  
+			/* private */static Singleton instance = new Singleton();  
+	}  
+	public static Singleton getInstance() {  
+			// 外围类能直接访问内部类（不管是否是静态的）的私有变量  
+			return Holder.instance;  
+	}  
 } 
 ```
 #### 饿汉式单例（天生线程安全） --- 直接在类初始化的时候，将本类实例初始化
@@ -163,21 +163,21 @@ public class Singleton {
 ```
 ```java
 public class Singleton {  
-    private Singleton() {}  
-    private static final Singleton single = new Singleton();  
-    //静态工厂方法   
-    public static Singleton getInstance() {  
-        return single;  
-    }  
+	private Singleton() {}  
+	private static final Singleton single = new Singleton();  
+	//静态工厂方法   
+	public static Singleton getInstance() {  
+			return single;  
+	}  
 }
 ```
 ##### 枚举单例（线程安全）
 ```java
 enum SingletonEnum {
-    INSTANCE;
-    public void doSomething() {
-        System.out.println("do sth.");
-    }
+	INSTANCE;
+	public void doSomething() {
+			System.out.println("do sth.");
+	}
 }
 ```
 ***
@@ -195,77 +195,76 @@ enum SingletonEnum {
 ```java
 //通用接口
 public interface Observer {
-    public void update();
+	public void update();
 }
 //---------------------------------------------------------
 //观察者1
 public class Observer1 implements Observer {
-    @Override
-    public void update() {
-        System.out.println("observer1 has received!");
-    }
+	@Override
+	public void update() {
+			System.out.println("observer1 has received!");
+	}
 }
 //---------------------------------------------------------
 //观察者2
 public class Observer2 implements Observer {
-    @Override
-    public void update() {
-        System.out.println("observer2 has received!");
-    }
+	@Override
+	public void update() {
+			System.out.println("observer2 has received!");
+	}
 }
 //---------------------------------------------------------
 //
 public interface Subject {
 
-    /*增加观察者*/
-    public void add(Observer observer);
-    /*删除观察者*/
-    public void del(Observer observer);
+	/*增加观察者*/
+	public void add(Observer observer);
+	/*删除观察者*/
+	public void del(Observer observer);
 
-    /*通知所有的观察者*/
-    public void notifyObservers();
-    /*自身的操作*/
-    public void operation();
-
+	/*通知所有的观察者*/
+	public void notifyObservers();
+	/*自身的操作*/
+	public void operation();
 }
 //---------------------------------------------------------
 public abstract class AbstractSubject implements Subject {
-		//观察者集合
-    private Vector<Observer> vector = new Vector<Observer>();
-    @Override
-    public void add(Observer observer) {
-        vector.add(observer);
-    }
-    @Override
-    public void del(Observer observer) {
-        vector.remove(observer);
-    }
-    @Override
-    public void notifyObservers() {
-        Enumeration<Observer> enumo = vector.elements();
-        while (enumo.hasMoreElements()) {//循环调用每个观察者的update方法
-            enumo.nextElement().update();
-        }
-    }
+	//观察者集合
+	private Vector<Observer> vector = new Vector<Observer>();
+	@Override
+	public void add(Observer observer) {
+			vector.add(observer);
+	}
+	@Override
+	public void del(Observer observer) {
+			vector.remove(observer);
+	}
+	@Override
+	public void notifyObservers() {
+			Enumeration<Observer> enumo = vector.elements();
+			while (enumo.hasMoreElements()) {//循环调用每个观察者的update方法
+					enumo.nextElement().update();
+			}
+	}
 }
 //---------------------------------------------------------
 public class MySubject extends AbstractSubject {
-    @Override
-    public void operation() {
-        System.out.println("update self!");
-        notifyObservers();//通知所有观察者
-    }
+	@Override
+	public void operation() {
+			System.out.println("update self!");
+			notifyObservers();//通知所有观察者
+	}
 }
 
 //---------------------------------------------------------
 //测试
 public class ObserverTest {
-    public static void main(String[] args) {
-        Subject sub = new MySubject();
-        sub.add(new Observer1());//增加2个观察者
-        sub.add(new Observer2());
-        sub.operation();//这里调用，那么就会分别更新各自内部的方法
-    }
+	public static void main(String[] args) {
+			Subject sub = new MySubject();
+			sub.add(new Observer1());//增加2个观察者
+			sub.add(new Observer2());
+			sub.operation();//这里调用，那么就会分别更新各自内部的方法
+	}
 }
 ```
 ***
@@ -281,37 +280,37 @@ public class ObserverTest {
 ### 基础代码
 ```java
 public interface Sender {
-    public void Send();
+	public void Send();
 }
 public class MailSender implements Sender {
-    @Override
-    public void Send() {
-    System.out.println("this is mail sender!");
-    }
+	@Override
+	public void Send() {
+	System.out.println("this is mail sender!");
+	}
 }
 public class SmsSender implements Sender {
-    @Override
-    public void Send() {
-    System.out.println("this is sms sender!");
-    }
+	@Override
+	public void Send() {
+	System.out.println("this is sms sender!");
+	}
 }
 ```
 ### 普通工厂模式
 ```java
 //工厂
 public class SendFactory {
-		//在工厂模式中，调用者不管内部怎么实现的不同派生类的具体代码，只需要将类型传递
-		//最后，工厂会返回相应的对象回去
-    public Sender produce(String type) {
-        if ("mail".equals(type)) {
-            return new MailSender();
-        } else if ("sms".equals(type)) {
-            return new SmsSender();
-        } else {
-            System.out.println("请输入正确的类型!");
-            return null;
-        }
-    }
+//在工厂模式中，调用者不管内部怎么实现的不同派生类的具体代码，只需要将类型传递
+//最后，工厂会返回相应的对象回去
+public Sender produce(String type) {
+		if ("mail".equals(type)) {
+				return new MailSender();
+		} else if ("sms".equals(type)) {
+				return new SmsSender();
+		} else {
+				System.out.println("请输入正确的类型!");
+				return null;
+		}
+	}
 }
 ```
 ### 多个工厂方法模式（如果用户在普通工厂模式传递了错误的类型怎么办？）
@@ -323,36 +322,36 @@ public class SendFactory {
 ```java
 //这里的工厂直接将具体的生产对象方法暴露出去
 public class SendFactory {
-    public Sender produceMail(){
-        return new MailSender();
-    }
-    public Sender produceSms(){
-        return new SmsSender();
-    }
+	public Sender produceMail(){
+			return new MailSender();
+	}
+	public Sender produceSms(){
+			return new SmsSender();
+	}
 }
 public class FactoryTest {
-    public static void main(String[] args) {
-        SendFactory factory = new SendFactory();
-        Sender sender = factory.produceMail();
-        sender.send();
-    }
+	public static void main(String[] args) {
+			SendFactory factory = new SendFactory();
+			Sender sender = factory.produceMail();
+			sender.send();
+	}
 }
 ```
 ### 静态工厂方法模式（将多个工厂方法改为静态方法即可）
 ```java
 public class SendFactory {
-    public static Sender produceMail(){
-        return new MailSender();
-    }
-    public static Sender produceSms(){
-        return new SmsSender();
-    }
+	public static Sender produceMail(){
+		return new MailSender();
+	}
+	public static Sender produceSms(){
+		return new SmsSender();
+	}
 }
 public class FactoryTest {
-    public static void main(String[] args) {
-        Sender sender = SendFactory.produceMail();
-        sender.send();
-    }
+	public static void main(String[] args) {
+		Sender sender = SendFactory.produceMail();
+		sender.send();
+	}
 }
 ```
 ### 抽象工厂模式
@@ -365,46 +364,46 @@ public interface Provider {
 //-------------------------------------------------------------------------------------
 //产品接口
 public interface Sender {
-    public void send();
+	public void send();
 }
 //-------------------------------------------------------------------------------------
 public class MailSender implements Sender {
-    @Override
-    public void send() {
-        System.out.println("this is mail sender!");
-    }
+	@Override
+	public void send() {
+			System.out.println("this is mail sender!");
+	}
 }
 //-------------------------------------------------------------------------------------
 public class SmsSender implements Sender {
-    @Override
-    public void send() {
-        System.out.println("this is sms sender!");
-    }
+	@Override
+	public void send() {
+			System.out.println("this is sms sender!");
+	}
 }
 //-------------------------------------------------------------------------------------
 //直接新增工厂方法
 public class SendSmsFactory implements Provider {
-    @Override
-    public Sender produce() {
-        return new SmsSender();
-    }
+	@Override
+	public Sender produce() {
+			return new SmsSender();
+	}
 }
 
 //-------------------------------------------------------------------------------------
 //直接新增工厂方法
 public class SendMailFactory implements Provider {
-    @Override
-    public Sender produce() {
-        return new MailSender();
-    }
+	@Override
+	public Sender produce() {
+			return new MailSender();
+	}
 }
 //-------------------------------------------------------------------------------------
 public class Test {
-    public static void main(String[] args) {
-        Provider provider = new SendMailFactory();
-        Sender sender = provider.produce();
-        sender.send();
-    }
+	public static void main(String[] args) {
+			Provider provider = new SendMailFactory();
+			Sender sender = provider.produce();
+			sender.send();
+	}
 }
 ```
 ***
@@ -420,45 +419,45 @@ public class Test {
 ```java
 //统一的接口
 public interface ICalculator {
-    public int calculate(String exp);
+	public int calculate(String exp);
 }
 
 //---------------------------------------------------------
 public class Minus extends AbstractCalculator implements ICalculator {
-    @Override
-    public int calculate(String exp) {
-        int arrayInt[] = split(exp, "-");
-        return arrayInt[0] - arrayInt[1];
-    }
+	@Override
+	public int calculate(String exp) {
+			int arrayInt[] = split(exp, "-");
+			return arrayInt[0] - arrayInt[1];
+	}
 }
 
 //---------------------------------------------------------
 public class Plus extends AbstractCalculator implements ICalculator {
-    @Override
-    public int calculate(String exp) {
-        int arrayInt[] = split(exp, "\\+");
-        return arrayInt[0] + arrayInt[1];
-    }
+	@Override
+	public int calculate(String exp) {
+			int arrayInt[] = split(exp, "\\+");
+			return arrayInt[0] + arrayInt[1];
+	}
 }
 //--------------------------------------------------------
 //提供辅助的方法（可有可无）
 public class AbstractCalculator {
-    public int[] split(String exp, String opt) {
-        String array[] = exp.split(opt);
-        int arrayInt[] = new int[2];
-        arrayInt[0] = Integer.parseInt(array[0]);
-        arrayInt[1] = Integer.parseInt(array[1]);
-        return arrayInt;
-    }
+	public int[] split(String exp, String opt) {
+			String array[] = exp.split(opt);
+			int arrayInt[] = new int[2];
+			arrayInt[0] = Integer.parseInt(array[0]);
+			arrayInt[1] = Integer.parseInt(array[1]);
+			return arrayInt;
+	}
 }
 //---------------------------------------------------------
 public class StrategyTest {
-    public static void main(String[] args) {
-        String exp = "2+8";
-        ICalculator cal = new Plus();//这里根据用户自己的选择进行不同的算法调用
-        int result = cal.calculate(exp);
-        System.out.println(result);
-    }
+	public static void main(String[] args) {
+			String exp = "2+8";
+			ICalculator cal = new Plus();//这里根据用户自己的选择进行不同的算法调用
+			int result = cal.calculate(exp);
+			System.out.println(result);
+	}
 }
 ```
 ***
@@ -474,7 +473,7 @@ public class StrategyTest {
 ```
 ```java
 interface Adapter {//适配器类
-		int convert_5v();//装换成5V
+	int convert_5v();//装换成5V
 }
 ```
 ```
@@ -482,9 +481,9 @@ interface Adapter {//适配器类
 ```
 ```java
 public class Electric {// 电源
-		public int output_220v() {//输出220V
-				return 220;
-		}
+	public int output_220v() {//输出220V
+			return 220;
+	}
 }
 ```
 ```
@@ -492,19 +491,19 @@ public class Electric {// 电源
 ```
 ```java
 public class PhoneAdapter implements Adapter {//手机适配器类
-		private Electric mElectric;//适配器持有源目标对象
+	private Electric mElectric;//适配器持有源目标对象
 
-		public PhoneAdapter(Electric electric) {//通过构造方法传入对象
-				mElectric = electric;
-		}
+	public PhoneAdapter(Electric electric) {//通过构造方法传入对象
+			mElectric = electric;
+	}
 
-		@Override
-		public int convert_5v() {
-				System.out.println("适配器开始工作：");
-				System.out.println("输入电压：" + mElectric.output_220v());
-				System.out.println("输出电压：" + 5);
-				return 5;
-		}
+	@Override
+	public int convert_5v() {
+			System.out.println("适配器开始工作：");
+			System.out.println("输入电压：" + mElectric.output_220v());
+			System.out.println("输出电压：" + 5);
+			return 5;
+	}
 }
 ```
 ```
@@ -532,7 +531,7 @@ public void test() {
 ```
 ```java
 interface Adapter {//适配器类
-		int convert_5v();//装换成5V
+	int convert_5v();//装换成5V
 }
 ```
 ```
@@ -540,9 +539,9 @@ interface Adapter {//适配器类
 ```
 ```java
 public class Electric {// 电源
-		public int output_220v() {//输出220V
-				return 220;
-		}
+	public int output_220v() {//输出220V
+			return 220;
+	}
 }
 ```
 ```
@@ -550,13 +549,13 @@ public class Electric {// 电源
 ```
 ```java
 public class PhoneAdapter extends Electric implements Adapter {//通过继承源目标类的方式，不持有源目标对象
-		@Override
-		public int convert_5v() {
-				System.out.println("适配器开始工作：");
-				System.out.println("输入电压：" + output_220v());
-				System.out.println("输出电压：" + 5);
-				return 5;
-		}
+	@Override
+	public int convert_5v() {
+		System.out.println("适配器开始工作：");
+		System.out.println("输入电压：" + output_220v());
+		System.out.println("输出电压：" + 5);
+		return 5;
+	}
 }
 ```
 ```
@@ -564,8 +563,8 @@ public class PhoneAdapter extends Electric implements Adapter {//通过继承源
 ```
 ```java
 public void test() {
-		Adapter phoneAdapter = new PhoneAdapter();
-		System.out.println("适配转换后的电压：" + phoneAdapter.convert_5v());
+	Adapter phoneAdapter = new PhoneAdapter();
+	System.out.println("适配转换后的电压：" + phoneAdapter.convert_5v());
 }
 ```
 #### 说明
@@ -585,58 +584,58 @@ public void test() {
 ```java
 //具体原型类,卡片类
 public class Card implements Cloneable {//实现Cloneable接口，Cloneable只是标识接口
-    private int num;//卡号
-    private Spec spec = new Spec();//卡规格
+	private int num;//卡号
+	private Spec spec = new Spec();//卡规格
 
-    public Card() {
-        System.out.println("Card 执行构造函数");
-    }
+	public Card() {
+		System.out.println("Card 执行构造函数");
+	}
 
-    public void setNum(int num) {
-        this.num = num;
-    }
+	public void setNum(int num) {
+		this.num = num;
+	}
 
-    public void setSpec(int length, int width) {
-        spec.setLength(length);
-        spec.setWidth(width);
-    }
+	public void setSpec(int length, int width) {
+		spec.setLength(length);
+		spec.setWidth(width);
+	}
 
-    @Override
-    public String toString() {
-        return "Card{" +
-                "num=" + num +
-                ", spec=" + spec +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Card{" +
+						"num=" + num +
+						", spec=" + spec +
+						'}';
+	}
 
-		//重写clone()方法，clone()方法不是Cloneable接口里面的，而是Object里面的
-    @Override
-    protected Card clone() throws CloneNotSupportedException {
-            System.out.println("clone时不执行构造函数");
-            return (Card) super.clone();
-    }
+	//重写clone()方法，clone()方法不是Cloneable接口里面的，而是Object里面的
+	@Override
+	protected Card clone() throws CloneNotSupportedException {
+		System.out.println("clone时不执行构造函数");
+		return (Card) super.clone();
+	}
 }
 
 //规格类，有长和宽这两个属性
 public class Spec {
-    private int width;
-    private int length;
+	private int width;
+	private int length;
 
-    public void setLength(int length) {
-        this.length = length;
-    }
+	public void setLength(int length) {
+			this.length = length;
+	}
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
+	public void setWidth(int width) {
+			this.width = width;
+	}
 
-    @Override
-    public String toString() {
-        return "Spec{" +
-                "width=" + width +
-                ", length=" + length +
-                '}';
-    }
+	@Override
+	public String toString() {
+			return "Spec{" +
+							"width=" + width +
+							", length=" + length +
+							'}';
+	}
 }
 ```
 ```
@@ -647,15 +646,15 @@ public class Spec {
 public class Client {
 	public void test() throws CloneNotSupportedException {
 
-			Card card1 = new Card();
-			card1.setNum(9527);
-			card1.setSpec(10, 20);
-			System.out.println(card1.toString());
-			System.out.println("----------------------");
+		Card card1 = new Card();
+		card1.setNum(9527);
+		card1.setSpec(10, 20);
+		System.out.println(card1.toString());
+		System.out.println("----------------------");
 
-			Card card2 = card1.clone();
-			System.out.println(card2.toString());
-			System.out.println("----------------------");
+		Card card2 = card1.clone();
+		System.out.println(card2.toString());
+		System.out.println("----------------------");
 	}
 }
 ```
