@@ -6,7 +6,7 @@
 * [策略模式](#策略模式)
 * [适配器设计模式](#适配器设计模式)
 * [观察者模式](#观察者模式)
-* 原型模式
+* [原型模式](#原型模式)
 ****
 ## 建造者模式
 ### 引出问题
@@ -512,13 +512,170 @@ public class PhoneAdapter implements Adapter {//手机适配器类
 ```
 ```java
 public void test() {
-		Electric electric = new Electric();
-		System.out.println("默认电压：" + electric.output_220v());
+	Electric electric = new Electric();
+	System.out.println("默认电压：" + electric.output_220v());
 
-		Adapter phoneAdapter = new PhoneAdapter(electric);//传递一个对象给适配器
+	Adapter phoneAdapter = new PhoneAdapter(electric);//传递一个对象给适配器
+	System.out.println("适配转换后的电压：" + phoneAdapter.convert_5v());
+}
+```
+#### 说明
+```
+适配的源目标对象需要传递给适配器
+```
+### 类适配器模式
+```
+类适配器只要是通过继承源目标类来实现
+```
+```
+1.创建一个适配器的接口
+```
+```java
+interface Adapter {//适配器类
+		int convert_5v();//装换成5V
+}
+```
+```
+2. 创建被适配角色,一般是已存在的类
+```
+```java
+public class Electric {// 电源
+		public int output_220v() {//输出220V
+				return 220;
+		}
+}
+```
+```
+3.这里变为了继承的方式进行适配
+```
+```java
+public class PhoneAdapter extends Electric implements Adapter {//通过继承源目标类的方式，不持有源目标对象
+		@Override
+		public int convert_5v() {
+				System.out.println("适配器开始工作：");
+				System.out.println("输入电压：" + output_220v());
+				System.out.println("输出电压：" + 5);
+				return 5;
+		}
+}
+```
+```
+测试
+```
+```java
+public void test() {
+		Adapter phoneAdapter = new PhoneAdapter();
 		System.out.println("适配转换后的电压：" + phoneAdapter.convert_5v());
 }
 ```
+#### 说明
+```
+类适配器模式只要通过继承源目标类来实现，无需持有源目标对象。
+```
+***
+## 原型模式
+```
+用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。
+
+1.一个已存在的对象（即原型），通过复制原型的方式来创建一个内部属性跟原型都一样的新的对象，这就是原型模式。
+2.原型模式的核心是clone方法，通过clone方法来实现对象的拷贝。
+```
+```
+实现Cloneable接口
+```
+```java
+//具体原型类,卡片类
+public class Card implements Cloneable {//实现Cloneable接口，Cloneable只是标识接口
+    private int num;//卡号
+    private Spec spec = new Spec();//卡规格
+
+    public Card() {
+        System.out.println("Card 执行构造函数");
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public void setSpec(int length, int width) {
+        spec.setLength(length);
+        spec.setWidth(width);
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "num=" + num +
+                ", spec=" + spec +
+                '}';
+    }
+
+		//重写clone()方法，clone()方法不是Cloneable接口里面的，而是Object里面的
+    @Override
+    protected Card clone() throws CloneNotSupportedException {
+            System.out.println("clone时不执行构造函数");
+            return (Card) super.clone();
+    }
+}
+
+//规格类，有长和宽这两个属性
+public class Spec {
+    private int width;
+    private int length;
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    @Override
+    public String toString() {
+        return "Spec{" +
+                "width=" + width +
+                ", length=" + length +
+                '}';
+    }
+}
+```
+```
+创建客户端类：
+既要使用原型模式的地方。
+```
+```java
+public class Client {
+	public void test() throws CloneNotSupportedException {
+
+			Card card1 = new Card();
+			card1.setNum(9527);
+			card1.setSpec(10, 20);
+			System.out.println(card1.toString());
+			System.out.println("----------------------");
+
+			Card card2 = card1.clone();
+			System.out.println(card2.toString());
+			System.out.println("----------------------");
+	}
+}
+```
+```java
+//输出结果为：
+Card 执行构造函数
+Card{num=9527, spec=Spec{width=20, length=10}}
+----------------------
+clone时不执行构造函数
+Card{num=9527, spec=Spec{width=20, length=10}}
+----------------------
+```
+#### 说明
+```
+1.clone对象时不会执行构造函数。
+2.clone方法不是Cloneable接口中的，而是Object中的方法。Cloneable是个标识接口，表面了这个对象是可以拷贝的，如果没有实现Cloneable接口却调用clone方法则会报错。
+```
+#### 额外
+这个链接是说明拷贝时候是否是[深拷贝和浅拷贝的区别](https://www.jianshu.com/p/6d1333917ae5)
 
 
 
