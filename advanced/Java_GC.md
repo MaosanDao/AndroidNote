@@ -206,6 +206,11 @@ java的内存申请分为2种：
 
 年老代采用了标记-整理（Mark-Compact）算法。
 ```
+## 推荐阅读
+```
+下面链接是一个比较完整的GC分析流程图，可以搭配着一起看
+```
+* [Java gc(垃圾回收机制)小结，以及Android优化建议](https://www.jianshu.com/p/214e42fc0d37)
 ## 说明
 ```
 以上部分均是采集[原文](https://blog.csdn.net/tonytfjing/article/details/44278233)所得。
