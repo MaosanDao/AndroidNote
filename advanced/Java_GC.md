@@ -198,7 +198,7 @@ java的内存申请分为2种：
     当年老区的内存被占满时，会将整个堆内存进行GC。
     
   年轻代：
-    包括，Eden区，S0和S1（Survivor区（From和To））。
+    包括，Eden区，S0和S1（Survivor区，From和To，相当于每个年龄周期时候MinorGC后的暂存区）。
 ```
 #### 上述算法和分代收集的关系
 ```
