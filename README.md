@@ -31,7 +31,7 @@
 * [快速搭建App参考步骤](https://github.com/MaosanDao/AndroidNote/blob/master/other/NewP.md) 
 ## 开发相关
 * [Xliff的使用](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/xliff)
-* [Android中常用的设计模式简易使用指南](https://github.com/MaosanDao/AndroidNote/blob/master/other/DesignMode.md)
+* [Android中常用的设计模式简介以及实例代码](https://github.com/MaosanDao/AndroidNote/blob/master/other/DesignMode.md)
 ## Retrofit相关
 * [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
