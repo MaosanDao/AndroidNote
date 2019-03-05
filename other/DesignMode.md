@@ -116,10 +116,10 @@ public class Singleton {
 	private static Singleton single=null;  
 	//静态工厂方法 --- 提供给外部调用获取本类实例的
 	public static Singleton getInstance() {  
-			 if (single == null) {    
-					 single = new Singleton();  
-			 }    
-			return single;  
+		if (single == null) {    
+			single = new Singleton();  
+		 }    
+		return single;  
 	}  
 } 
 ```
