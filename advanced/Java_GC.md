@@ -1,10 +1,10 @@
 # Java GC and JVM相关知识点学习（整理并记录至[原文](https://blog.csdn.net/tonytfjing/article/details/44278233)）
 ***
 ## 列表
-* JVM接口
-* 内存分配
-* 垃圾回收算法
-* 垃圾收集器
+* [JVM结构](#JVM结构)
+* [内存分配](#内存分配)
+* [垃圾回收算法](#回收算法)
+* [具体的GC图示过程](#具体的gc图示过程)
 ***
 ## JVM结构
 ### 图示
@@ -186,7 +186,7 @@ java的内存申请分为2种：
 ```
 持久代：用于存放静态文件，比如java类、方法等。持久代对垃圾回收没有显著的影响。 
 ```
-##### 具体的图示过程
+### 具体的GC图示过程
 ![GC](https://img-blog.csdn.net/20150315170424355?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdG9ueXRmamluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 ```
 具体分析：
