@@ -145,7 +145,7 @@ public class Singleton {
 ```java
 public class Singleton {  
     private Singleton() {}  
-    public static class Holder {  
+    private static class Holder {  
         // 这里的私有没有什么意义  
         /* private */static Singleton instance = new Singleton();  
     }  
