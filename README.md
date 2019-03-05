@@ -84,6 +84,7 @@
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
 * [Java对象创建时代码的加载顺序](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/java_load.md)
+* [Java GC and JVM相关知识点学习](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/Java_GC.md)
 ## Handler相关
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/handler_principle.md) 
 * [通过问题学习Android Handler机制(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/Android_Handler.md)
