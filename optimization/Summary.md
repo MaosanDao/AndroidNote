@@ -493,7 +493,49 @@ protected void onDestroy() {
     // 外部类Activity生命周期结束时，同时清空消息队列 & 结束Handler生命周期
 }
 ```
+### 资源对象使用后未被关闭
+```
+使用资源后需要进行释放的：
+  1.广播BraodcastReceiver
+  2.文件流File
+  3.数据库游标Cursor
+  4.图片资源Bitmap
+  5.无限循环的动画关闭
+  
+泄漏原因：
+  如果在使用后，不调用自身的销毁或者回收方法。那么当外部内销毁的时候，这些资源将不会被释放。
+```
+```java
+/ 对于 广播BraodcastReceiver：注销注册
+unregisterReceiver()
 
+// 对于 文件流File：关闭流
+InputStream / OutputStream.close()
+
+// 对于数据库游标cursor：使用后关闭游标
+cursor.close（）
+
+// 对于 图片资源Bitmap：Android分配给图片的内存只有8M，若1个Bitmap对象占内存较多，当它不再被使用时，
+//应调用recycle()回收此对象的像素所占用的内存；最后再赋为null 
+Bitmap.recycle()；
+Bitmap = null;
+
+// 对于动画（属性动画）
+// 将动画设置成无限循环播放repeatCount = “infinite”后
+// 在Activity退出时记得停止动画
+```
+### 总结图示
+![image2](https://upload-images.jianshu.io/upload_images/5258053-45f51567511a19bd.png)
+### 一些内存泄漏分析的工具
+* MAT(Memory Analysis Tools)
+* Heap Viewer
+* Allocation Tracker
+* Android Studio 的 Memory Monitor
+* LeakCanary
+
+## 整理并摘录至
+* [Android 内存泄露：详解 Handler 内存泄露的原因与解决方案](https://www.jianshu.com/p/031515d8a7ca)
+* [Android性能优化：关于 内存泄露 的知识都在这里了！](https://www.jianshu.com/p/e719e0c397e5)
 
 
 
