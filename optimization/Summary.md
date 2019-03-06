@@ -392,6 +392,8 @@ public class MainActivity extends AppCompatActivity {
   
   Handler在处理消息的时候，生命周期 > 外部类的生命周期。外部内销毁的时候，无法被回收。
 ```
+#### 引用关系图
+![imag2](https://upload-images.jianshu.io/upload_images/5258053-7cf66eda1807187c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/770/format/webp)
 ```
 解决方法：
   1.将Handler初始化，改为静态内部类 + Activity的软引用。
