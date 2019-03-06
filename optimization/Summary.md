@@ -1,5 +1,15 @@
 # Android性能优化大解密
 ***
+## 目录
+* [内存优化](#内存优化)
+* [常见的内存泄漏原因和解决方法](#常见的内存泄漏原因和解决方法)
+* [集合类泄漏](#集合类泄漏)
+* [Static关键字修饰的成员变量](#static关键字修饰的成员变量) 
+* [非静态的内部类或匿名类](#非静态的内部类或匿名类)
+* [多线程](#多线程)
+* [Handler内存泄漏](#handler内存泄漏)
+* [总结图示](#总结图示)
+***
 ## 内存优化
 ### 释义
 ```
@@ -140,7 +150,7 @@ public class SingleInstanceClass {
 //解决方法：
   //将引用的Context转为Application的Context，因为Application的生命周期 = 整个应用的生命周期
 ```
-### 非静态的内部类/匿名类
+### 非静态的内部类或匿名类
 #### 非静态内部类的实例 = 静态
 ```
 泄漏原因：
@@ -185,8 +195,10 @@ public class TestActivity extends AppCompatActivity {
   2.将内部类抽离为一个单例
   3.尽量避免创建一个非静态内部类的静态成员变量。
 ```
-#### 多线程（AsyncTask、实现Runable接口、继承Thread类）
+#### 多线程
 ```
+AsyncTask、实现Runable接口、继承Thread类
+
 注意：
   线程类属于非静态内部类或者匿名类。
 
