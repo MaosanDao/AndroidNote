@@ -542,7 +542,7 @@ Bitmap = null;
 * Heap Viewer
 * Allocation Tracker
 * Android Studio 的 Memory Monitor
-* LeakCanary
+* [优先使用LeakCanary](https://github.com/square/leakcanary)
 
 ## 整理并摘录至
 * [Android 内存泄露：详解 Handler 内存泄露的原因与解决方案](https://www.jianshu.com/p/031515d8a7ca)
