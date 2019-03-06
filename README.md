@@ -64,6 +64,7 @@
 * [窗口转换和元素共享动画](https://github.com/MaosanDao/AndroidNote/blob/master/animation/OtherAnimation.md)
 * [Animation知识汇总](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/animation/Animation.md)
 ## 优化
+* [(推荐)Android性能优化大解密](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/Summary.md)
 * [内存泄漏相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/optimization/Leak.md)
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/oom.md)
 * [ANR相关知识](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/ANR.md)
