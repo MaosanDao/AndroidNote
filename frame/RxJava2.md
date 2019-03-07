@@ -358,6 +358,7 @@ Observable.just(1, 2, 3, 4) // IO 线程，由subscribeOn()指定
 ```
 由于Subscriber的onStart方法执行的线程是subscribe()被调用的线程（你不知道也无法预测订阅会在什么线程执行），
 所以要做一些主线程相关的初始化工作时，就不能指定线程了。
+
 那么我们就可以使用doOnSubscribe方法来指定线程并进行相关初始化，它的规则如下：
  1.它的调用时机，也是在subscribe()订阅后，事件发送前。
  2.默认情况下，doOnSubscribe()执行在subscribe()发生的线程。
