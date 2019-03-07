@@ -363,6 +363,12 @@ Observable.from(students)
         }
     })
     .subscribe(subscriber);
+    
+//flatMap将一个发送事件的上游Observable变换为多个发送事件的Observables，
+//然后将它们发射的事件合并后放进一个单独的Observable里。
+
+//上游每发送一个事件，flatMap都将创建一个新的水管，然后发送转换之后的新的事件，
+//下游接收到的就是这些新的水管发送的数据。flatMap不能保证事件的顺序
 ```
 ![](http://ww1.sinaimg.cn/mw1024/52eb2279jw1f2rx4i8da2j20hg0dydgx.jpg)
 
