@@ -1,5 +1,16 @@
 # RxJava2基本知识与源码解析(整理并转载至[原文](http://gank.io/post/560e15be2dca930e00da1083))
 ***
+## 列表
+* [API介绍和原理简介](#api介绍和原理简介)
+* [创建观察者Observer](#创建观察者observer) 
+* [创建被观察者Observable](#创建被观察者observable) 
+* [Subscribe进行订阅](#subscribe进行订阅) 
+* [自动根据定义创建出Subscriber -- ActionX](#自动根据定义创建出subscriber) 
+* [线程控制Scheduler](#线程控制scheduler) 
+* [变换操作符](#变换) 
+  * [变换方法map()](#变换方法map) 
+  * [变换方法flatMap()](#变换方法flatmap)
+***
 ## RxJava是什么？
 ```
 异步
@@ -173,7 +184,7 @@ create是创造时间序列的基本方法。其中RxJava还封装了一些：
   2.from(T[])
     将传入的数组拆分为对象后，依次发出来。
 ```
-#### Subscribe (订阅)
+#### Subscribe进行订阅
 ```java
 observable.subscribe(observer);
 // 或者：
@@ -200,7 +211,7 @@ public Subscription subscribe(Subscriber subscriber) {
   3.将传入的Subscriber以Subscription返回，方便unsubscribe();
 ```
 ![image3](http://ww3.sinaimg.cn/mw1024/52eb2279jw1f2rx4ay0hrg20ig08wk4q.gif)
-#### 自动根据定义创建出 Subscriber
+#### 自动根据定义创建出Subscriber
 ```java
 Action1<String> onNextAction = new Action1<String>() {
     // onNext()
@@ -341,9 +352,9 @@ FuncX和ActionX同样是Rxjava的一个接口，他们的根本区别是，FuncX
 上述代码中，map()方法将参数中的String转换为Bitmap。
 这是一个单个时间的转换，而RxJava还可以对整个时间进行转换。
 ```
-#### 变换方法 --- map()
+#### 变换方法map
 ![](http://ww1.sinaimg.cn/mw1024/52eb2279jw1f2rx4fitvfj20hw0ea0tg.jpg)
-#### 变换方法 --- flatMap()
+#### 变换方法flatMap
 ```java
 Student[] students = ...;
 Subscriber<Course> subscriber = new Subscriber<Course>() {
