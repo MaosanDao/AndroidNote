@@ -35,7 +35,7 @@
 * [Android中常用的设计模式简介以及实例代码](https://github.com/MaosanDao/AndroidNote/blob/master/other/DesignMode.md)
 ## RxJava相关
 * [RxJava基本知识与源码解析](https://github.com/MaosanDao/AndroidNote/blob/master/frame/RxJava2.md)
-* [RxJava2的相关知识点和部分操作符介绍](https://github.com/MaosanDao/AndroidNote/blob/master/frame/Rxjava2.md) 
+* [(RxJava升级版)RxJava2的相关知识点和部分操作符介绍](https://github.com/MaosanDao/AndroidNote/blob/master/frame/Rxjava2.md) 
 ## Retrofit相关
 * [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
