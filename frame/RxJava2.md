@@ -1,4 +1,4 @@
-# RxJava2基本知识与源码解析(整理并转载至[原文](http://gank.io/post/560e15be2dca930e00da1083))
+# RxJava基本知识与源码解析(整理并转载至[原文](http://gank.io/post/560e15be2dca930e00da1083))
 ***
 ## 列表
 * [API介绍和原理简介](#api介绍和原理简介)
