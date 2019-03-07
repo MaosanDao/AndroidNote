@@ -7,9 +7,14 @@
 * [Subscribe进行订阅](#subscribe进行订阅) 
 * [自动根据定义创建出Subscriber -- ActionX](#自动根据定义创建出subscriber) 
 * [线程控制Scheduler](#线程控制scheduler) 
+ * [线程控制之多次调用observeOn()方法](#线程控制之多次调用observeon) 
+ * [线程控制之doOnSubscribe()方法](#scheduler之doonsubscribe)
 * [变换操作符](#变换) 
   * [变换方法map()](#变换方法map) 
   * [变换方法flatMap()](#变换方法flatmap)
+  * [还有很多的操作符](#还有很多的操作符)
+* [RxJava的使用场景和方式](#rxjava的使用场景和方式)
+ * [和Retrofit一起使用](#和retrofit一起使用)
 ***
 ## RxJava是什么？
 ```
@@ -327,6 +332,53 @@ Observable.just(1, 2, 3, 4)
     
 //以上情况多适用于，“后台线程取数据，前台展示数据”的程序策略
 ```
+#### 线程控制之多次调用observeOn
+```
+如上所述，可以使用subscribeOn和observeOn来切换线程，但是如果需要多次的切换线程，该怎么做呢？
+
+observeOn执行的是当前Observable所对应的subscriber。即它的直接下级Subscriber。
+也就是observeOn()指定的是它之后的操作所在的线程。
+所以，只要在每个想要切换线程的位置调用一次observeOn()即可。
+```
+```java
+Observable.just(1, 2, 3, 4) // IO 线程，由subscribeOn()指定
+    .subscribeOn(Schedulers.io())
+    .observeOn(Schedulers.newThread())
+    .map(mapOperator) // 新线程，由observeOn()指定
+    .observeOn(Schedulers.io())
+    .map(mapOperator2) // IO 线程，由observeOn()指定
+    .observeOn(AndroidSchedulers.mainThread) 
+    .subscribe(subscriber);  // Android 主线程，由observeOn()指定
+    
+//上述，都是直接指向下级的
+
+//不同于observeOn(),subscribeOn()它可以在随处调用，且只能被调用一次。
+```
+#### Scheduler之doOnSubscribe
+```
+由于Subscriber的onStart方法执行的线程是subscribe()被调用的线程（你不知道也无法预测订阅会在什么线程执行），
+所以要做一些主线程相关的初始化工作时，就不能指定线程了。
+那么我们就可以使用doOnSubscribe方法来指定线程并进行相关初始化，它的规则如下：
+ 1.它的调用时机，也是在subscribe()订阅后，事件发送前。
+ 2.默认情况下，doOnSubscribe()执行在subscribe()发生的线程。
+ 3.如果在doOnSubscribe()之后有subscribeOn()的话，它将执行在离它最近的subscribeOn()所指定的线程。
+
+实例代码：
+```
+```java
+Observable.create(onSubscribe)
+    .subscribeOn(Schedulers.io())
+    .doOnSubscribe(new Action0() {
+        @Override
+        public void call() {
+            progressBar.setVisibility(View.VISIBLE); //需要在主线程执行，因为下面指定了
+        }
+    })
+    //因为是doOnSubscribe最近的subscribeOn线程切换，所以就可以指定doOnSubscribe的线程
+    .subscribeOn(AndroidSchedulers.mainThread()) 
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(subscriber);
+```
 ### 变换
 ```
 核心功能：
@@ -382,6 +434,86 @@ Observable.from(students)
 //下游接收到的就是这些新的水管发送的数据。flatMap不能保证事件的顺序
 ```
 ![](http://ww1.sinaimg.cn/mw1024/52eb2279jw1f2rx4i8da2j20hg0dydgx.jpg)
+#### 还有很多的操作符
+* [Android拾萃 - RxJava2操作符汇总](https://www.jianshu.com/p/f54f32b39b7c)
+***
+## RxJava的使用场景和方式
+### 和Retrofit一起使用
+```
+示例需求：
+  假如要请求用户的信息，且需要在线获取token。我们来对比下常规的callback写法和rxjava的写法：
+```
+```java
+//常规写法：
+@GET("/token")
+public void getToken(Callback<String> callback);
+
+@GET("/user")
+public void getUser(@Query("token") String token, @Query("userId") String userId, Callback<User> callback);
+
+//先获取token
+getToken(new Callback<String>() {
+    @Override
+    public void success(String token) {
+        //用token获取用户信息
+        getUser(token, userId, new Callback<User>() {
+            @Override
+            public void success(User user) {
+                //设置UI
+                userView.setUser(user);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                // Error handling
+                ...
+            }
+        };
+    }
+
+    @Override
+    public void failure(RetrofitError error) {
+        // Error handling
+        ...
+    }
+});
+
+//Rxjava
+@GET("/token")
+public Observable<String> getToken();
+
+@GET("/user")
+public Observable<User> getUser(@Query("token") String token, @Query("userId") String userId);
+
+getToken()
+    //使用flatmap传入token返回Observable，一条线操作
+    .flatMap(new Func1<String, Observable<User>>() {
+        @Override
+        public Observable<User> onNext(String token) {
+            //返回Observable
+            return getUser(token, userId);
+        })
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe(new Observer<User>() {
+        @Override
+        public void onNext(User user) {
+            userView.setUser(user);
+        }
+
+        @Override
+        public void onCompleted() {
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            // Error handling
+            ...
+        }
+    });
+```
+```
+经过上面的对比，就可以知道随着业务逻辑的复杂上升，使用传统模式就会让代码更难管理。而rxjava却能一直链式调用。
+```
 
 
 
