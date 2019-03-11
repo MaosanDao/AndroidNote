@@ -1,4 +1,4 @@
-# Retrofit 2.0使用指南
+# Retrofit 2.0使用指南（直接使用，未使用RxJava配合）
 ```
 Retrofit 是一个RESTful的HTTP网络请求框架的封装，网络请求的工作本质上是OkHttp完成，
 而 Retrofit仅负责网络请求接口的封装。
@@ -52,3 +52,69 @@ Retrofit retrofit = new Retrofit.Builder()
                 .build();
 ```
 #### 数据解析器
+```
+Gson	    com.squareup.retrofit2:converter-gson:2.0.2
+Jackson	    com.squareup.retrofit2:converter-jackson:2.0.2
+Simple XML	com.squareup.retrofit2:converter-simplexml:2.0.2
+Protobuf	com.squareup.retrofit2:converter-protobuf:2.0.2
+Moshi	    com.squareup.retrofit2:converter-moshi:2.0.2
+Wire	    com.squareup.retrofit2:converter-wire:2.0.2
+Scalars	    com.squareup.retrofit2:converter-scalars:2.0.2
+```
+### 创建网络请求接口实例
+```java
+// 创建 网络请求接口 的实例
+GetRequest_Interface request = retrofit.create(GetRequest_Interface.class);
+
+//对 发送请求 进行封装
+Call<Reception> call = request.getCall();
+```
+### 发送请求
+```java
+//发送网络请求(异步)
+call.enqueue(new Callback<Translation>() {
+    //请求成功时回调
+    @Override
+    public void onResponse(Call<Translation> call, Response<Translation> response) {
+        //请求处理,输出结果
+        response.body().show();
+    }
+
+    //请求失败时候的回调
+    @Override
+    public void onFailure(Call<Translation> call, Throwable throwable) {
+        System.out.println("连接失败");
+    }
+});
+
+// 发送网络请求（同步）
+Response<Reception> response = call.execute();
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
