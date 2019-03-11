@@ -37,6 +37,7 @@
 * [RxJava基本知识与源码解析](https://github.com/MaosanDao/AndroidNote/blob/master/frame/RxJava2.md)
 * [(RxJava升级版)RxJava2的相关知识点和部分操作符介绍](https://github.com/MaosanDao/AndroidNote/blob/master/frame/Rxjava2.md) 
 ## Retrofit相关
+* [Retrofit2原理初探](https://github.com/MaosanDao/AndroidNote/blob/master/retrofit/retrofit_principle.md) 
 * [Retrofit 2.0使用指南（直接使用，未使用RxJava配合）](https://github.com/MaosanDao/AndroidNote/blob/master/retrofit/retrofit2_0.md) 
 * [常用注解示例](https://github.com/MaosanDao/AndroidQuickCheckList/tree/master/retrofit)
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
