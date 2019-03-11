@@ -1,4 +1,4 @@
-# Retrofit2原理探析
+# Retrofit2原理探析（整理至[原文](https://blog.csdn.net/jiankeufo/article/details/73186929)）
 ***
 ## 如何快速使用？
 ```
@@ -128,8 +128,62 @@ Retrofit请求数据返回的接口
   CallAdapter<T>：这个方法的主要作用就是将Call对象转换成另一个对象，实现类就一个DefaultCallAdapter。
 ```
 ### Retrofit运行过程
-的
+#### 创建代理对象，进而拿到Call对象
+```java
+ServiceMethod serviceMethod = loadServiceMethod(method);
+OkHttpCall okHttpCall = new OkHttpCall<>(serviceMethod, args);
 
+return serviceMethod.callAdapter.adapt(okHttpCall);
+```
+#### 创建ServiceMethod
+```
+ServiceMethod就像是一个中央处理器，具体来看一下创建这个ServiceMethod的过程是怎么样的？
+```
+##### 配置相应的信息
+```java
+//设置各种需要的信息到ServiceMethod中
+callAdapter = createCallAdapter();
+responseType = callAdapter.responseType();
+responseConverter = createResponseConverter();
+```
+#### 解析Method的注解
+```
+解析注解，主要是获取Http请求的方法，比如知道是POST还是GET方式。
+```
+```java
+for (Annotation annotation : methodAnnotations) {
+    //解析注解，获取相关的请求信息
+    parseMethodAnnotation(annotation);
+}
+ 
+if (httpMethod == null) {
+   throw methodError("HTTP method annotation is required (e.g., @GET, @POST, etc.).");
+}
+```
+```
+
+```
+#### 执行Http请求
+```
+从ServiceMethod的toRequest方法拿取到Request对象 --> 等待Http请求返回后 --> 将response body传入ServiceMethod中 -->
+ServiceMethod将response body转换为Java对象 --> 最后进行回调
+```
+***
+## 如何在Retrofit中使用RxJava
+```java
+Retrofit retrofit = new Retrofit.Builder()
+  .baseUrl("https://api.github.com")
+  .addConverterFactory(ProtoConverterFactory.create())
+  .addConverterFactory(GsonConverterFactory.create())
+  .addCallAdapterFactory(RxJavaCallAdapterFactory.create()) //这里加上一个RxJava的CallAdapter即可
+  .build();
+```
+## 总结
+```
+一句话描述Retrofit的基本原理：
+  Retrofit非常巧妙的用注解来描述一个HTTP请求，将一个HTTP请求抽象成一个Java接口，然后用了Java动态代理的方式，
+  动态的将这个接口的注解“翻译”成一个HTTP请求，最后再执行这个HTTP请求。
+```
 
 
 
