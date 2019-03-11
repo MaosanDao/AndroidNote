@@ -74,7 +74,7 @@ public <T> T create(final Class<T> service) {
   return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service },
     new InvocationHandler() {
       private final Platform platform = Platform.get();
- 
+      
       @Override public Object invoke(Object proxy, Method method, Object... args)
           throws Throwable {
         if (method.getDeclaringClass() == Object.class) {
@@ -91,9 +91,43 @@ public <T> T create(final Class<T> service) {
     });
 ```
 #### 为什么使用动态代理
+```java
+Call<ZhuanLanAuthor> call = api.getAuthor("qinchao");
 ```
+```
+如上代码：
+  其实api并非是ZhuanLanApi接口所产生的对象，当api调用getAuthor方法的时候，会被动态代理拦截掉。
+  然后Retrofit会调用Proxy.newProxyInstance方法中的InvocationHandler对象。
+  它的invoke方法会传递3个参数：
+    Object proxy：代理对象
+    Method method：方法
+    Object... args：参数
+ 
+  接下来，Retrofit会通过反射拿取到方法名字和参数。创建一个ServiceMethod对象，ServiceMethod就像
+  是一个中央处理器，传入Retrofit对象和Method。最终生成一个Request。
+  
+  最后通过Okhttp3中的OkHttpCall返回Call对象，通过用户call.enqueue或者exceute去请求网络。
+```
+## 具体流程分析
+### Retrofit接口
+```
+Retrofit定义了四种接口：
 
+Retrofit请求数据返回的接口
+  Callback<T>：
+    void onResponse(Response<T> response);
+    void onFailure(Throwable t);
+
+将Http返回的数据解析成Java对象
+  Converter<F, T>：就是上文中的GsonConverterFactory字样。
+   
+发送一个Http请求：
+  Call<T>：Retrofit默认的实现是OkHttpCall<T>。
+  
+为RxJava设计的：
+  CallAdapter<T>：这个方法的主要作用就是将Call对象转换成另一个对象，实现类就一个DefaultCallAdapter。
 ```
+### Retrofit运行过程
 
 
 
