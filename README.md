@@ -1,6 +1,9 @@
 # AndroidNote
-这是一篇整理了日常工作中常见的问题的速查表。
-****
+
+<div align=center>
+    <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
+</div>
+
 ## 列表
 ### 已经完善的
 * [开始](#开始)
