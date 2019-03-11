@@ -1,6 +1,26 @@
 # Retrofit2原理探析（整理至[原文](https://blog.csdn.net/jiankeufo/article/details/73186929)）
 ***
-## 如何快速使用？
+## 目录
+* [如何快速使用？](#如何快速使用)
+  * [首先创建一个Retrofit实例对象](#首先创建一个retrofit实例对象) 
+  * [根据Api创建一个接口](#根据api创建一个接口)
+  * [使用这个实例创建一个Api的对象](#使用这个实例创建一个api的对象)
+  * [开始请求](#开始请求)
+* [原理探究](#原理探究)
+  * [动态代理](#动态代理)
+    * [为什么使用动态代理?](#为什么使用动态代理)
+* [具体流程分析](#具体流程分析)
+  * [Retrofit接口的定义说明](#retrofit接口)
+  * [Retrofit运行过程](#retrofit运行过程)
+    * [创建代理对象，进而拿到Call对象](#创建代理对象进而拿到call对象)
+    * [创建ServiceMethod](#创建servicemethod)
+    * [配置相应的信息](#配置相应的信息)
+    * [解析Method的注解](#解析method的注解)
+    * [执行Http请求](#执行http请求)
+* [如何在Retrofit中使用RxJava](#如何在retrofit中使用rxJava)
+* [一句话总结Retrofit的基本原理](#总结)
+***
+## 如何快速使用
 ```
 比如要请求这个接口：
   https://zhuanlan.zhihu.com/api/columns/{user}
@@ -128,7 +148,7 @@ Retrofit请求数据返回的接口
   CallAdapter<T>：这个方法的主要作用就是将Call对象转换成另一个对象，实现类就一个DefaultCallAdapter。
 ```
 ### Retrofit运行过程
-#### 创建代理对象，进而拿到Call对象
+#### 创建代理对象进而拿到Call对象
 ```java
 ServiceMethod serviceMethod = loadServiceMethod(method);
 OkHttpCall okHttpCall = new OkHttpCall<>(serviceMethod, args);
