@@ -1,4 +1,4 @@
-# Retrofit2原理探析（整理至[原文](https://blog.csdn.net/jiankeufo/article/details/73186929)）
+# Retrofit2原理初探（整理至[原文](https://blog.csdn.net/jiankeufo/article/details/73186929)）
 ***
 ## 目录
 * [如何快速使用？](#如何快速使用)
