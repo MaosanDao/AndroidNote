@@ -128,6 +128,7 @@ Retrofit请求数据返回的接口
   CallAdapter<T>：这个方法的主要作用就是将Call对象转换成另一个对象，实现类就一个DefaultCallAdapter。
 ```
 ### Retrofit运行过程
+的
 
 
 
