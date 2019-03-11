@@ -66,7 +66,6 @@ public interface GitHubService {
 
 说明：这里在接口使用的时候，直接传入url即可请求。
 ```
-
 ## Header(直接使用Header注解即可)
 ```Java
 @GET("/")
@@ -76,3 +75,5 @@ Call<ResponseBody> foo(@Header("Accept-Language") String lang);
 * 当@GET或@POST注解的url为全路径时（可能和baseUrl不是一个域），会直接使用注解的url的域。
 * 如果请求为post实现，那么最好传递参数时使用@Field、@FieldMap和@FormUrlEncoded。因为@Query和或QueryMap都是将参数拼接在url后面的，而@Field或@FieldMap传递的参数时放在请求体的。
 * 使用@Path时，path对应的路径不能包含”/”，否则会将其转化为%2F。在遇到想动态的拼接多节url时，还是使用@Url吧。
+## 总结
+![img2](http://upload-images.jianshu.io/upload_images/944365-f9f8994497df7fd3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
