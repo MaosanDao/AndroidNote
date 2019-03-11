@@ -1,10 +1,13 @@
 # AndroidNote
+>记录下日常工作中，或者面试以及一些基础的知识点，防止以后自己老年痴呆后忘记了。为了测试自制力，也想要了解下自己到底能不能坚持记录。
+>同时让自己的知识面越来越大，越来越广。加油！🆙
 
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
 </div>
 
-## 列表
+
+## 目录
 ### 已经完善的
 * [开始](#开始)
 * [开发相关](#开发相关)
