@@ -5,6 +5,15 @@ Retrofit 是一个RESTful的HTTP网络请求框架的封装，网络请求的工
 ```
 ![img1](http://upload-images.jianshu.io/upload_images/944365-b5194f1d16673589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ***
+## 目录
+* [添加库的依赖](#添加库的依赖)  
+* [接收服务器返回数据(实体类)](#接收服务器返回数据)
+* [创建接口](#创建接口)
+* [创建Retrofit实例](#创建retrofit实例)
+    * [数据解析器](#数据解析器)
+* [创建网络请求接口实例](#创建网络请求接口实例)
+* [发送请求](#发送请求)
+***
 ## 使用步骤
 * 添加Retrofit库的依赖
 * 创建 接收服务器返回数据 的类 
@@ -25,7 +34,7 @@ dependencies {
 //网络权限
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
-### 接收服务器返回数据(实体类)
+### 接收服务器返回数据
 ```
 用于Json解析或者xml解析的数据实体类。
 ```
