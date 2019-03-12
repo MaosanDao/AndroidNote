@@ -79,6 +79,7 @@
 * [OOM的产生和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/oom.md)
 * [ANR相关知识](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/ANR.md)
 * [界面卡顿的一些产生原因和解决方法](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/caton.md)  
+* [Android中进程保活的一些策略](https://github.com/MaosanDao/AndroidNote/blob/master/optimization/keep_alive.md) 
 ## 网络
 * [TCP/UDP的区别](https://github.com/MaosanDao/AndroidNote/blob/master/net/tcp_udp.md)
 * [Http基础协议详解(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/net/Http1.md)
