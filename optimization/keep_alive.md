@@ -51,11 +51,13 @@ Android中进程的优先级顺序:
 #### 如何视为服务进程
 ```
 正在运行已使用的startService方法启动的服务，并且不属于以上两个更高的类别。
+
   比如，在后台播放音乐或者网络下载数据等。
 ```
 #### 如何视为后台进程
 ```
 包含目前对用户不可见的 Activity 的进程:
+
   已调用 Activity 的onStop()方法
   
 这些进程对用户体验没有直接影响，系统可能随时终止它们，以回收内存供前台进程、可见进程或服务进程使用。
@@ -112,9 +114,10 @@ Intent.ACTION_USER_PRESENT
 使用serForeground将Service这是为前台服务，但是这个必须在系统的通知栏中发送一条通知，也就是前台Service。
 
 有方法可以解除这一条通知：
+
   1.对于 API level < 18 ：调用startForeground(ID， new Notification())，发送空的Notification ，图标则不会显示。
-  2.对于 API level >= 18：在需要提优先级的service A启动一个InnerService，两个服务同时startForeground，且绑定同样的 ID。
-    Stop InnerService，这样通知栏图标即被移除。
+  2.对于 API level >= 18：在需要提优先级的service A启动一个InnerService，两个服务同时startForeground，
+    且绑定同样的 ID。Stop InnerService，这样通知栏图标即被移除。
 ```
 ```java
 public class KeepLiveService extends Service {
@@ -170,6 +173,67 @@ public class KeepLiveService extends Service {
     }
 }
 ```
+#### 杀死进程后拉活
+##### 在Service的onStart中返回STRT_STICK
+```
+关于onStart中的返回值：
+  
+  1.START_STICKY_COMPATIBILITY：
+    START_STICKY的兼容版本，但不保证服务被kill后一定能重启。
+  2.START_STICKY：
+    系统就会重新创建这个服务并且调用onStartCommand()方法，但是它不会重新传递最后的Intent对象，
+    这适用于不执行命令的媒体播放器（或类似的服务），它只是无限期的运行着并等待工作的到来。
+    
+    注意：不会重新传递Intent对象
+  3.START_NOT_STICKY：
+    直到接受到新的Intent对象，才会被重新创建。
+    这是最安全的，用来避免在不需要的时候运行你的服务。
+    
+    注意：接收到新的Intent才会被重新创建。
+ 4.START_REDELIVER_INTENT：
+    系统就会重新创建了这个服务，并且用最后的Intent对象调用。等待中的Intent对象会依次被发送。这适用于如下载文件。
+
+我们在onStartCommand中返回：START_STICKY。
+
+注意：
+
+  1.Service 第一次被异常杀死后会在5秒内重启，第二次被杀死会在10秒内重启，第三次会在20秒内重启，
+    一旦在短时间内 Service 被杀死达到5次，则系统不再拉起。
+  2.进程被取得 Root 权限的管理工具或系统工具通过 forestop 停止掉，无法重启。
+```
+##### 系统级App
+```
+做法：
+  
+   1.在Apk的AndroidManifest.xml文件中设置android:persistent=true
+   2.此apk需要放入到system/app目录下，成为一个system app。
+   
+ app.persistent = true不仅仅标志着此apk不能轻易的被kill掉，亦或在被kill掉后能够自动restart。
+```
+##### 复写Service的onDestroy方法
+```
+原因：
+  在设置中的正在运行的服务，点击关闭。Service会走onDestroy方法。所以咱们还可以在这里将自己拉活。
+  但是，一些清理软件或者force close则不会走。
+```
+##### 监听一些系统级或者其他应用的广播，将进程拉活
+```
+系统级的常用的广播：
+```
+![image2](https://upload-images.jianshu.io/upload_images/2658728-c814b7a4670dd788.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700)
+```
+注意：
+  
+  1.广播接收器被管理软件、系统软件通过“自启管理”等功能禁用的场景无法接收到广播，从而无法自启。
+  2.系统广播事件不可控，只能保证发生事件时拉活进程，但无法保证进程挂掉后立即拉活。
+```
+##### 使用时钟AlarmManager唤醒
+```
+主要是实现也一个监听开机的广播，和一个周期性的闹钟，不过比较致命的是耗电量是很高的。
+```
+##### 双服务
+主要是实现也一个监听开机的广播，和一个周期性的闹钟，不过比较致命的是耗电量是很高的守护
+主要是实现也一个监听开机的广播，和一个周期性的闹钟，
 
 
 
