@@ -100,6 +100,7 @@
 ## Handler相关
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/handler_principle.md) 
 * [通过问题学习Android Handler机制(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/Android_Handler.md)
+* [HandlerThread相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/thread/handler_thread.md) 
 ## 常用工具类
 * [自定义倒计时工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/CountDown.md)
 * [zip解压缩工具类](https://github.com/MaosanDao/AndroidNote/blob/master/utils/ZipUtil.md)
