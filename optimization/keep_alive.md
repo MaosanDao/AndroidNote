@@ -1,4 +1,26 @@
 # Android中进程保活的一些策略
+***
+## 目录
+* [Android手机进程回收策略](#android手机进程回收策略) 
+* [如何保活](#如何保活)
+  * [提升进程的优先级](#提升进程的优先级) 
+    * [如何视为前台进程](#如何视为前台进程)
+    * [如何视为可见进程](#如何视为可见进程)
+    * [如何视为服务进程](#如何视为服务进程)
+    * [如何视为后台进程](#如何视为后台进程)
+    * [空进程](#空进程)
+  * [保活手段](#保活手段)
+    * [1像素的悬浮窗](#1像素的悬浮窗)
+    * [将Service设置为前台服务](#将service设置为前台服务)
+  * [杀死进程后拉活](#杀死进程后拉活)
+    * [在Service的onStart中返回START_STICK](#在service的onstart中返回start_stick)
+    * [系统级App](#系统级app)
+    * [复写Service的onDestroy方法](#复写service的ondestroy方法)
+    * [监听一些系统级或者其他应用的广播将进程拉活](#监听一些系统级或者其他应用的广播将进程拉活)
+    * [使用时钟AlarmManager唤醒](#使用时钟alarmmanager唤醒)
+    * [双服务守护](#双服务守护)
+    * [多个App之间拉起](#多个App之间拉起)
+    * [JobSchedule机制拉活](#jobSchedule机制拉活)
 ## Android手机进程回收策略
 ```
 Android中，主要的内存回收是靠LowMemorykiller来完成，且它是以oom_adj和oom_score来进行内存处理的：
@@ -174,7 +196,7 @@ public class KeepLiveService extends Service {
 }
 ```
 #### 杀死进程后拉活
-##### 在Service的onStart中返回STRT_STICK
+##### 在Service的onStart中返回START_STICK
 ```
 关于onStart中的返回值：
   
@@ -216,7 +238,7 @@ public class KeepLiveService extends Service {
   在设置中的正在运行的服务，点击关闭。Service会走onDestroy方法。所以咱们还可以在这里将自己拉活。
   但是，一些清理软件或者force close则不会走。
 ```
-##### 监听一些系统级或者其他应用的广播，将进程拉活
+##### 监听一些系统级或者其他应用的广播将进程拉活
 ```
 系统级的常用的广播：
 ```
@@ -231,10 +253,51 @@ public class KeepLiveService extends Service {
 ```
 主要是实现也一个监听开机的广播，和一个周期性的闹钟，不过比较致命的是耗电量是很高的。
 ```
-##### 双服务
-主要是实现也一个监听开机的广播，和一个周期性的闹钟，不过比较致命的是耗电量是很高的守护
-主要是实现也一个监听开机的广播，和一个周期性的闹钟，
+##### 双服务守护
+```
+这个是android里面一个特性，跨进程bind一个service之后，如果被bind的service挂掉，bind他的service会把他拉起来。
+```
+##### 多个App之间拉起
+```
+比较常见的就是家族 app 之间互相调起，你监听到我死了，我把你拉起，之间互相拉活对方。
+```
+##### JobSchedule机制拉活
+```
+public class MyJobService extends JobService {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        startJobSheduler();
+    }
 
+    public void startJobSheduler() {
+        try {
+            JobInfo.Builder builder = new JobInfo.Builder(1, newComponentName(getPackageName(),MyJobService.class.getName()));
+            //间隔500毫秒调用一次onStartJob函数
+            builder.setPeriodic(500);
+            builder.setPersisted(true);
+            JobScheduler jobScheduler = (JobScheduler) this.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+            jobScheduler.schedule(builder.build());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean onStartJob(JobParameters jobParameters) {
+        return false;
+    }
+
+    @Override
+    public boolean onStopJob(JobParameters jobParameters) {
+        return false;
+    }
+}
+```
+***
+## 参考文章：
+* [Android进程保活](https://www.cnblogs.com/fuyaozhishang/p/6667301.html) 
+* [Android 进程保活手段分析](https://blog.csdn.net/omnispace/article/details/80935204)
 
 
 
