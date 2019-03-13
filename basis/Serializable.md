@@ -1,4 +1,26 @@
 # Android序列化相关知识点
+***
+## 目录
+* [序列化的初衷](#序列化的初衷)
+* [序列和反序列化](#序列和反序列化)
+    * [序列化含义](#序列化含义)
+    * [反序列化的含义](#反序列化的含义)
+    * [概括](#概括)
+    * [实现序列化的条件](#实现序列化的条件)
+    * [使用情况](#使用情况)
+* [Serializable的使用](#serializable的使用)
+    * [关于序列化标识SerialVersionUID](#关于序列化标识serialversionuid)
+    * [如何将对象进行序列化和反序列化](#如何将对象进行序列化和反序列化)
+    * [改变系统默认的序列化过程](#改变系统默认的序列化过程)
+* [Parcelable的使用](#parcelable的使用)
+    * [Parcelable使用时机](#parcelable使用时机)
+* [Parcelable与Serializable区别](#parcelable与serializable区别)
+    * [实现过程](#实现过程)
+    * [设计初衷](#设计初衷)
+    * [效率](#效率)
+* [AndroidStudio中快速生成Parcelable代码](#androidstudio中快速生成parcelable代码)
+* [AndroidStudio中快速生成Serializable的UID](#androidstudio中快速生成serializable的uid)
+***
 ## 序列化的初衷
 ```
 在日常的应用开发中，我们可能需要让某些对象离开内存空间，存储到物理磁盘，以便长期保存，同时也能减少对内存的压力，
