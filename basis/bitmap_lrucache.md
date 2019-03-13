@@ -1,5 +1,15 @@
 # Android Bitmap高效加载和图片三级缓存机制
 ***
+## 目录
+* [初探三级缓存](#初探三级缓存)
+* [BitMap高效加载](#bitmap高效加载)
+  * [加载Bitmap的方法汇总](#加载bitmap的方法汇总)
+  * [高效加载思路](#高效加载思路)
+* [Android缓存策略](#android缓存策略)
+  * [Least Recently Userd(LRU)](#lru) 
+    * [LruCache内存缓存](#lrucache内存缓存)
+    * [DiskLruCache磁盘缓存](#disklrucache的使用)
+***
 ## 初探三级缓存
 ```
 三级缓存的原理就是当 App 需要引用缓存时，首先到内存缓存中读取，读取不到再到本地缓存中读取，
