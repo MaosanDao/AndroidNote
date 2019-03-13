@@ -48,6 +48,7 @@
 * [使用Retrofit上传图片到服务器中](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadImage.md)
 * [使用Retrofit上传Json数据](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/retrofit/uploadJson.md)
 ## 基础知识
+* [Android序列化及反序列化相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/Serializable.md)
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Generic.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Reflection.md)
 * [Activity的四种启动模式介绍](https://github.com/MaosanDao/AndroidNote/blob/master/basis/launchMode.md)
