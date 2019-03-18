@@ -1,4 +1,18 @@
 # Java集合相关的面试题整理
+***
+## 目录
+* [Java中集合分类](#java中集合分类)
+* [知识点及一些面试题](#知识点)
+  * [ArrayList和Vector的区别](#arraylist和vector的区别)
+  * [HashMap和Hashtable的区别](#hashmap和hashtable的区别)
+  * [List和Map的区别](#list和map的区别)
+  * [Set如何判断元素是否重复](#set如何判断元素是否重复)
+  * [Collection和Collections的区别](#collection和collections的区别)
+  * [ArrayList和LinkedList的存储性能和特性](#arraylist和linkedlist的存储性能和特性)
+    * [插入首尾或者中间，ArrayList比较快](#扩展)
+  * [ListIterator有什么特点](#listiterator有什么特点)
+  * [如果HashMap的key为类对象则该类需要满足什么条件](#如果hashmap的key为类对象则该类需要满足什么条件)
+***
 ## Java中集合分类
 ### Collection
 ```
