@@ -120,7 +120,9 @@ ListIterator<Pet> it = pets.listIterator();
 //这里展示指向前一个和后一个元素的索引
 while(it.hasNext()){
  System.out.print(it.next() + ", " + it.nextIndex() +
-   ", " + it.previousIndex() + "; ");//Rat, 1, 0; Manx, 2, 1; Cymric, 3, 2; Mutt, 4, 3; Pug, 5, 4; Cymric, 6, 5; Pug, 7, 6; Manx, 8, 7;
+   ", " + it.previousIndex() + "; ");
+    //输出
+    //Rat, 1, 0; Manx, 2, 1; Cymric, 3, 2; Mutt, 4, 3; Pug, 5, 4; Cymric, 6, 5; Pug, 7, 6; Manx, 8, 7;
 }
 
 //倒序遍历
