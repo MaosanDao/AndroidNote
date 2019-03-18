@@ -13,6 +13,7 @@
 * [RxJava相关](#rxjava相关)
 * [Retrofit相关](#retrofit相关)
 * [基础知识](#基础知识)
+* [Java基础知识](#java基础知识)
 * [多线程](#多线程)
 * [界面相关](#界面相关)
 * [框架](#框架)
@@ -50,10 +51,12 @@
 ## 基础知识
 * [Android序列化及反序列化相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/Serializable.md)
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Generic.md)
-* [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Reflection.md)
 * [Activity的四种启动模式介绍](https://github.com/MaosanDao/AndroidNote/blob/master/basis/launchMode.md)
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
 * [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.mdd)
+## Java基础知识
+* [Java集合相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set.md) 
+* [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Reflection.md)
 ## 多线程
 * [Android进程间、线程间的通讯方式汇总](https://github.com/MaosanDao/AndroidNote/blob/master/thread/thread_process.md)
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/thread/Thread.md)
