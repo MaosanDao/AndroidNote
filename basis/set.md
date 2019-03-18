@@ -1,7 +1,30 @@
 # Java集合相关知识点(整理并摘录至[原文](https://blog.csdn.net/axela30w/article/details/78395687))
 ***
 ## 目录
-
+* [泛型安全的容器](#泛型安全的容器) 
+    * [泛型不安全的写法](#泛型不安全的写法) 
+    * [泛型安全的写法](#泛型安全的写法) 
+* [Collection的常用方法](#collection) 
+* [Iterator遍历](#iterator遍历) 
+* [ListIterator遍历](#listIterator遍历) 
+* [ForEach遍历](#foreach遍历) 
+* [List相关](#list) 
+    * [ArrayList和LinkedList的对比](#arraylist和linkedlist的对比) 
+    * [ArrayList](#arraylist) 
+    * [LinkedList](#linkedlist) 
+* [Stack相关](#stack) 
+* [Set相关](#set) 
+    * [散列之HashSet](#散列之hashset) 
+    * [结果排序之TreeSet](#结果排序之treeset) 
+    * [set的常用方法](#常用方法) 
+* [Map相关](#Map) 
+    * [Hashmap](#hashmap)
+    * [Hashtable](#hashtable)
+    * [LinkedHashMap](#linkedhashmap)
+    * [TreeMap](#treemap)
+    * [Map的遍历](#Map的遍历)
+* [先进先出Queue](#先进先出queue)
+* [总结](#总结)
 ***
 ## 泛型安全的容器
 ### 泛型不安全的写法
@@ -33,7 +56,7 @@ for(int i = 0;i < apples.size();i++){
   2.当在使用ArrayList的get()方法来读取对象时，得到的只是Object引用，必须将其强制转型为Apple。
   3.当读取到ArrayList中的Orange对象时，试图将Orange转型为Apple就会报错。这样就很不安全了。
 ```
-### 泛型安全的写法：
+### 泛型安全的写法Collection
 ```java
 ArrarList<Apple> apples = new ArrayList<Apple>();
 
