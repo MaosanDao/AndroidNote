@@ -92,13 +92,17 @@ Contains方法：
 ```java
 // 1. 如果key 相等  
 if (p.hash == hash &&
-    ((k = p.key) == key || (key != null && key.equals(k))))
-    e = p;	// 2. 修改对应的value
+    ((k = p.key) == key || (key != null && key.equals(k)))){
+       e = p;	// 2. 修改对应的value
+    }
 if (e != null) { // existing mapping for key
-      V oldValue = e.value;            if (!onlyIfAbsent || oldValue == null)
-          e.value = value;
-      afterNodeAccess(e);            return oldValue;
- }
+     V oldValue = e.value;            
+     if (!onlyIfAbsent || oldValue == null){
+         e.value = value;
+     }
+     afterNodeAccess(e);            
+     return oldValue;
+}
    
 //从上述可见，是通过找到同样的key，而去修改value。
 ```
