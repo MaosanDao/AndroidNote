@@ -55,6 +55,7 @@
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
 * [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.mdd)
 ## Java基础知识
+* [Java中synchronized的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/synchronized.md)
 * [Java集合相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set.md) 
 * [Java集合相关的面试题整理](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set_interview.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Reflection.md)
