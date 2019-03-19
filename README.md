@@ -60,6 +60,7 @@
 * [Java集合相关的面试题整理](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set_interview.md)
 * [反射的理解和相关知识点](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Reflection.md)
 ## 多线程
+* [关于线程的一些常见知识点](https://github.com/MaosanDao/AndroidNote/blob/master/thread/thread_points.md) 
 * [Android进程间、线程间的通讯方式汇总](https://github.com/MaosanDao/AndroidNote/blob/master/thread/thread_process.md)
 * [不同线程的创建方式整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/thread/Thread.md)
 ## 界面相关
