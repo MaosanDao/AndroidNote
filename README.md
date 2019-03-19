@@ -95,6 +95,7 @@
 * [蓝牙相关实用方法集合](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/bluetooth/README.md) 
 * [Android BLE相关知识点的学习(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/bluetooth/ble_note.md)
 ## 发布
+* [Apk打包流程以及Apk所包含的内容分析](https://github.com/MaosanDao/AndroidNote/blob/master/publish/apk_package.md) 
 * [多渠道打包](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/MultiPackaging.md)
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
 * [常用混淆代码](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/CommonConfusion.md)
