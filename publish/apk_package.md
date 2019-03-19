@@ -1,4 +1,4 @@
-# Apk打包流程
+# Apk打包流程(摘录并整理至[原文](https://www.jianshu.com/p/a134d00e81ab))
 ***
 ## 目录
 * [Apk文件中的包含类容](#apk文件中的包含类容) 
