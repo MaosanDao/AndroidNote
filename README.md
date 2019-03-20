@@ -101,6 +101,7 @@
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
 * [常用混淆代码](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/CommonConfusion.md)
 ## 进阶
+* [Android Binder IPC机制](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/binder.md) 
 * [Android Bitmap高效加载和图片三级缓存机制](https://github.com/MaosanDao/AndroidNote/blob/master/basis/bitmap_lrucache.md)
 * [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
