@@ -4,6 +4,11 @@
 * [sleep和wait方法的区别](#sleep和wait方法的区别) 
 * [run方法和start方法的区别](#run方法和start方法的区别)
 * [volatile关键字的理解](#volatile关键字的理解)
+* [如何安全的停止一个线程](#如何安全的停止一个线程) 
+  * [使用共享变量来停止线程](#使用共享变量来停止线程)
+  * [使用interrupt方法终止线程](#使用interrupt方法终止线程)
+  * [为什么不用stop方法终止线程](#为什么不用stop方法终止线程)
+  * [interrupt并非会终止线程(处理中断逻辑)](#interrupt并非会终止线程)
 ***
 ## sleep和wait方法的区别
 ```
@@ -240,7 +245,149 @@ public class VolatileTest extends Thread {
 //在flag前面加上volatile关键字，强制线程每次读取该值的时候都去“主内存”中取值。
 //在试试我们的程序吧，已经正常退出了。
 ```
+***
+## 如何安全的停止一个线程
+### 三种方法停止线程
+```
+1.使用退出标志，使线程正常退出，也就是当run方法完成后线程终止。
+2.使用interrupt方法中断线程。
+3.使用stop方法（不推荐）
+```
+### 使用共享变量来停止线程
+```java
+public class ThreadFlag extends Thread { 
+        
+    public volatile boolean exit = false; //共享变量
 
+    public void run() { 
+        while (!exit); 
+    } 
+
+    public static void main(String[] args) throws Exception { 
+
+        ThreadFlag thread1 = new ThreadFlag(); 
+        thread1.start(); 
+
+        sleep(3000);            // 主线程延迟3秒 
+        thread1.exit = true;    // 由主线程改变共享变量的值,终止线程thread1 
+        thread1.join();         // 主线程等待thread1结束
+        System.out.println("thread1线程退出了!"); 
+    } 
+}
+
+//如上我们使用了共享变量将线程进行了停止
+//使用了volatile则是为了线程同步，让同一时间端只能由一个线程修改
+```
+### 使用interrupt方法终止线程
+```java
+public class InterruptThread {
+    
+    public static void main(String[] args) throws InterruptedException {
+        MyThread myThread1 = new MyThread();
+        System.out.println("启动线程.");
+        myThread1.start();
+        Thread.sleep(3000);
+        System.out.println("中断线程: " + myThread1.getName());
+        myThread1.stop = true;  // 设置共享变量为true
+        myThread1.interrupt();  // 阻塞时退出阻塞状态
+        Thread.sleep(3000);     // 主线程休眠3秒以便观察线程m1的中断情况
+        System.out.println("结束.");
+    }
+}
+
+
+class MyThread extends Thread {
+    public volatile boolean stop = false;   //共享变量
+
+    public void run() {
+        while (!stop) {
+            System.out.println(getName() + " 正在运行...");
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("抛出异常, 从阻塞中被唤醒.");
+                stop = true; // 在异常处理代码中修改共享变量的状态
+            }
+        }
+        System.out.println(getName() + " 线程退出.");
+    }
+}
+```
+### 为什么不用stop方法终止线程
+```
+stop方法太过暴力，会强制终止一个正在运行的线程，这样的话会造成一些数据不一致的问题。
+调用stop方法后，会丢弃所有的锁，会导致原子逻辑受损。
+
+该方式是通过立即抛出ThreadDeath异常来达到停止线程的目的，而且此异常抛出可能发生在程序的任何一个地方，
+包括catch、finally等语句块中。
+
+由于抛出ThreadDeatch异常，会导致该线程释放所持有的所有的锁，而且这种释放的时间点是不可控制的，
+可能会导致出现线程安全问题和数据不一致情况，比如在同步代码块中在执行数据更新操作时线程被突然停止。
+```
+### 中断线程的三个方法
+```java
+//中断线程
+public void Thread.interrupt()              
+//它通知目标线程中断，也是设置中断标志位。中断标志位表示当前线程已经被中断了。
+
+//判断线程是否中断
+public boolean Thread.isInterrupted() 
+//主要是检查当前线程是否被中断（通过检查中断标志位），返回值是boolean类型
+
+//判断是否被中断，并清除当前中断状态
+public static boolean Thread.interrupted()  
+//来判断当前线程是否被中断，但同时清除当前线程的中断标志位状态 -- 改为不中断
+```
+#### interrupt并非会终止线程
+```java
+public class InterruptedDemo {
+  public static void main(String[] args) {
+      Thread t1 = new Thread() {
+
+          @Override
+          public void run() {
+              while(true) {
+                  System.out.println("The thread is waiting for interrupted!");
+                  //Thread.yield();
+              }
+          }
+      };
+      t1.start();
+      t1.interrupt();//中断线程
+      System.out.println("The Thread is interrupted!");
+  }
+}
+
+//运行上述的代码，发现线程并不能终止，因为只是对线程进行了中断，并没有进行中断的处理
+
+
+//改版代码 -- 处理中断逻辑
+public class InterruptedDemo {
+ 
+  public static void main(String[] args) {
+      Thread t1 = new Thread() {
+
+          @Override
+          public void run() {
+              while(true) {
+                  System.out.println("The thread is waiting for interrupted!");
+                  //中断处理逻辑
+                  if(Thread.currentThread().isInterrupted()) {//这里中断了话，会返回false，所以实现了线程中断
+                      System.out.println("The thread is interrupted!");
+                      break;
+                  }
+                  //Thread.yield();
+              }
+          }
+      };
+      t1.start();
+      t1.interrupt();//中断线程
+      //System.out.println("The Thread is interrupted!");
+  }
+}
+
+//此段代码，可以正常的中断线程
+```
 
 
 
