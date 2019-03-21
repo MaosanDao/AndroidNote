@@ -245,7 +245,8 @@ AMN和AMP都实现了IActivityManager接口，AMS继承自AMN。
 APT接收到来自AMS的消息后，就调用ActivityThread的sendMessage方法，向Launcher的主线程消息队列发送一个PAUSE_ACTIVITY消息。
 其中ActivityThread为主线程，即UI线程。
 
-所以需要使用Handler将这个任务处理了，然后将结果返回给UI线程。
+所以需要使用Handler将这个任务处理了，然后将结果返回给UI线程:
+  在ApplicationThread中sendMessage给ActivityThread，让其完成剩下的工作。
 ```
 ![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225946869-1315230205.png)
 ```
@@ -259,6 +260,87 @@ ActivityThread的handlePauseActivity做了什么事情？
 ```
 ***
 ### 启动App的第四个阶段
+```
+AMS接下来要启动斗鱼App的首页，因为斗鱼App不在后台进程中，所以要启动一个新的进程。
+这里调用的是Process.start方法，并且指定了ActivityThread的main函数为入口函数。
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519230007713-577694475.png)
+***
+### 启动App的第五个阶段
+```
+新的进程启动，以ActivityThread的main函数作为入口。
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519230017916-541390106.png)
+```
+在启动新进程的时候，为这个进程创建ActivityThread对象，这就是我们耳熟能详的主线程（UI线程）。
+
+在创建好UI线程后，立即进入ActivityThread的main函数，然后就要做2件重大意义的事情：
+
+  1.创建一个主线程Looper，也就是MainLooper。
+  2.创建Application。记住，Application是在这里生成的。
+```
+#### Application的重要性？
+```
+App开发人员对Application非常熟悉，因为我们可以在其中写代码，进行一些全局的控制，所以我们通常认为Application是掌控全局的，
+其实Application的地位在App中并没有那么重要，它就是一个Context上下文，仅此而已。
+
+App中的灵魂是ActivityThread，也就是主线程，只是这个类对于App开发人员是访问不到的。
+```
+#### 创建好新的App之后
+```
+ 创建新App的最后，就是告诉AMS，我启动好了，同时把自己的ActivityThread对象发送给AMS，
+ 从此以后，AMS的电话簿中就多了这个新的App的登记信息。
+ AMS以后向这个App发送消息，就通过这个ActivityThread对象。
+```
+***
+### 启动App的第六个阶段
+```
+该阶段就是AMS告诉App启动哪一个页面。
+
+AMS把传入的ActivityThread对象，转为一个ApplicationThread对象，用于以后和这个App跨进程通信。
+
+因为在第一阶段中，Luncher发送给AMS要启动斗鱼App的哪一个Activity信息。所以，
+到了这个阶段，AMS就要去从记录中将这个信息翻出来，然后通过ApplicationThread去告诉App。
+```
+### 启动App的第七个阶段
+```
+App启动Ams传递信息中的页面。
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519230029494-413774325.png)
+```
+App通过ApplicationThread接收到从AMS发来的启动消息。然后仍然是在H的handleMessage方法的switch语句中处理，
+只不过，这次消息的类型是LAUNCH_ACTIVITY：
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519230047322-2090810570.png)
+```
+如上图所示，ActivityClientRecord是个什么东西？
+  这是AMS传递过来的要启动的Activity。
+  
+其中，还有一个getPackageInfoNoCheck方法：
+  这个方法会提取Apk中的所有资源，然后设置给r的packageInfo属性。
+  
+然后在H这个类中，反过来再次调用ActivityThread中的handleLaunchActivity方法，那这个方法做了什么事情：
+  1.通过Instrumentation的newActivity方法，创建出来要启动的Activity实例。
+  2.为这个Activity创建一个上下文Context对象，并与Activity进行关联。
+  3.通过Instrumentation的callActivityOnCreate方法，执行Activity的onCreate方法，从而启动Activity。
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
