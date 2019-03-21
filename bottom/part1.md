@@ -123,10 +123,10 @@ cmp: 斗鱼的包名+ 首页Activity名
 仔细想想，我们会发现，Launcher和斗鱼是两个不同的App，他们位于不同的进程中，它们之间的通信是通过Binder完成的——这时候AMS出场了：
 
 启动流程如下：
+
 1.Launcher通知AMS，要启动斗鱼App，而且指定要启动斗鱼的哪个页面（也就是首页）。
 2.AMS通知Launcher，好了我知道了，没你什么事了，同时，把要启动的首页记下来。
 3.Launcher当前页面进入Paused状态，然后通知AMS，我睡了，你可以去找斗鱼App了。
-
 4.AMS检查斗鱼App是否已经启动了。是，则唤起斗鱼App即可。否，就要启动一个新的进程。
   AMS在新进程中创建一个ActivityThread对象，启动其中的main函数。
 5.斗鱼App启动后，通知AMS，说我启动好了。
@@ -136,7 +136,7 @@ cmp: 斗鱼的包名+ 首页Activity名
 1-3步，则是Launcher和AMS相互通信
 4-7步，斗鱼App和AMS相互通信
 ```
-### 分析具体的启动过程
+### 启动App的第一个阶段
 ![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519224933760-1702392298.png)
 #### 1-2步
 ```
@@ -157,17 +157,108 @@ cmp = “com.douyu.activity.MainActivity”
 其中会发现一个mMainThread的变量，这是一个ActivityThread类型的变量。
 
 什么是ActivityThread?
+
   ActivityThread，就是主线程，也就是UI线程，它是在App启动时创建的，它代表了App应用程序。
   
+那Application类呢？
+
+  其实，Application对我们App开发人员来说也许很重要，但是在Android系统中还真的没那么重要，他就是个上下文。
+  Activity不是有个Context上下文吗？Application就是整个ActivityThread的上下文。
 ```
+##### ActivityThread里面的main方法
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225039353-1677547683.png)
+```
+为什么不是我们App自己写main函数呢？
 
+  Android App的main函数，在ActivityThread里面，而这个类是Android系统提供的底层类，不是我们提供的。
+  所以这就是Andoid有趣的地方。Android App的入口是Mainifest中定义默认启动Activity。
+  
+  这是由Android AMS与四大组件的通信机制决定的。
+```
+#### startActivityForResult中的Binder对象
+```
+在使用startActivityForResult中，我们发现了mMainThread使用了getApplicationThread方法。
+  而它则是获取到了Binder对象，类型为ApplicationThread，也就是Launcher所在的App进程。
+  
+mToken?
+  mToken，这也是个Binder对象，它代表了Launcher这个Activity，这里也通过Instrumentation传给AMS，AMS一查电话簿，就知道是谁向AMS发起请求了
+```
+#### 第4步execStartActivity
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225106307-741280835.png)
+```
+就是一个透传，Activity把数据借助Instrumentation，传递给ActivityManagerNative
+```
+#### AMP/AMN
+```
+ActivityManagerNative，简称AMN
 
+AMN通过getDefault方法，从ServiceManager中取得一个名为Activity的对象，
+然后把它包装成一个ActivityManagerProxy对象（简称AMP），AMP就是AMS的代理对象。
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225130822-867987839.png)
+```
+AMN的getDefault方法返回类型为IActivityManager，而不是AMP。
+IActivityManager是一个实现了IInterface的接口，里面定义了四大组件所有的生命周期。
+AMN和AMP都实现了IActivityManager接口，AMS继承自AMN。
+```
+### AMP（ActivityManagerProxy）调用startActivity方法
+```
+你会发现AMP的startActivity方法，和AIDL的Proxy方法，是一模一样的，写入数据到另一个进程，也就是AMS，然后等待AMS返回结果。
+```
+***
+### 启动App的第二个阶段
+```
+启动App所经历的7个阶段图示：
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225853353-1638311589.png)
+#### AMS处理Launcher传来的消息
+```
+这个阶段主要是Binder的Server端在做事情。因为我们是没有机会修改Binder的Server端逻辑的。
 
+1.首先Binder，也就是AMN/AMP，和AMS通信，肯定每次是做不同的事情，就比如说这次Launcher要启动斗鱼App，
+  那么会发送类型为START_ACTIVITY——TRANSACTION的请求给AMS，同时会告诉AMS要启动哪个Activity。
+  
+2.AMS说，好，我知道了，然后它会干一件很有趣的事情，就是检查斗鱼App中的Manifest文件，是否存在要启动的Activity。
+  如果不存在，就抛出Activity not found的错误。
+  
+3.但是Launcher还活着啊，所以接下来AMS会通知Launcher，哥们儿没你什么事了，你“停薪留职”吧。
 
+那么AMS是通过什么途径告诉Launcher的呢？
+```
+#### AMS如何通知Luncher让它休息？
+```
+面不是把Launcher以及它所在的进程给传过来了吗？它在AMS这边保存为一个ActivityRecord对象，
+这个对象里面有一个ApplicationThreadProxy，单单从名字看就出卖了它，这就是一个Binder代理对象。
+它的Binder真身，也就是ApplicationThread。
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225921916-810851677.png)
+```
+上图就是展示了AMS如何通知App端，进行休眠。
 
+它是通过ApplicationThreadProxy这个App进程的代理对象来调用方法去通知App端进行休眠的。
+```
+***
+### 启动App的第三个阶段
+#### 具体怎么通知Luncher休眠的
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225928432-1563080021.png)
+```
+APT接收到来自AMS的消息后，就调用ActivityThread的sendMessage方法，向Launcher的主线程消息队列发送一个PAUSE_ACTIVITY消息。
+其中ActivityThread为主线程，即UI线程。
 
-
-
+所以需要使用Handler将这个任务处理了，然后将结果返回给UI线程。
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225946869-1315230205.png)
+```
+而这个H则是，在ActivityThread的内部类，如下图：
+```
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225957400-731726279.png)
+```
+ActivityThread的handlePauseActivity做了什么事情？
+  1.ActivityThread里面有一个mActivities集合，保存当前App也就是Launcher中所有打开的Activity，把它找出来，让它休眠。
+  2.通过AMP通知AMS，我真的休眠了。
+```
+***
+### 启动App的第四个阶段
 
 
 
