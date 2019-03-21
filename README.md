@@ -24,6 +24,7 @@
 * [蓝牙](#蓝牙)
 * [发布应用相关](#发布)
 * [进阶](#进阶)
+* [Android App开发需要了解的底层知识](#android底层知识) 
 * [Handler相关](#handler相关)
 * [常用工具类](#常用工具类)
 * [WebView](#webview)
@@ -101,13 +102,14 @@
 * [Apk瘦身指南](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/mini_apk.md)
 * [常用混淆代码](https://github.com/MaosanDao/AndroidNote/blob/master/%20publish/CommonConfusion.md)
 ## 进阶
-* [Android Binder IPC机制](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/binder.md) 
 * [Android Bitmap高效加载和图片三级缓存机制](https://github.com/MaosanDao/AndroidNote/blob/master/basis/bitmap_lrucache.md)
-* [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/StartProcess.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
+## Android底层知识
+* [Android Binder IPC机制](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/binder.md) 
 * [Java对象创建时代码的加载顺序](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/java_load.md)
 * [Java GC and JVM相关知识点学习](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/Java_GC.md)
+* [App启动流程整理](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/StartProcess.md)
 ## Handler相关
 * [Handler、Message原理概述](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/handler_principle.md) 
 * [通过问题学习Android Handler机制(摘)](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/Android_Handler.md)
