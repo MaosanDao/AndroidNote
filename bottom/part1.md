@@ -1,4 +1,4 @@
-# Android App开发人员需要知道的一些Android底层知识
+# Android App开发人员需要知道的一些Android底层知识（[原文](https://www.cnblogs.com/Jax/p/6880631.html)）
 ***
 ## 目录
 * [Binder](#binder)
