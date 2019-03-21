@@ -1,5 +1,24 @@
 # Android App开发人员需要知道的一些Android底层知识
 ***
+## 目录
+* [Binder](#binder)
+  * [什么是Binder](#什么是binder)
+  * [Binder的组成结构](#binder的组成结构)
+  * [Binder的通信过程](#binder的通信过程)
+* [AIDL](#aidl)
+  * [他们如何进行IPC的通信](#他们如何进行ipc的通信)
+* [AMS初探](#ams初探)
+  * [什么是hook](#什么是hook)
+  * [为什么Hook总是在Binder的Client端](#为什么hook总是在binder的client端)
+* [App是怎么启动的](#app是怎么启动的)
+  * [启动App的第一个阶段](#启动app的第一个阶段)
+  * [启动App的第二个阶段](#启动app的第二个阶段)
+  * [启动App的第三个阶段](#启动app的第三个阶段)
+  * [启动App的第四个阶段](#启动app的第四个阶段)
+  * [启动App的第五个阶段](#启动app的第五个阶段)
+  * [启动App的第六个阶段](#启动app的第六个阶段)
+  * [启动App的第七个阶段](#启动app的第七个阶段)
+***
 ## Binder
 ### 什么是Binder
 ```
