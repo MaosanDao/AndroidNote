@@ -324,7 +324,11 @@ App通过ApplicationThread接收到从AMS发来的启动消息。然后仍然是
   2.为这个Activity创建一个上下文Context对象，并与Activity进行关联。
   3.通过Instrumentation的callActivityOnCreate方法，执行Activity的onCreate方法，从而启动Activity。
 ```
-
+***
+### 到此整个App就启动完毕了
+```
+App启动完毕。这个流程是经过了很多次握手， App和ASM，频繁的向对方发送消息，而发送消息的机制，是建立在Binder的基础之上的。
+```
 
 
 
