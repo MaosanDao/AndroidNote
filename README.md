@@ -106,6 +106,7 @@
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
 ## Android底层知识
+* [Android BroadcastReceiver内部启动原理分析](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/BroadcastReceiver.md) 
 * [Android Service的启动流程原理分析](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/Service.md) 
 * [Context家族](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/context.md) 
 * [Android Binder、AIDL、AMS、App启动分析](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/part1.md) 
