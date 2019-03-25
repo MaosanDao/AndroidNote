@@ -12,4 +12,4 @@
 5.App启动ActivityB
 ```
 ## 图示
-![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519230735275-563343566.png)
+![img1](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519230735275-563343566.png)
