@@ -1,12 +1,14 @@
 # Android BroadcastReceiver内部启动原理分析([原文](https://www.cnblogs.com/Jax/p/6883534.html))
 ## 初探
 ```
-很多App开发人员表示，从来没用过Receiver。其实吧，对于音乐播放类App，用Service和Receiver还是蛮多的，如果你用过QQ音乐，App退到后台，音乐照样播放不会停止，这就是你写的Service在后台起作用。
+很多App开发人员表示，从来没用过Receiver。其实吧，对于音乐播放类App，用Service和Receiver还是蛮多的
+，如果你用过QQ音乐，App退到后台，音乐照样播放不会停止，这就是你写的Service在后台起作用。
 
-在前台的Activity，点击停止按钮，就会给后台Service发送一个Receiver，通知它停止播放音乐；点击播放按钮，仍然是发送这个Receiver，只是携带的值变了，所以Service收到请求后播放音乐。
+在前台的Activity，点击停止按钮，就会给后台Service发送一个Receiver，通知它停止播放音乐；点击播放按钮，
+仍然是发送这个Receiver，只是携带的值变了，所以Service收到请求后播放音乐。
   
-反过来，后台Service播放每播放完一首音乐，接下来准备播放下一首音乐的时候，就会给前台Activity发Receiver，让Activity显示下一首音乐的名称。
-所以音乐播放器的原理，就是一个前后台Activity和Service互相发送和接收Receiver的过程。
+反过来，后台Service播放每播放完一首音乐，接下来准备播放下一首音乐的时候，就会给前台Activity发Receiver，
+让Activity显示下一首音乐的名称。所以音乐播放器的原理，就是一个前后台Activity和Service互相发送和接收Receiver的过程。
 
 上述交互流程如下：
 ```
@@ -14,7 +16,8 @@
 ## 广播怎么和AMS交互的
 ### 注册广播
 ```
-拿音乐播放器来举例，在Activity注册Receiver，在Service发送广播。Service播放下一首音乐时，会通知Activity修改当前正在播放的音乐名称
+拿音乐播放器来举例，在Activity注册Receiver，在Service发送广播。Service播放下一首音乐时，
+会通知Activity修改当前正在播放的音乐名称
 ```
 #### 第一阶段
 ```
