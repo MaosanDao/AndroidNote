@@ -1,4 +1,4 @@
-# Android BroadcastReceiver内部启动原理分析
+# Android BroadcastReceiver内部启动原理分析([原文](https://www.cnblogs.com/Jax/p/6883534.html))
 ## 初探
 ```
 很多App开发人员表示，从来没用过Receiver。其实吧，对于音乐播放类App，用Service和Receiver还是蛮多的，如果你用过QQ音乐，App退到后台，音乐照样播放不会停止，这就是你写的Service在后台起作用。
