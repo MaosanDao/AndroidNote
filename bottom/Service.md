@@ -50,10 +50,43 @@ AMS把传进来的ActivityThread对象改造为ApplicationThreadProxy，也就�
 从PMS中取出包的信息packageInfo，这是一个LoadedApk对象，然后获取它的classloader，
 反射出来一个类的对象，在这里反射的是Service。
 ```
+***
+## 在同一进程启动Service
+```
+步骤：
 
+  1.App向AMS发送一个启动Service的消息
+  2.AMS例行检查，比如Service是否声明了，把Service在AMS这边注册。
+    AMS发现要启动的Service就是App所在的Service，就通知App启动这个Service。
+  3.App启动Service
+```
+## 在统一进程绑定Service
+```
+步骤：
 
-
-
+  1.App向AMS发送一个绑定Service的消息
+  2.AMS例行检查，比如Service是否声明了，把Service在AMS这边注册。AMS发现要启动的Service就是App所在的Service，
+    就先通知App启动这个Service，然后再通知App，对Service进行绑定操作。
+  3.App收到AMS第1个消息，启动Service
+  4.App收到AMS第2个消息，绑定Service，并把一个Binder对象传给AMS
+  5.AMS把接收到的Binder对象，发送给App
+  6.App收到Binder对象，就可以使用了
+  
+疑问？
+  为什么App需要要Binder来回传递，为啥不自己用就行了？
+  
+  因为考虑到不在一个进程里面的这种情况，所以只能这样咯，代码不能写两份吧。哈哈
+```
+### 第一阶段，App向AMS发送一个绑定Service的消息
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170520231153400-1053122975.png)
+### 第四阶段，App收到消息开始绑定并返回Binder给AMS
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170520231200791-687448931.png)
+### 第五和六阶段，AMS把Binder对象发送给App，使用了AIDL
+![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170520231209541-1531293878.png)
+```
+如上图所示，App最后调用的是ServiceDispatcher的connect方法，而这个方法，最终会调用
+ServiceConnection的onServiceConnected方法。
+```
 
 
 
