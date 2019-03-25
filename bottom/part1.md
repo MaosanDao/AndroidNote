@@ -18,6 +18,7 @@
   * [启动App的第五个阶段](#启动app的第五个阶段)
   * [启动App的第六个阶段](#启动app的第六个阶段)
   * [启动App的第七个阶段](#启动app的第七个阶段)
+* [Android内部的页面跳转](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/inner_jump.md) 
 ***
 ## Binder
 ### 什么是Binder
