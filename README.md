@@ -54,7 +54,7 @@
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Generic.md)
 * [Activity的四种启动模式介绍](https://github.com/MaosanDao/AndroidNote/blob/master/basis/launchMode.md)
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
-* [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.mdd)
+* [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.md)
 ## Java基础知识
 * [Java中synchronized的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/synchronized.md)
 * [Java集合相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set.md) 
