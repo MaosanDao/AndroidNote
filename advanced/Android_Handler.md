@@ -159,7 +159,7 @@ public void handleMessage(Message msg) {
 ##### Handler发送消息的过程
 >引出问题？
 * （**问题3**）MessageQueue的消息从哪里来？Handler如何往MessageQueue中插入消息？
-* （**问题4**）msg.target是是什么时候被赋值的？message怎么和handler进行绑定的？
+* （**问题4**）msg.target是是什么时候被赋值的？message怎么和handler怎么建立联系的？
 ##### Handler 发送消息
 >Handler --> sendMessage(Message msg)
 ```java
