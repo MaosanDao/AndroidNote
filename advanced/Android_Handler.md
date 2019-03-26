@@ -324,5 +324,7 @@ return queue.enqueueMessage(msg, uptimeMillis);
 >是一个消息队列，它不直接添加消息，而是通过与 Looper 关联的 Handler 对象来添加消息。
 * Message
 >包含了要传递的数据和信息，同时handler也会被赋值在其中（msg.target）
+### 图示
+![](http://assets.processon.com/chart_image/5c99dd54e4b02cc83502889c.png)
 ## 说明
 >以上均为摘录所得，只为记录平时个人学习记录。不作任何商用。
