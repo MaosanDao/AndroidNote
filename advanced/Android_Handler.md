@@ -44,7 +44,7 @@ public static void prepareMainLooper(){
                 throw new IllegalStateException("The main Looper has already been prepared.");
             }
             // step2: 调用本类 myLooper 方法
-            sMainLooper = myLooper();
+            sMainLooper = myLooper();//这里相当于调用了sThreadLocal.get()来获取主线程Looper
         }
 }
 ```
