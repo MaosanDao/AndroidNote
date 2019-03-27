@@ -225,7 +225,7 @@ public class Observer2 implements Observer {
 	}
 }
 //---------------------------------------------------------
-//
+//被观察者的接口定义
 public interface Subject {
 
 	/*增加观察者*/
@@ -238,7 +238,7 @@ public interface Subject {
 	/*自身的操作*/
 	public void operation();
 }
-//---------------------------------------------------------
+//---------------------------这个是被观察者-----------------------
 public abstract class AbstractSubject implements Subject {
 	//观察者集合
 	private Vector<Observer> vector = new Vector<Observer>();
