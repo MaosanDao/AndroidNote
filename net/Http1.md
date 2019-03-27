@@ -16,6 +16,7 @@
 * （第一次）客户端发送请求报文 -> 服务端（**能听到么？**）
 * （第二次）服务端回应确认和请求报文 -> 客户端（**我能听到，你能听到嘛？**）
 * （第三次）客户端收到请求报文后回复 —> 服务端（**我能听到你，咱们开始连接吧**）
+![](https://upload-images.jianshu.io/upload_images/9821298-e2a63a7ef8dcb0ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/551/format/webp)
 #### 为什么3次握手
 ##### 假如不采用三次握手会出现什么情况？
 >只要server发出确认后，就会建立一个新的连接。但是client没有发出建立连接的请求，因此不会理会server的确认，也不会向server发送数据。但是server此时已经建立连接了，并且会一直等待client发来消息。这样就会一直耗用资源。
@@ -25,3 +26,4 @@
 * （第二次）server收到FIN后，发回一个ACK到client，确认序号为收到序号+1
 * （第三次）server关闭client的连接，发送一个FIN给client
 * （第四次）client发送ACK确认，并将ACK序号+1返回给server
+![](https://upload-images.jianshu.io/upload_images/9821298-f4a5b3ef7a0f46d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/445/format/webp)
