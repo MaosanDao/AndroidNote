@@ -37,10 +37,6 @@
 ## ViewGroup 
 * Android中touch事件的传递，绝对是先传递到ViewGroup，再传递到View的
 * 当你点击了某个控件，首先会去调用该控件所在布局的dispatchTouchEvent方法，然后在布局的dispatchTouchEvent方法中找到被点击的相应控件，再去调用该控件的dispatchTouchEvent方法。
-
-如下图所示：
-![事件分发](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/touch_event_1.jpg)
-
 ### 总结
 * Android事件分发是先传递到ViewGroup，再由ViewGroup传递到View的
 * 在ViewGroup中可以通过onInterceptTouchEvent方法对事件传递进行拦截，onInterceptTouchEvent方法返回true代表不允许事件继续向子View传递，返回false代表不对事件进行拦截，默认返回false
