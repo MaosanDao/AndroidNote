@@ -1,8 +1,13 @@
 # Android Animation知识汇总
 >在Android的体系中，共分为几种动画：
 >* View Animation（视图动画）
+    主要使用set xml来定义平移、缩放、旋转、透明度等变换。然后使用AnimationUtils的loadAnimation调用xml。
 >* Drawble Animation（帧动画）
+    主要使用xml的animation-set标签，然后在xml中定义不同状态的图片的item。
 >* Property Animation（属性动画）
+    主要使用ValueAnimator和ObjectAnimator这两个类来使用，当然也可以使用xml的objectanimator标签来做。
+>* 集合动画（AnimationSet和AnimatorSet）
+    是通过来调用一系列动画来完成的动画组。他们的区别和上述的一样，Animator是真实改变了坐标点，而Animation则没有改变
 ## View Animation（未改变真实的坐标位置）
 >只支持简单的缩放、平移、旋转、透明度基本的动画
 ### Alpha --> 渐变
