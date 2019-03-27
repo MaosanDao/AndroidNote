@@ -32,5 +32,6 @@
 * （第三次）server关闭client的连接，发送一个FIN给client
 * （第四次）client发送ACK确认，并将ACK序号+1返回给server
 ![](https://upload-images.jianshu.io/upload_images/9821298-f4a5b3ef7a0f46d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/445/format/webp)
+![](https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2093785618,4182910024&fm=173&app=25&f=JPEG?w=590&h=402&s=05B0ED333D1B40CA0E6921D2000050B3)
 ## DNS的含义
 ![](http://p3.pstatp.com/large/40380002aab0610a1c07)
