@@ -266,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
   1.存在 ”工作线程实例持有外部类引用“ 的引用关系
   2.工作线程实例的生命周期 > 外部类的生命周期，即工作线程仍在运行而外部类需销毁
 ```
+##### 解决方法
 ```java
 public class MainActivity extends AppCompatActivity {
 
