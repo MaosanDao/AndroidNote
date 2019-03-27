@@ -31,7 +31,13 @@
 * （第二次）server收到FIN后，发回一个ACK到client，确认序号为收到序号+1
 * （第三次）server关闭client的连接，发送一个FIN给client
 * （第四次）client发送ACK确认，并将ACK序号+1返回给server
-![](https://upload-images.jianshu.io/upload_images/9821298-f4a5b3ef7a0f46d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/445/format/webp)
 ![](https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2093785618,4182910024&fm=173&app=25&f=JPEG?w=590&h=402&s=05B0ED333D1B40CA0E6921D2000050B3)
 ## DNS的含义
+```
+DNS（Domain Name System）服务是和HTTP协议一样位于应用层的协议。它提供域名到IP地址之间的解析服务。
+计算机既可以被赋予IP地址，也可以被赋予主机名和域名。比如www.baidu.com。
+因为域名更加直观，所以用户通常使用主机名或域名来访问对方的计算机，而不是直接通过IP地址访问。
+但要让计算机去理解名称，相对而言就变得困难了。因为计算机更擅长处理一长串数字。为了解决上述的问题，DNS服务应运而生。
+DNS协议提供通过域名查找IP地址，或逆向从IP地址反查域名的服务。
+```
 ![](http://p3.pstatp.com/large/40380002aab0610a1c07)
