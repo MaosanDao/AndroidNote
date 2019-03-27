@@ -43,7 +43,7 @@
 * 子View中如果将传递的事件消费掉，ViewGroup中将无法再对事件金进行监听
 
 ## 例子1
-### 假设最高层View叫OuterLayout，中间层View叫InnerLayout，最底层View叫MyVIew。调用顺序是这样的：
+### 假设最深层View叫OuterLayout，中间层View叫InnerLayout，最高层View叫MyVIew。调用顺序是这样的：
 ```java
 OuterLayout.onInterceptTouchEvent -> InnerLayout.onInterceptTouchEvent -> MyView.onTouchEvent -> InnerLayout.onTouchEvent
  -> OuterLayout.onTouchEvent
