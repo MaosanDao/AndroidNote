@@ -40,7 +40,7 @@
 ### 总结
 * Android事件分发是先传递到ViewGroup，再由ViewGroup传递到View的
 * 在ViewGroup中可以通过onInterceptTouchEvent方法对事件传递进行拦截，onInterceptTouchEvent方法返回true代表不允许事件继续向子View传递，返回false代表不对事件进行拦截，默认返回false
-* 子View中如果将传递的事件消费掉，ViewGroup中将无法再对事件不再监听
+* 子View中如果将传递的事件消费掉，ViewGroup中将无法再对事件金进行监听
 
 ## 例子1
 ### 假设最高层View叫OuterLayout，中间层View叫InnerLayout，最底层View叫MyVIew。调用顺序是这样的：
