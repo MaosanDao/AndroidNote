@@ -45,8 +45,10 @@
 ## 例子1
 ### 假设最深层View叫OuterLayout，中间层View叫InnerLayout，最高层View叫MyVIew。调用顺序是这样的：
 ```java
-OuterLayout.onInterceptTouchEvent -> InnerLayout.onInterceptTouchEvent -> MyView.onTouchEvent -> InnerLayout.onTouchEvent
- -> OuterLayout.onTouchEvent
+OuterLayout.dispatchTouchEvent -> OuterLayout.onInterceptTouchEvent -> 
+InnerLayout.dispatchTouchEvent -> InnerLayout.onInterceptTouchEvent -> 
+MyView.dispatchTouchEvent -> MyView.onTouchEvent -> InnerLayout.onTouchEvent-> 
+OuterLayout.onTouchEvent
 ```
 ## 例子2
 ### 当父控件中有子控件的时候，并且父控件和子空间都有事件处理（比如单击事件）。这时，点击子控件，父控件的单击事件就无效了
