@@ -120,19 +120,23 @@ class MyHandler extends Handler { 
 ThreadPoolExector提供了一组线程池，可以管理多个线程并发执行
 ### 方法介绍
 ```java
+//只有核心线程数，并且没有超时限制，因此核心线程即使闲置，也不会被回收，因此能更快的响应外界的请求
 Executors.newFixedThreadPool();
 ```
 创建一个定长的线程池，每提交一个任务就创建一个线程，直到达到池的最大长度，这时线程会保持长度不再变化
 ```java
+//没有核心线程数，有超时限制60秒，当线程闲置60秒后会被回收
 Executors.newCachedThreadPool();
 ```
 创建一个可以缓存的线程池，如果当前线程池的长度超过了处理的需要时，它可以灵活的回收空闲的线程，
 当需要增加线程时，它可以灵活的添加新的线程，而不会对线程池的长度作为限制。
 ```java
+//有核心线程数，没有超时限制，用于指定周期性的任务
 Executors.newScheduledThreadPool();
 ```
 创建一个定长的线程池，而且支持定时的以及周期性的任务执行，类似于timer
 ```java
+//没有超时和核心线程数，只有一个线程在其中，不用处理线程同步问题（因为只有一个线程在里面）
 Executors.newSingleThreadExecutor();
 ```
 创建一个单线程化的executor，它只创建一个唯一的任务线程来执行任务
