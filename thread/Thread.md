@@ -135,7 +135,7 @@ Executors.newScheduledThreadPool();
 ```java
 Executors.newSingleThreadExecutor();
 ```
-创建一个单线程化的executor，它只创建一个唯一的woker线程来执行任务
+创建一个单线程化的executor，它只创建一个唯一的任务线程来执行任务
 ### 代码实例
 #### FixedThreadPool
 特点：只有核心线程数，并且没有超时限制，因此核心线程即使闲置，也不会被回收，因此能更快的响应外界的请求
