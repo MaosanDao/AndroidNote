@@ -236,7 +236,7 @@ for (int i = 0; i < 10; i++) {
 ### 定义
 IntentService是Service的子类，根据需要处理异步请求，用Intent来启动
 ### 使用方法
-IntentService类的存在是为了简化这种模式，要使用它，扩展IntentSerivce并实现onHandleIntent(Intent)。IntentService将收到Intents，启动一共工作线程，并根据需要停止该服务
+IntentService类的存在是为了简化这种模式，要使用它，扩展IntentSerivce并实现onHandleIntent(Intent)。IntentService将收到Intents，启动一个工作线程，并根据需要停止该服务
 * 继承IntentService
 * 实现不带参数的构造方法，并且调用父类的IntentService的构造方法
 * 在注册文件中注册该Service
