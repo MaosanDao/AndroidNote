@@ -114,8 +114,10 @@ public interface IMyAidlInterface extends android.os.IInterface {
             //这里在本地找是否是本地进程，如果是，则返回本地对象，否则返回代理对象
             android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
             if (((iin != null) && (iin instanceof cn.venii.n1.IMyAidlInterface))) {
+                //本地的Binder，直接调用 --- 因为在同一个进程里面
                 return ((cn.venii.n1.IMyAidlInterface) iin);
             }
+            //返回Binder Server的代理对象
             return new cn.venii.n1.IMyAidlInterface.Stub.Proxy(obj);
         }
 
@@ -166,7 +168,7 @@ public interface IMyAidlInterface extends android.os.IInterface {
                 }
             }
         }
-        //这个就是内部类 --- 本地的代理对象
+        //这个就是内部类 --- Binder Server的代理对象
         private static class Proxy implements cn.venii.n1.IMyAidlInterface {
             private android.os.IBinder mRemote;
 
@@ -235,7 +237,8 @@ public interface IMyAidlInterface extends android.os.IInterface {
      * and return values in AIDL.
      */
     public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) throws android.os.RemoteException;
-
+    
+    //如果是在同一个进程内，那么就是调用这个方法，否则就是调用Binder Server的方法，即，走到这里case TRANSACTION_sum
     public void sum(int a, int b) throws android.os.RemoteException;
 }
 ```
