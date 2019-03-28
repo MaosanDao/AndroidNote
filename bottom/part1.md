@@ -199,7 +199,6 @@ public interface IMyAidlInterface extends android.os.IInterface {
                     _data.writeFloat(aFloat);
                     _data.writeDouble(aDouble);
                     _data.writeString(aString);
-                    //这里代理对象，调用了远程的Binder去完成具体方法
                     mRemote.transact(Stub.TRANSACTION_basicTypes, _data, _reply, 0);
                     _reply.readException();
                 } finally {
@@ -213,9 +212,11 @@ public interface IMyAidlInterface extends android.os.IInterface {
                 android.os.Parcel _data = android.os.Parcel.obtain();
                 android.os.Parcel _reply = android.os.Parcel.obtain();
                 try {
+                     //数据写入到Parcel中
                     _data.writeInterfaceToken(DESCRIPTOR);
                     _data.writeInt(a);
                     _data.writeInt(b);
+                     //这里代理对象，调用了远程的Binder去完成具体方法
                     mRemote.transact(Stub.TRANSACTION_sum, _data, _reply, 0);
                     _reply.readException();
                 } finally {
