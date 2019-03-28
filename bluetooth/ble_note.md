@@ -5,7 +5,7 @@
 * 标准Bluetooth
 ### 适用范围
 * bsr 适用于任何双模蓝牙4.0的电子产品
-* bs 应用在心率监视器或者记不起等适用纽扣电池并传输单一的装置
+* bs 应用在心率监视器或者计步器等适用纽扣电池并传输单一的装置
 ### 注意
 bs可以和标准Bluetooth相通，但是标准Bluetooth无法和bs相通
 ## BLE介绍（Bluetooth Low Energy又名蓝牙4.0）
