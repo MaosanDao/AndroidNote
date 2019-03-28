@@ -300,9 +300,13 @@ public class MyIntentService extends IntentService {
 * 如果先启动，在任务未完成的情况下，手动销毁IntentService，会先走onDestroy，但是任务也会相应的完成
 * 按顺序相应启动两个任务（第一个完成后，再启动第二个），第一个任务会按顺序完成任务并销毁，第二个任务又会创建IntentService和完成	任务及销毁
 * 启动第一个任务在未完成的时候再启动第二个任务，IntentService会按照顺序排队执行onHandleIntent方法。都完成后，会自动销毁
-* 先启动第一个任务，在未完成的时候，手动销毁。然后再次穹第二个任务。IntentService会先走onHandleIntent以及onDestroy。然后又会走onHandleIntent，最后任务都完成的时候，会自动销毁
+* 先启动第一个任务，在未完成的时候，手动销毁。然后再次启动第二个任务。IntentService会先走onHandleIntent以及onDestroy。然后又会走onHandleIntent，最后任务都完成的时候，会自动销毁
 ### 总结
 IntentService是一个比较便捷的类，它会创建一个线程，多个任务按顺序执行，且不能停止任务。要根据实际情况进行使用。
+```
+1.一句话概括：只要启动，它就会去完成，不管你是否会销毁，或者一次启动几个，那它都会一个一个去完成，并在都完成的时候进行销毁。
+2.多次启动，那么会按照顺序去执行onHandleIntent函数。
+```
 ## 参考文章
 >* [Android 消息处理机制（Looper、Handler、MessageQueue,Message)](https://www.jianshu.com/p/02962454adf7)
 
