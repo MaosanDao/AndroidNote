@@ -127,7 +127,7 @@ Executors.newFixedThreadPool();
 Executors.newCachedThreadPool();
 ```
 创建一个可以缓存的线程池，如果当前线程池的长度超过了处理的需要时，它可以灵活的回收空闲的线程，
-当需要增加线程时，它可以灵活的添加新的线程，而不会对池的长度作任务限制。
+当需要增加线程时，它可以灵活的添加新的线程，而不会对线程池的长度作为限制。
 ```java
 Executors.newScheduledThreadPool();
 ```
