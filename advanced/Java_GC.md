@@ -115,7 +115,7 @@ java的内存申请分为2种：
 ```
 过程分为两个阶段：
   1.从根节点开始标记所有被引用对象
-  2.遍历整个堆，把清除未标记对象并且把存活对象“压缩”到堆的其中一块，按顺序排放
+  2.遍历整个堆，清除未标记对象并且把存活对象“压缩”到堆的其中一块，按顺序排放
 ```
 ![MC](https://img-blog.csdn.net/20150315170004250?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdG9ueXRmamluZw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
 #### 分代收集算法（主要！）
