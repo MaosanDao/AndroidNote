@@ -417,7 +417,7 @@ AMN和AMP都实现了IActivityManager接口，AMS继承自AMN。
 #### 具体怎么通知Luncher休眠的
 ![](https://images2015.cnblogs.com/blog/13430/201705/13430-20170519225928432-1563080021.png)
 ```
-ATP接收到来自AMS的消息后，就调用ActivityThread的sendMessage方法，向Launcher的主线程消息队列发送一个PAUSE_ACTIVITY消息。
+AppThread接收到来自AMS的消息后，就调用ActivityThread的sendMessage方法，向Launcher的主线程消息队列发送一个PAUSE_ACTIVITY消息。
 其中ActivityThread为主线程，即UI线程。
 
 所以需要使用Handler将这个任务处理了，然后将结果返回给UI线程:
