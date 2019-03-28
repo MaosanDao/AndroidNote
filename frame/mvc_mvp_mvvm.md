@@ -205,7 +205,7 @@ public interface LoginMVPContract{
       public void showLoginSuccess(T data);
       public void showLoginFailed(String errorMsg);
   }
-  //Task接口
+  //Model层的任务接口
   public interface ILoginTask{
       public void startLogin(String phoneNumber, ILoginCallBack callback);
   }
@@ -213,7 +213,7 @@ public interface LoginMVPContract{
   public interface ILoginPresenter{
       public void startLogin(String phoneNumber);
   }
-  //Presenter和Task间交互的接口
+  //Presenter和Model层的数据交互的接口
   public interface ILoginCallBack<T>{
       public void onLoginSuccess(T data);
       public void onLoginFailed(String errorMsg);
