@@ -245,7 +245,7 @@ public class SampleViewModel extends AbstractViewModel<ActivitySampleMvvmBinding
     {
         //从网络或缓存获取信息
         SampleModel.UserInfo userInfo=new SampleModel.UserInfo();
-        userInfo.setName("tom");
+        userInfo.setName("tom");//set的时候会调用notifyPropertyChanged(BR.name)方法，所以可以通知UI层进行变化
         userInfo.setAge(18);
         callback.onCallBack(userInfo);
     }
