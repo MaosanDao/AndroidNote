@@ -402,7 +402,7 @@ AMN和AMP都实现了IActivityManager接口，AMS继承自AMN。
 ```
 #### AMS如何通知Luncher让它休息？
 ```
-面不是把Launcher以及它所在的进程给传过来了吗？它在AMS这边保存为一个ActivityRecord对象，
+一开始不是把Launcher以及它所在的进程给传过来了吗？它在AMS这边保存为一个ActivityRecord对象，
 这个对象里面有一个ApplicationThreadProxy，单单从名字看就出卖了它，这就是一个Binder代理对象。
 它的Binder真身，也就是ApplicationThread。
 ```
