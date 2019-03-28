@@ -87,6 +87,157 @@ Stub
 3.Server则是通过onTransact方法接收Client进程传过来的数据，包括函数名称、函数参数，找到对应的函数，这里是sum，把参数喂进去，得到结果，返回。
    所以onTransact函数经历了读数据-->执行要调用的函数-->把执行结果再写数据的过程。
 ```
+### 这是Java生成的本地AIDL文件代码
+```java
+public interface IMyAidlInterface extends android.os.IInterface {
+    /**
+     * Local-side IPC implementation stub class.
+     */
+    public static abstract class Stub extends android.os.Binder implements cn.venii.n1.IMyAidlInterface {
+        private static final java.lang.String DESCRIPTOR = "cn.venii.n1.IMyAidlInterface";
+
+        /**
+         * Construct the stub at attach it to the interface.
+         */
+        public Stub() {
+            this.attachInterface(this, DESCRIPTOR);
+        }
+
+        /**
+         * Cast an IBinder object into an cn.venii.n1.IMyAidlInterface interface,
+         * generating a proxy if needed.
+         */
+        public static cn.venii.n1.IMyAidlInterface asInterface(android.os.IBinder obj) {
+            if ((obj == null)) {
+                return null;
+            }
+            //这里在本地找是否是本地进程，如果是，则返回本地对象，否则返回代理对象
+            android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
+            if (((iin != null) && (iin instanceof cn.venii.n1.IMyAidlInterface))) {
+                return ((cn.venii.n1.IMyAidlInterface) iin);
+            }
+            return new cn.venii.n1.IMyAidlInterface.Stub.Proxy(obj);
+        }
+
+        @Override
+        public android.os.IBinder asBinder() {
+            return this;
+        }
+        //Binder Server的处理方法
+        @Override
+        public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) throws android.os.RemoteException {
+            java.lang.String descriptor = DESCRIPTOR;
+            switch (code) {
+                case INTERFACE_TRANSACTION: {
+                    reply.writeString(descriptor);
+                    return true;
+                }
+                case TRANSACTION_basicTypes: {
+                    data.enforceInterface(descriptor);
+                    int _arg0;
+                    _arg0 = data.readInt();
+                    long _arg1;
+                    _arg1 = data.readLong();
+                    boolean _arg2;
+                    _arg2 = (0 != data.readInt());
+                    float _arg3;
+                    _arg3 = data.readFloat();
+                    double _arg4;
+                    _arg4 = data.readDouble();
+                    java.lang.String _arg5;
+                    _arg5 = data.readString();
+                    this.basicTypes(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
+                    reply.writeNoException();
+                    return true;
+                }
+                //这里就是Binder Server真正调用的方法的地方
+                case TRANSACTION_sum: {
+                    data.enforceInterface(descriptor);
+                    int _arg0;
+                    _arg0 = data.readInt();
+                    int _arg1;
+                    _arg1 = data.readInt();
+                    this.sum(_arg0, _arg1);
+                    reply.writeNoException();
+                    return true;
+                }
+                default: {
+                    return super.onTransact(code, data, reply, flags);
+                }
+            }
+        }
+        //这个就是内部类 --- 本地的代理对象
+        private static class Proxy implements cn.venii.n1.IMyAidlInterface {
+            private android.os.IBinder mRemote;
+
+            Proxy(android.os.IBinder remote) {
+                mRemote = remote;
+            }
+
+            @Override
+            public android.os.IBinder asBinder() {
+                return mRemote;
+            }
+
+            public java.lang.String getInterfaceDescriptor() {
+                return DESCRIPTOR;
+            }
+
+            /**
+             * Demonstrates some basic types that you can use as parameters
+             * and return values in AIDL.
+             */
+            @Override
+            public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) throws android.os.RemoteException {
+                android.os.Parcel _data = android.os.Parcel.obtain();
+                android.os.Parcel _reply = android.os.Parcel.obtain();
+                try {
+                    _data.writeInterfaceToken(DESCRIPTOR);
+                    _data.writeInt(anInt);
+                    _data.writeLong(aLong);
+                    _data.writeInt(((aBoolean) ? (1) : (0)));
+                    _data.writeFloat(aFloat);
+                    _data.writeDouble(aDouble);
+                    _data.writeString(aString);
+                    //这里代理对象，调用了远程的Binder去完成具体方法
+                    mRemote.transact(Stub.TRANSACTION_basicTypes, _data, _reply, 0);
+                    _reply.readException();
+                } finally {
+                    _reply.recycle();
+                    _data.recycle();
+                }
+            }
+
+            @Override
+            public void sum(int a, int b) throws android.os.RemoteException {
+                android.os.Parcel _data = android.os.Parcel.obtain();
+                android.os.Parcel _reply = android.os.Parcel.obtain();
+                try {
+                    _data.writeInterfaceToken(DESCRIPTOR);
+                    _data.writeInt(a);
+                    _data.writeInt(b);
+                    mRemote.transact(Stub.TRANSACTION_sum, _data, _reply, 0);
+                    _reply.readException();
+                } finally {
+                    _reply.recycle();
+                    _data.recycle();
+                }
+            }
+        }
+
+        static final int TRANSACTION_basicTypes = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
+        static final int TRANSACTION_sum = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
+    }
+
+    /**
+     * Demonstrates some basic types that you can use as parameters
+     * and return values in AIDL.
+     */
+    public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, java.lang.String aString) throws android.os.RemoteException;
+
+    public void sum(int a, int b) throws android.os.RemoteException;
+}
+```
 ***
 ## AMS初探
 ```
