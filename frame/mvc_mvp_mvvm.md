@@ -2,8 +2,8 @@
 ****
 ## 目录
 * [MVC](#mvc)
-* [MVP](#mvp)
-* [MVVM](#mvvm)
+* [进阶MVP](#进阶mvp)
+* [完全进阶MVVM](#完全进阶mvvm)
 ****
 ## MVC
 #### 图示
