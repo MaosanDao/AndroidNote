@@ -1,4 +1,8 @@
 # AndroidNote
+
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+
 >记录下一些基础的，以及日常工作、面试中需要的知识点，防止以后自己老年痴呆后忘记了。为了测试自制力，也想要了解下自己到底能不能坚持记录。
 >同时让自己的知识面越来越大，越来越广。加油！🆙
 
