@@ -96,10 +96,11 @@ Activity在onStart()和onStop()之间所经历的。
 Activity在onResume()和onPause()之间所经历的。
 活动可见，且可交互。
 ```
-## onSaveInstanceState和onRestoreInstanceState（[详细点击这个](https://www.jianshu.com/p/89e0a7533dbe)）
+## onSaveInstanceState和onRestoreInstanceState（[详细解释点这里](https://www.jianshu.com/p/89e0a7533dbe)）
 ```
 出现时机：非用户手动销毁，异常情况下重建Activity。
-系统出现异常的时候，调用onSaveInstanceState来保存状态，它的调用在onStop之前，而且和onPause没有时序关系：
+系统出现异常的时候，调用onSaveInstanceState来保存状态，它的调用在onStop之前，而且和onPause没有时序关系。
+
 onSaveInstanceState与onPause的区别：前者适用于对临时性状态的保存，而后者适用于对数据的持久化保存。
 
 Activity被重新创建时，调用onRestoreInstanceState（该方法在onStart之后），
