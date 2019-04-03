@@ -180,6 +180,8 @@ span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
 
 ```
+***
+## 特别感谢
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
 </div>
