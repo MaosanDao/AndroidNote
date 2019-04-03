@@ -12,6 +12,8 @@
 ```
 该方法是在Activity被创建时回调，它是生命周期第一个调用的方法，我们在创建Activity时一般都需要重写该方法，
 然后在该方法中做一些初始化的操作，如通过setContentView设置界面布局的资源，初始化所需要的组件信息等。
+
+此方法的传参Bundle为该Activity上次已异常情况销毁时，保存的状态信息。
 ```
 * onStart
 ```
@@ -26,10 +28,14 @@
 此方法被回调时则表示Activity正在停止（Paused形态），一般情况下onStop方法会紧接着被回调。
 但通过流程图我们还可以看到一种情况是onPause方法执行后直接执行了onResume方法，这属于比较极端的现象了，
 这可能是用户操作使当前Activity退居后台后又迅速地再回到到当前的Activity，此时onResume方法就会被回调。
+
+Activity切换的时候，旧的Activity的onPause会先执行，然后才会启动新的Activity（AMS的功能）。
 ```
 * onStop
 ```
 一般在onPause方法执行完成直接执行，表示Activity即将停止或者完全被覆盖（Stopped形态），此时Activity不可见，仅在后台运行。
+
+注意：新的Activity如果是透明主题的时候，是不会走onStop方法的。
 ```
 * onRestart
 ```
@@ -44,6 +50,34 @@
 #### 注意
 ```
 onRestart只会在onStop后调用，onStop则是长时间后台而执行的。
+```
+#### 区别
+```
+onStart与onStop是从Activity是否可见这个角度调用的。
+ 
+onResume和onPause是从Activity是否显示在前台这个角度来回调的。
+
+除此之外，他们的实际使用没有明显区别。
+```
+#### 记忆方式
+![](https://images.cnblogs.com/cnblogs_com/kofi/201104/201104101952164342.png)
+```
+由上图可见，除了onRestart之外，他们都是一一对应的：
+
+1.onCreate创建与onDestroy销毁；
+2.onStart可见与onStop不可见；
+3.onResume可编辑（即焦点）与onPause；
+
+我们可以这样来理解：
+
+我们把Activity比作一本书，我们要看书，首先从书架上取出书（onCreate），然后放到桌上（onStart），
+接着打开书（onResume），这样我们就可以看书并可以在书本上写字了。
+
+如果这时候我们要启动另一个Activity，也就是要看另一本书，首先我们放下手中的笔或者说合上书（onPause），
+然后从书架上拿下另一本书（书2：onCreate），然后把书本2放到桌上并打开（书2：onStart、onResume）。
+
+如果书本1被书本2完全盖住了，即不可见了，就调用书本1的onStop；而如果书本2较小，没有完全盖住书本1，则不会调用。
+我们还可以把书本1放回书架上，即onDestroy。
 ```
 ***
 ## Fragment的生命周期
