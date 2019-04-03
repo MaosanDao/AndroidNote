@@ -180,12 +180,12 @@ span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
 
 ```
-
-## 说明
-* 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容，请联系我，我会尽快进行修改和删除。谢谢！
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
 </div>
+
+## 说明
+* 以上内容都为整理网络上的一些博主的文章所得，如果有侵权的内容，请联系我，我会尽快进行修改和删除。谢谢！
 ***
 ## 联系方式
 * QQ:460977141
