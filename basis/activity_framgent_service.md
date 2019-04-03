@@ -79,6 +79,32 @@ onResume和onPause是从Activity是否显示在前台这个角度来回调的。
 如果书本1被书本2完全盖住了，即不可见了，就调用书本1的onStop；而如果书本2较小，没有完全盖住书本1，则不会调用。
 我们还可以把书本1放回书架上，即onDestroy。
 ```
+## Activity的生命周期的各个阶段
+```
+完整的生命周期：
+
+Activity在onCreate()和onDestroy()之间所经历的。
+在onCreate()中完成各初始化操作，在onDestroy()中释放资源。
+
+可见的生命周期：
+
+Activity在onStart()和onStop()之间所经历的。
+活动对于用户是可见的，但仍无法与用户进行交互。
+
+前台的生命周期：
+
+Activity在onResume()和onPause()之间所经历的。
+活动可见，且可交互。
+```
+## onSaveInstanceState和onRestoreInstanceState（[详细点击这个](https://www.jianshu.com/p/89e0a7533dbe)）
+```
+出现时机：非用户手动销毁，异常情况下重建Activity。
+系统出现异常的时候，调用onSaveInstanceState来保存状态，它的调用在onStop之前，而且和onPause没有时序关系：
+onSaveInstanceState与onPause的区别：前者适用于对临时性状态的保存，而后者适用于对数据的持久化保存。
+
+Activity被重新创建时，调用onRestoreInstanceState（该方法在onStart之后），
+并将onSavaInstanceState保存的Bundle对象作为参数传到onRestoreInstanceState与onCreate方法。
+```
 ***
 ## Fragment的生命周期
 #### 图示
