@@ -326,5 +326,6 @@ return queue.enqueueMessage(msg, uptimeMillis);
 >包含了要传递的数据和信息，同时handler也会被赋值在其中（msg.target）
 ### 图示
 ![iamge1](http://assets.processon.com/chart_image/5c99dd54e4b02cc83502889c.png)
+![image2](https://mmbiz.qpic.cn/mmbiz_gif/y5HvXaQmpqkgjv29Vwy5dCCLXicviaBQXLNyrZtJ2JiaFXhLuP68VEREvc2p0vVsR2Ff7XjeC5Ur7Xu061HwJXDicg/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1)
 ## 说明
 >以上均为摘录所得，只为记录平时个人学习记录。不作任何商用。
