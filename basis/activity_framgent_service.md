@@ -59,7 +59,7 @@ onResume和onPause是从Activity是否显示在前台这个角度来回调的。
 
 除此之外，他们的实际使用没有明显区别。
 ```
-#### 记忆方式
+#### 记忆方式（[原文](http://www.cnblogs.com/kofi1122/archive/2011/04/10/2011772.html)）
 ![](https://images.cnblogs.com/cnblogs_com/kofi/201104/201104101952164342.png)
 ```
 由上图可见，除了onRestart之外，他们都是一一对应的：
