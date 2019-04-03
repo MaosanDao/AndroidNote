@@ -11,7 +11,7 @@
 3.同时让自己的知识面越来越大，越来越广。努力让自己成为牛逼的人。
 ```
 <div align=center>
-    <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
+    <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo2.jpeg"/>
 </div>
 
 ## 目录
