@@ -16,6 +16,7 @@
 * [开发相关](#开发相关)
 * [RxJava相关](#rxjava相关)
 * [Retrofit相关](#retrofit相关)
+* [Activity](#activity相关)
 * [基础知识](#基础知识)
 * [Java基础知识](#java基础知识)
 * [多线程](#多线程)
@@ -56,9 +57,11 @@
 ## 基础知识
 * [Android序列化及反序列化相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/Serializable.md)
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Generic.md)
+## Activity相关
+* [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.md)
 * [Activity的四种启动模式介绍](https://github.com/MaosanDao/AndroidNote/blob/master/basis/launchMode.md)
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
-* [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.md)
+* [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
 ## Java基础知识
 * [Java中synchronized的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/synchronized.md)
 * [Java集合相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set.md) 
@@ -108,7 +111,6 @@
 ## 进阶
 * [Android Bitmap高效加载和图片三级缓存机制](https://github.com/MaosanDao/AndroidNote/blob/master/basis/bitmap_lrucache.md)
 * [事件分发机制](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/advanced/TouchEvent.md)
-* [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
 ## Android底层知识
 * [Android PMS和App安装过程分析](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/pms.md)
 * [Android ContentProvider的底层通信和相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/bottom/ContentProvider.md) 
