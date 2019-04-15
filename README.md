@@ -145,7 +145,7 @@
 * [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/other/regexp.md)
 * [导入第三方包的几种方法介绍](https://github.com/MaosanDao/AndroidNote/blob/master/other/ImportLib.md)
 ## 奇淫技巧
-* [一些常用的小技巧](#https://github.com/MaosanDao/AndroidNote/blob/master/other/someSkills.md) 
+* [一些常用的小技巧](https://github.com/MaosanDao/AndroidNote/blob/master/other/someSkills.md) 
 ## 草稿记录
 * [扫地机地图相关的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/note/robot_map.md)
 ## 待加
