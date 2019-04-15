@@ -22,7 +22,7 @@ if (viewHolder != null && viewHolder instanceof ItemHolder) {
 }
 ```
 ##### 相关文章
-[推荐阅读](https://blog.csdn.net/OneDeveloper/article/details/79721284)
+[有关RecyclerView.Adapter 的 notifyItemChanged(int position, @Nullable Object payload) 方法](https://blog.csdn.net/OneDeveloper/article/details/79721284)
 #### TextView缩进
 ```java
  //缩进
