@@ -145,41 +145,12 @@
 * [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/other/regexp.md)
 * [导入第三方包的几种方法介绍](https://github.com/MaosanDao/AndroidNote/blob/master/other/ImportLib.md)
 ## 奇淫技巧
-* [一些常用的小技巧]() 
+* [一些常用的小技巧](#https://github.com/MaosanDao/AndroidNote/blob/master/other/someSkills.md) 
 ## 草稿记录
 * [扫地机地图相关的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/note/robot_map.md)
 ## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 * Android单元测试(https://www.jianshu.com/p/827a6179297d https://www.jianshu.com/p/bc99678b1d6e https://www.jianshu.com/p/dba1290f9dc8)
-## 速记待整理框
->1.关于不能正常生成GlideApp的解决方案汇总。kapt、注解、编译版本
-
->2.ndk报错解决：
-```xml
-packagingOptions {
-    doNotStrip '*/mips/*.so'
-    doNotStrip '*/mips64/*.so'
-}
-```
->3.[局部刷新Recyclerview中item](https://blog.csdn.net/OneDeveloper/article/details/79721284)
-```java
-RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
-if (viewHolder != null && viewHolder instanceof ItemHolder) {
-    ItemHolder itemHolder = (ItemHolder) itemHolder 
-        itemHolder.mButton.togglestate();
-    }
-}
-```
->4,TextView缩进
-```java
- //缩进
- //text为要显示的文字
- //span为最后缩进的文字
-val span = SpannableStringBuilder("缩进" + text)
-span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
-        Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
-
-```
 ## 特别感谢
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
