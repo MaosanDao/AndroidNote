@@ -12,16 +12,6 @@ packagingOptions {
     doNotStrip '*/mips64/*.so'
 }
 ```
-#### TextView缩进
-```java
- //缩进
- //text为要显示的文字
- //span为最后缩进的文字
-val span = SpannableStringBuilder("缩进" + text)
-span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
-        Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
-
-```
 #### 局部刷新Recyclerview中item
 ```java
 RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
@@ -33,3 +23,13 @@ if (viewHolder != null && viewHolder instanceof ItemHolder) {
 ```
 ##### 相关文章
 [推荐阅读](https://blog.csdn.net/OneDeveloper/article/details/79721284)
+#### TextView缩进
+```java
+ //缩进
+ //text为要显示的文字
+ //span为最后缩进的文字
+val span = SpannableStringBuilder("缩进" + text)
+span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
+        Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+
+```
