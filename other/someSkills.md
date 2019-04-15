@@ -22,7 +22,7 @@ span.setSpan(ForegroundColorSpan(Color.TRANSPARENT), 0, 2,
         Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
 
 ```
-#### 局部刷新Recyclerview中item([推荐阅读](https://blog.csdn.net/OneDeveloper/article/details/79721284))
+#### 局部刷新Recyclerview中item
 ```java
 RecyclerView.ViewHolder viewHolder = mRecyclerView.findViewHolderForAdapterPosition(i);
 if (viewHolder != null && viewHolder instanceof ItemHolder) {
@@ -31,3 +31,4 @@ if (viewHolder != null && viewHolder instanceof ItemHolder) {
     }
 }
 ```
+##### [推荐阅读](https://blog.csdn.net/OneDeveloper/article/details/79721284)
