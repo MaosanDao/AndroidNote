@@ -39,6 +39,7 @@
 * [WebView](#webview)
 * [IO](#io)
 * [其他](#其他)
+* [奇淫技巧](#奇淫技巧)
 ### 需要完善的
 * [草稿记录](#草稿记录)
 * [待加](#待加)
@@ -143,6 +144,8 @@
 * [制作Readme头部标签](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/makeTag/README.md)
 * [常用正则表达式列表](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/other/regexp.md)
 * [导入第三方包的几种方法介绍](https://github.com/MaosanDao/AndroidNote/blob/master/other/ImportLib.md)
+## 奇淫技巧
+* [一些常用的小技巧]() 
 ## 草稿记录
 * [扫地机地图相关的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/note/robot_map.md)
 ## 待加
