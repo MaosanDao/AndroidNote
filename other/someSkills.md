@@ -31,4 +31,5 @@ if (viewHolder != null && viewHolder instanceof ItemHolder) {
     }
 }
 ```
-##### [推荐阅读](https://blog.csdn.net/OneDeveloper/article/details/79721284)
+##### 相关文章
+[推荐阅读](https://blog.csdn.net/OneDeveloper/article/details/79721284)
