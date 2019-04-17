@@ -1,6 +1,7 @@
 # Activity跳转问题
 ***
 ## 假如A-B-C进行跳转，那么如何直接从C回到A？
+### 方式一
 ```
 核心原理，使用startActivityForResult进行跳转，然后在B中进行回调处理，即：
 ```
@@ -26,6 +27,10 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data)
 //C中的代码
 setResult(RESULT_OK); 
 finish(); 
+```
+### 方式二
+```
+直接把要穿的值存到配置文件中或者存到数据库中，到了A中在读取就好了。
 ```
 
 
