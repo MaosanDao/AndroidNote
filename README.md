@@ -62,6 +62,7 @@
 * [Android序列化及反序列化相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/Serializable.md)
 * [泛型的相关知识](https://github.com/MaosanDao/AndroidQuickCheckList/blob/master/basis/Generic.md)
 ## Activity相关
+* [Activity跳转问题](https://github.com/MaosanDao/AndroidNote/blob/master/basis/act_jump.md)
 * [Activity、Service、Fragment生命周期与相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/activity_framgent_service.md)
 * [Activity的四种启动模式及IntentFilter匹配规则](https://github.com/MaosanDao/AndroidNote/blob/master/basis/launchMode.md)
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
