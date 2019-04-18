@@ -68,6 +68,7 @@
 * [横竖屏的相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/DirectionScreen.md)
 * [Activity和Fragment的状态保存和恢复](https://github.com/MaosanDao/AndroidNote/blob/master/advanced/SaveRestore.md)
 ## Java基础知识
+* [Java中Transient关键字的作用](https://github.com/MaosanDao/AndroidNote/blob/master/basis/transient.md) 
 * [Java中synchronized的知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/synchronized.md)
 * [Java集合相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set.md) 
 * [Java集合相关的面试题整理](https://github.com/MaosanDao/AndroidNote/blob/master/basis/set_interview.md)
