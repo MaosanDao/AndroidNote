@@ -2,7 +2,7 @@
 
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
->将来的你，一定会感激现在拼命的自己！
+>将来的你，一定会感激现在拼命的自己！努力成为自己想要成为的那个人吧！
 ```
 此项目的目的：
 
