@@ -154,6 +154,14 @@
 ## 待加
 * Android性能优化([参考文章](https://www.jianshu.com/p/9755da0f4e8f))
 * Android单元测试(https://www.jianshu.com/p/827a6179297d https://www.jianshu.com/p/bc99678b1d6e https://www.jianshu.com/p/dba1290f9dc8)
+* 如何隐藏应用的桌面图标？
+```xml
+//在Android注册文件中新增以下说明
+<!--只要添加下面这句话，可以隐藏应用图标-->
+<data android:host="AuthActivity" android:scheme="com.android.example" />
+<!-- 上面这句 -->
+<category android:name="android.intent.category.LAUNCHER" />
+```
 ## 特别感谢
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
