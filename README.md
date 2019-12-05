@@ -190,7 +190,9 @@ supportFragmentManager.beginTransaction().add(R.id.main_content,mKeyFragment).co
 //mContent为当前的Fragment
 mContent = mKeyFragment
 ```
-切换直接调用switchContent
+切换直接调用switchContent。
+其中，只有第一次的时候会触发：initData和onResume。
+后面，则只会触发onHiddenChanged方法
 ## 特别感谢
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
