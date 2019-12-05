@@ -165,6 +165,32 @@
 <!-- 上面这句 -->
 <category android:name="android.intent.category.LAUNCHER" />
 ```
+* 如何做好切换Fragment而不触发生命周期？
+```kotlin
+//切换方法
+ private fun switchContent(to: Fragment) {
+        if (mContent !== to) {
+            val transaction = supportFragmentManager
+                .beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            if (!to.isAdded) { // 判断是否被add过
+                // 隐藏当前的fragment，将 下一个fragment 添加进去
+                transaction.hide(mContent).add(R.id.main_content, to).commit()
+            } else {
+                // 隐藏当前的fragment，显示下一个fragment
+                transaction.hide(mContent).show(to).commit()
+            }
+            mContent = to
+        }
+    }
+```
+第一个初始化的时候：
+```kotlin
+supportFragmentManager.beginTransaction().add(R.id.main_content,mKeyFragment).commit()
+//mContent为当前的Fragment
+mContent = mKeyFragment
+```
+切换直接调用switchContent
 ## 特别感谢
 <div align=center>
     <img src="https://github.com/MaosanDao/AndroidNote/blob/master/logo.jpeg"/>
