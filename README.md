@@ -87,6 +87,7 @@
 * [UI布局的时候，常见的问题集合](https://github.com/MaosanDao/AndroidNote/blob/master/view/UiCommonProblem.md)
 * [RecyclerView 加载不同的item布局](https://github.com/MaosanDao/AndroidNote/blob/master/view/RecylerViewType.md)
 * [点击界面其他部分，隐藏虚拟键盘](https://github.com/MaosanDao/AndroidNote/blob/master/view/hideKeyBoard.md)
+* [RecyclerView 自动换行和间距处理](https://github.com/MaosanDao/AndroidNote/blob/master/view/recyclerview2.md)
 ## 框架
 * [Android图片加载图库Glide vs Picasso](https://github.com/MaosanDao/AndroidNote/blob/master/frame/glide_picasso.md) 
 * [MVC、MVP、MVVM介绍以及相关知识点](https://github.com/MaosanDao/AndroidNote/blob/master/frame/mvc_mvp_mvvm.md)
